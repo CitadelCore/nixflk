@@ -25,9 +25,13 @@
             kernelModules = [ "dm-snapshot" ];
 
             # nuke the temporary root volume on boot
-            postDeviceCommands = lib.mkAfter ''
-                zfs rollback -r rpool/local/root@blank
-            '';
+            #postDeviceCommands = lib.mkAfter ''
+            #    zfs rollback -r rpool/local/root@blank
+            #'';
+
+            # rm -r /etc/nixos
+            # sudo ln -s /home/alex/src/personal/nixflk /etc/nixos
+            # touch /etc/NIXOS
         };
 
         loader = {
@@ -83,9 +87,6 @@
 
     nixpkgs.config.allowUnfree = true;
 
-    # root user should never be able to log in
-    users.users.root.password = "";
-
     networking.useDHCP = false;
     networking.interfaces.enp0s31f6.useDHCP = true;
     networking.interfaces.ens4u2u1u2c2.useDHCP = true;
@@ -93,6 +94,8 @@
 
     services = {
         xserver.videoDrivers = [ "modesetting" "nvidia" ];
+        fwupd.enable = true;
+        
         zfs = {
             trim.enable = true;
             autoScrub.enable = true;

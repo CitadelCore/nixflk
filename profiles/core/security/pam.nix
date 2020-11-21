@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 {
     security.pam.u2f = {
-        enable = true;
+        enable = false; # todo
         control = "sufficient";
     };
 }

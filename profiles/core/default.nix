@@ -34,6 +34,9 @@ in
         protectKernelImage = true;
     };
 
+    services.earlyoom.enable = true;
+    users.mutableUsers = false;
+
     environment = {
         systemPackages = with pkgs; [
             binutils
@@ -123,7 +126,4 @@ in
             sansSerif = [ "FiraCode Nerd Font" ];
         };
     };
-
-    services.earlyoom.enable = true;
-    users.mutableUsers = true;
 }

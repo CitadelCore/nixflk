@@ -6,7 +6,7 @@
             clang file less wget
 
             # security
-            git-crypt gnupg pass
+            git-crypt gnupg pass mkpasswd
 
             # editors
             vscode
