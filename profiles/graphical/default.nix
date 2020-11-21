@@ -6,7 +6,12 @@
             driSupport = true;
         };
 
-        pulseaudio.enable = true;
+        pulseaudio = {
+            enable = true;
+            package = pkgs.pulseaudioFull;
+        };
+
+        bluetooth.enable = true;
     };
 
     services = {

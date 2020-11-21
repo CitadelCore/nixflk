@@ -6,9 +6,9 @@
         ../profiles/develop
         ../profiles/graphical
         ../profiles/graphical/games
+        ../profiles/graphical/media
         ../profiles/graphical/barrier
         ../profiles/graphical/scream
-        ../profiles/media
     ];
 
     boot = {
@@ -25,9 +25,9 @@
             kernelModules = [ "dm-snapshot" ];
 
             # nuke the temporary root volume on boot
-            #postDeviceCommands = lib.mkAfter ''
-            #    zfs rollback -r rpool/local/root@blank
-            #'';
+            postDeviceCommands = lib.mkAfter ''
+                zfs rollback -r rpool/local/root@blank
+            '';
 
             # rm -r /etc/nixos
             # sudo ln -s /home/alex/src/personal/nixflk /etc/nixos
