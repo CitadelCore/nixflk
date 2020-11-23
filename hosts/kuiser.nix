@@ -1,14 +1,17 @@
-{ lib, ... }:
+{ lib, pkgs, ... }:
 {
     imports = [
         ../users/alex
         ../profiles/comms
         ../profiles/develop
         ../profiles/graphical
+        ../profiles/graphical/creative
         ../profiles/graphical/games
         ../profiles/graphical/media
         ../profiles/graphical/barrier
         ../profiles/graphical/scream
+        ../profiles/laptop
+        ../profiles/sysadmin
     ];
 
     boot = {
@@ -50,6 +53,16 @@
         supportedFilesystems = [ "zfs" ];
     };
 
+    # link the config in the persistent volume to the temporary volume
+    system.activationScripts.linkNixos = {
+        text = ''
+            rm -rf /etc/nixos
+            ln -s /persist/nixos /etc/nixos
+        '';
+
+        deps = [];
+    };
+
     networking = {
         networkmanager.enable = true;
 
@@ -82,19 +95,39 @@
         fsType = "vfat";
     };
 
+    # we have enough memory we definitely don't need swap!
     swapDevices = [];
-    powerManagement.cpuFreqGovernor = "powersave";
 
-    nixpkgs.config.allowUnfree = true;
-
-    networking.useDHCP = false;
-    networking.interfaces.enp0s31f6.useDHCP = true;
-    networking.interfaces.ens4u2u1u2c2.useDHCP = true;
-    networking.interfaces.wlp0s20f3.useDHCP = true;
+    networking = {
+        useDHCP = false;
+        interfaces = {
+            enp0s31f6.useDHCP = true;
+            ens4u2u1u2c2.useDHCP = true;
+            wlp0s20f3.useDHCP = true;
+        };
+    };
 
     services = {
-        xserver.videoDrivers = [ "modesetting" "nvidia" ];
         fwupd.enable = true;
+        autorandr.enable = true;
+
+        # dock is not properly detected as a dock
+        # so lid switch on external power must be ignored
+        logind.lidSwitchExternalPower = "ignore";
+
+        xserver = {
+            layout = "gb";
+            videoDrivers = [ "modesetting" "nvidia" ];
+
+            # disable display blanking, as it really breaks the external monitors
+            # (better option than just disabling DPMS completely)
+            serverFlagsSection = ''
+                Option "BlankTime" "0"
+                Option "StandbyTime" "0"
+                Option "SuspendTime" "0"
+                Option "OffTime" "0"
+            '';
+        };
         
         zfs = {
             trim.enable = true;
@@ -108,11 +141,12 @@
         # nvidia.prime = {
         #     offload.enable = true;
         #     intelBusId = "PCI:0:2:0";
-        #      nvidiaBusId = "PCI:1:0:0";
+        #     nvidiaBusId = "PCI:1:0:0";
         # };
 
         enableRedistributableFirmware = true;
     };
-    
+
+    console.useXkbConfig = true;
     system.stateVersion = "20.09";
 }

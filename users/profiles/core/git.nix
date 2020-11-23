@@ -22,6 +22,8 @@
             #credential = {
             #    helper = "store --file ~/.gitcred";
             #};
+
+            pull.rebase = false;
         };
     };
 }

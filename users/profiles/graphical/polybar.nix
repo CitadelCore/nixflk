@@ -2,6 +2,11 @@
 {
     services.polybar = {
         enable = true;
+        package = pkgs.polybar.override {
+            i3Support = true;
+            pulseSupport = true;
+        };
+
         config = {
             "settings" = {
                 screenchange-reload = true;
@@ -189,19 +194,19 @@
                 format-discharging = "<ramp-capacity> <label-discharging>";
                 format-discharging-underline = "\${self.format-charging-underline}";
 
-                format-full-prefix = " ";
+                format-full-prefix = "";
                 format-full-prefix-foreground = "\${colors.foreground-alt}";
                 format-full-underline = "\${self.format-charging-underline}";
 
-                ramp-capacity-0 = " ";
-                ramp-capacity-1 = " ";
-                ramp-capacity-2 = " ";
-                ramp-capacity-3 = " ";
-                ramp-capacity-4 = " ";
-                ramp-capacity-5 = " ";
-                ramp-capacity-6 = " ";
-                ramp-capacity-7 = " ";
-                ramp-capacity-8 = " ";
+                ramp-capacity-0 = "";
+                ramp-capacity-1 = "";
+                ramp-capacity-2 = "";
+                ramp-capacity-3 = "";
+                ramp-capacity-4 = "";
+                ramp-capacity-5 = "";
+                ramp-capacity-6 = "";
+                ramp-capacity-7 = "";
+                ramp-capacity-8 = "";
                 ramp-capacity-foreground = "\${colors.foreground-alt}";
             };
 

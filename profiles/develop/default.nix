@@ -1,15 +1,25 @@
 { pkgs, ... }:
 {
+    imports = [
+        ./clang
+        ./csharp
+        ./golang
+        ./java
+        ./python
+    ];
+
     environment = {
         systemPackages = with pkgs; [
             # utility
-            clang file less wget
+            nix-index
+            git clang file less wget
 
             # security
             git-crypt gnupg pass mkpasswd
 
-            # editors
+            # editors and IDEs
             vscode
+            jetbrains.clion
         ];
 
         sessionVariables = {
@@ -20,6 +30,4 @@
     };
 
     documentation.dev.enable = true;
-
-    programs.mtr.enable = true;
 }

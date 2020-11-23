@@ -6,14 +6,6 @@
                 ../profiles/core
                 ../profiles/graphical
             ];
-
-            programs.home-manager.enable = true;
-            programs.bash.enable = true;
-            
-            home = {
-                keyboard.layout = "gb";
-                stateVersion = "20.09";
-            };
         };
     };
 

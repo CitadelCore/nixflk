@@ -3,7 +3,7 @@
 
     inputs = {
         nixos.url = "nixpkgs/nixos-20.09";
-          nixpkgs.url = "nixpkgs/release-20.09";
+        nixpkgs.url = "nixpkgs/release-20.09";
         unstable.url = "nixpkgs/nixos-unstable";
 
         home = {

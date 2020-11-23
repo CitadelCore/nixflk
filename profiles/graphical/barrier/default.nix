@@ -13,7 +13,8 @@ in
             Restart = "always";
         };
 
-        wantedBy = [ "graphical.target" ];
+        after = [ "graphical-session-pre.target" ];
+        partOf = [ "graphical-session.target" ];
     };
 
     networking.firewall.allowedTCPPorts = [ 24800 ];

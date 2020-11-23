@@ -4,8 +4,7 @@ let inherit (lib) fileContents;
 in
 {
     imports = [
-        ./security/pam.nix
-        ./security/smartcard.nix
+        ./security
         ../../local/locale.nix
     ];
 
@@ -48,18 +47,19 @@ in
             dosfstools
             fd
             file
-            gotop
+            htop
             gptfdisk
             iputils
             jq
             moreutils
             nmap
             parted
+            psmisc
             ripgrep
             tree
             utillinux
             vault
-            vim
+            neovim
             whois
             wget
         ];
@@ -119,11 +119,18 @@ in
     };
 
     fonts = {
-        fonts = with pkgs; [ nerdfonts ];
+        fonts = with pkgs; [
+            noto-fonts
+            (nerdfonts.override { fonts = [
+                "FiraCode"
+                "FiraMono"
+            ]; })
+        ];
 
         fontconfig.defaultFonts = {
             monospace = [ "FiraMono Nerd Font" ];
-            sansSerif = [ "FiraCode Nerd Font" ];
+            sansSerif = [ "Noto Sans" ];
+            serif = [ "Noto Serif" ];
         };
     };
 }
