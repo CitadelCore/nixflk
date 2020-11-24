@@ -10,6 +10,7 @@
 
         pulseaudio = {
             enable = true;
+            support32Bit = true; # Steam, etc
             package = pkgs.pulseaudioFull;
         };
     };
@@ -26,6 +27,8 @@
         playerctl
         pavucontrol
         libnotify
+        
+        gnome3.nautilus
     ];
 
     programs.dconf.enable = true;

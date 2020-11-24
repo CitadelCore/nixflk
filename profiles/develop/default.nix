@@ -12,14 +12,16 @@
         systemPackages = with pkgs; [
             # utility
             nix-index
-            git clang file less wget
+            clang file less wget
+
+            # version control
+            git p4 p4v subversion mercurialFull
 
             # security
             git-crypt gnupg pass mkpasswd
 
             # editors and IDEs
             vscode
-            jetbrains.clion
         ];
 
         sessionVariables = {
