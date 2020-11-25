@@ -9,6 +9,8 @@
     };
 
     environment.systemPackages = with pkgs; [
+        opensc
+        
         yubikey-manager
         yubikey-manager-qt
         yubikey-personalization

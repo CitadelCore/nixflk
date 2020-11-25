@@ -37,7 +37,7 @@
     in
     with pkgset;
     {
-          nixosConfigurations = import ./hosts (recursiveUpdate inputs {
+        nixosConfigurations = import ./hosts (recursiveUpdate inputs {
             inherit lib pkgset system utils;
         });
 

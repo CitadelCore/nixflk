@@ -1,27 +1,15 @@
 { pkgs, ... }:
 {
-    imports = [
-        ./clang
-        ./csharp
-        ./golang
-        ./java
-        ./python
-    ];
-
     environment = {
         systemPackages = with pkgs; [
             # utility
-            nix-index
-            clang file less wget
+            nix-index file less wget
 
             # version control
             git p4 p4v subversion mercurialFull
 
             # security
             git-crypt gnupg pass mkpasswd
-
-            # editors and IDEs
-            vscode
         ];
 
         sessionVariables = {

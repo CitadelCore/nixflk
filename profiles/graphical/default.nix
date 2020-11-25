@@ -29,6 +29,7 @@
         libnotify
         
         gnome3.nautilus
+        gnome3.file-roller
     ];
 
     programs.dconf.enable = true;

@@ -14,12 +14,10 @@ let
     inherit (builtins) attrValues removeAttrs;
     inherit (pkgset) osPkgs pkgs;
 
-    config = hostName:
-        lib.nixosSystem {
+    config = hostName: lib.nixosSystem {
         inherit system;
 
-        modules =
-            let
+        modules = let
             inherit (home.nixosModules) home-manager;
 
             core = self.nixosModules.profiles.core;
@@ -45,15 +43,13 @@ let
             };
 
             overrides = {
-                nixpkgs.overlays =
-                let
+                nixpkgs.overlays = let
                     override = import ../pkgs/override.nix pkgs;
 
                     overlay = pkg: final: prev: {
                         "${pkg.pname}" = pkg;
                     };
-                in
-                map overlay override;
+                in map overlay override;
             };
 
             local = import "${toString ./.}/${hostName}.nix";
@@ -62,9 +58,9 @@ let
             flakeModules =
                 attrValues (removeAttrs self.nixosModules [ "profiles" ]);
 
-            in
+        in
             flakeModules ++ [ core global local home-manager overrides ];
-        };
+    };
 
     hosts = recImport {
         dir = ./.;

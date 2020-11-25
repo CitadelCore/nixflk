@@ -1,11 +1,14 @@
-{ lib, ... }:
+{ config, lib, ... }:
 {
     home-manager = {
         users.alex = {
             imports = [
                 ../profiles/core
+                ../profiles/develop
                 ../profiles/graphical
             ];
+
+            nixpkgs.overlays = config.nixpkgs.overlays;
         };
     };
 

@@ -33,7 +33,11 @@ in
         protectKernelImage = true;
     };
 
-    services.earlyoom.enable = true;
+    services = {
+        gvfs.enable = true;
+        earlyoom.enable = true;
+    };
+    
     users.mutableUsers = false;
 
     environment = {

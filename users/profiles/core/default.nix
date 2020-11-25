@@ -6,6 +6,8 @@
         ./ssh.nix
     ];
 
+    nixpkgs.config.allowUnfree = true;
+
     programs = {
         home-manager.enable = true;
 
@@ -29,6 +31,10 @@
         ];
 
         sessionVariables = {
+            # to keep compatibility with SSH sessions and sudo as root
+            "TERM" = "xterm";
+
+            # vault variables for arctarus
             "VAULT_ADDR" = "https://vault1.stir1.int.arctarus.co.uk";
             "VAULT_ARC_ROLE" = "operator";
             "VAULT_ARC_SSH_ROLE" = "operator";

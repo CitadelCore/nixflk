@@ -63,11 +63,12 @@
         deps = [];
     };
 
-    networking = {
-        networkmanager.enable = true;
+    # we have a TPM 2.0
+    security.tpm2 = {
+        enable = true;
 
-        hostId = "68c855d2";
-        domain = "stir2.int.arctarus.co.uk";
+        abrmd.enable = true;
+        pkcs11.enable = true;
     };
 
     fileSystems."/" = {
@@ -99,7 +100,12 @@
     swapDevices = [];
 
     networking = {
+        hostId = "68c855d2";
+        domain = "stir2.int.arctarus.co.uk";
+
         useDHCP = false;
+        networkmanager.enable = true;
+
         interfaces = {
             enp0s31f6.useDHCP = true;
             ens4u2u1u2c2.useDHCP = true;
@@ -159,7 +165,7 @@
         zfs = {
             trim.enable = true;
             autoScrub.enable = true;
-            #autoSnapshot.enable = true;
+            autoSnapshot.enable = true;
         };
     };
 
