@@ -1,5 +1,10 @@
 { config, lib, pkgs, ... }:
 with lib;
+let
+    package = pkgs.scream-receivers.override {
+        pulseSupport = true;
+    };
+in
 {
     systemd.user.services.scream = {
         enable = true;
@@ -10,7 +15,7 @@ with lib;
         };
 
         serviceConfig = {
-            ExecStart = "${pkgs.scream-receivers}/bin/scream -u -o pulse -n \"Windows PC\"";
+            ExecStart = "${package}/bin/scream-pulse -u";
             ExecStop = "${pkgs.procps}/bin/pkill scream";
             Restart = "always";
         };

@@ -3,7 +3,6 @@
     imports = [
         ../users/alex
         ../profiles/comms
-        ../profiles/develop
         ../profiles/graphical
         ../profiles/graphical/creative
         ../profiles/graphical/games
@@ -12,6 +11,7 @@
         ../profiles/graphical/scream
         ../profiles/laptop
         ../profiles/sysadmin
+        ../profiles/virt/docker
     ];
 
     boot = {
@@ -78,6 +78,11 @@
 
     fileSystems."/nix" = {
         device = "rpool/local/nix";
+        fsType = "zfs";
+    };
+
+    fileSystems."/var/lib/docker" = {
+        device = "rpool/safe/docker";
         fsType = "zfs";
     };
 
@@ -179,6 +184,16 @@
 
         enableRedistributableFirmware = true;
     };
+
+    # enable nvidia support for Docker as we have a nvidia card
+    # also make it use our ZFS pool for storage
+    virtualisation.docker = {
+        enableNvidia = true;
+        storageDriver = "zfs";
+    };
+
+    # enable dev docs
+    documentation.dev.enable = true;
 
     console.useXkbConfig = true;
     system.stateVersion = "20.09";

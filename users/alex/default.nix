@@ -17,7 +17,7 @@
         isNormalUser = true;
 
         description = "Alex Zero";
-        extraGroups = [ "wheel" "networkmanager" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" ];
 
         hashedPassword = lib.fileContents ../../secrets/passwords/alex.txt;
         openssh.authorizedKeys.keyFiles = [ ./sshkey.txt ];

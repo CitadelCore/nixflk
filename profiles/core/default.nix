@@ -37,7 +37,7 @@ in
         gvfs.enable = true;
         earlyoom.enable = true;
     };
-    
+
     users.mutableUsers = false;
 
     environment = {
@@ -62,15 +62,11 @@ in
             ripgrep
             tree
             utillinux
-            vault
+            
             neovim
             whois
             wget
         ];
-
-        variables = {
-            "HISTIGNORE" = "&:vault*";
-        };
 
         shellAliases =
         let ifSudo = lib.mkIf config.security.sudo.enable;
