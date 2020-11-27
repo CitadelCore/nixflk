@@ -3,9 +3,9 @@
     home-manager = {
         users.alex = {
             imports = [
-                ../profiles/core
-                ../profiles/develop
-                ../profiles/graphical
+                ./core
+                ./develop
+                ./graphical
             ];
 
             nixpkgs.overlays = config.nixpkgs.overlays;
