@@ -36,13 +36,13 @@
 
             "bar/primary" = {
                 width = "100%";
-                height = 27;
+                height = 35;
                 fixed-center = false;
 
                 background = "\${colors.background}";
                 foreground = "\${colors.foreground}";
 
-                line-size = 3;
+                line-size = 5;
                 line-color = "#f00";
 
                 padding-left = 0;
@@ -51,13 +51,14 @@
                 module-margin-left = 1;
                 module-margin-right = 2;
 
-                font-0 = "FuraCode Nerd Font:pixelSize=10;1";
+                font-0 = "FuraCode Nerd Font:size=14;1";
 
                 modules-left = "i3";
-                modules-right = "pulseaudio memory cpu network-wlan network-eth battery temperature date powermenu";
+                modules-right = "pulseaudio memory cpu network-wlan network-eth battery temperature date";
 
-                tray-position = "right";
-                tray-padding = 2;
+                # Tray is broken, and we don't even use it
+                #tray-position = "right";
+                #tray-padding = 2;
 
                 cursor-click = "pointer";
                 cursor-scroll = "ns-resize";
@@ -194,19 +195,19 @@
                 format-discharging = "<ramp-capacity> <label-discharging>";
                 format-discharging-underline = "\${self.format-charging-underline}";
 
-                format-full-prefix = "";
+                format-full-prefix = " ";
                 format-full-prefix-foreground = "\${colors.foreground-alt}";
                 format-full-underline = "\${self.format-charging-underline}";
 
-                ramp-capacity-0 = "";
-                ramp-capacity-1 = "";
-                ramp-capacity-2 = "";
-                ramp-capacity-3 = "";
-                ramp-capacity-4 = "";
-                ramp-capacity-5 = "";
-                ramp-capacity-6 = "";
-                ramp-capacity-7 = "";
-                ramp-capacity-8 = "";
+                ramp-capacity-0 = " ";
+                ramp-capacity-1 = " ";
+                ramp-capacity-2 = " ";
+                ramp-capacity-3 = " ";
+                ramp-capacity-4 = " ";
+                ramp-capacity-5 = " ";
+                ramp-capacity-6 = " ";
+                ramp-capacity-7 = " ";
+                ramp-capacity-8 = " ";
                 ramp-capacity-foreground = "\${colors.foreground-alt}";
             };
 
@@ -232,46 +233,18 @@
 
             "module/date" = {
                 type = "internal/date";
-                interval = 5;
+                interval = 60;
 
                 date = "";
                 date-alt = " %Y-%m-%d";
 
                 time = "%H:%M";
-                time-alt = "%H:%M:%S";
+                time-alt = "%H:%M";
 
                 format-prefix = "";
                 format-prefix-foreground = "\${colors.foreground-alt}";
 
                 label = "%date% %time%";
-            };
-
-            "module/powermenu" = {
-                type = "custom/menu";
-                expand-right = true;
-                format-spacing = 1;
-
-                label-open = "";
-                label-open-foreground = "\${colors.foreground-alt}";
-                label-close = "ﰸ cancel";
-                label-close-foreground = "\${colors.foreground-alt}";
-                label-separator = "|";
-                label-separator-foreground = "\${colors.foreground}";
-
-                menu-0-0 = "ﰇ reboot";
-                menu-0-0-exec = "menu-open-1";
-                menu-0-1 = "襤 power off";
-                menu-0-1-exec = "menu-open-2";
-
-                menu-1-0 = "cancel";
-                menu-1-0-exec = "menu-open-0";
-                menu-1-1 = "reboot";
-                menu-1-1-exec = "systemctl reboot";
-
-                menu-2-0 = "power off";
-                menu-2-0-exec = "systemctl poweroff";
-                menu-2-1 = "cancel";
-                menu-2-1-exec = "menu-open-0";
             };
         };
 

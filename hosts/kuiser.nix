@@ -2,11 +2,8 @@
 {
     imports = [
         ../users/alex
-        ../profiles/comms
         ../profiles/graphical
-        ../profiles/graphical/creative
         ../profiles/graphical/games
-        ../profiles/graphical/media
         ../profiles/graphical/barrier
         ../profiles/graphical/scream
         ../profiles/laptop

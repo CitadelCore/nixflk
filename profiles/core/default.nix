@@ -58,14 +58,15 @@ in
             moreutils
             nmap
             parted
+            pciutils
             psmisc
-            ripgrep
             tree
             utillinux
-            
+            unzip
             neovim
             whois
             wget
+            zip
         ];
 
         shellAliases =

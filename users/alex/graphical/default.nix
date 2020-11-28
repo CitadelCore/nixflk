@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 {
     imports = [
+        ./comms
+        ./creative
+        ./games
+        ./media
+
         ./autorandr.nix
         ./dunst.nix
         ./i3.nix
@@ -34,7 +39,6 @@
 
     services.redshift = {
         enable = true;
-        tray = true;
         provider = "geoclue2";
     };
 
