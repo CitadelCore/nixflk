@@ -1,5 +1,5 @@
 {
-    description = "A highly structured configuration database.";
+    description = "My Nix flake configurations.";
 
     inputs = {
         nixos.url = "nixpkgs/nixos-20.09";
@@ -16,8 +16,6 @@
     let
         inherit (builtins) attrNames attrValues readDir;
         inherit (nixos) lib;
-        inherit (lib) removeSuffix recursiveUpdate genAttrs filterAttrs;
-        inherit (utils) pathsToImportedAttrs;
 
         utils = import ./lib/utils.nix { inherit lib; };
 
@@ -31,7 +29,7 @@
 
             overlayPaths = map fullPath (attrNames (readDir overlayDir));
             packageOverlays = (attrValues (lib.filterAttrs (n: v: n != "pkgs") (
-                pathsToImportedAttrs overlayPaths
+                utils.pathsToImportedAttrs overlayPaths
             )));
         in [(import ./pkgs)] ++ packageOverlays;
 
@@ -42,23 +40,21 @@
         };
 
         pkgset = {
-            osPkgs = pkgImport nixos;
-            pkgs = pkgImport nixpkgs;
+            nixos = pkgImport nixos;
+            nixpkgs = pkgImport nixpkgs;
+            unstable = pkgImport unstable;
         };
     in
-    with pkgset;
     {
         inherit overlays;
 
-        nixosConfigurations = import ./hosts (recursiveUpdate inputs {
-            inherit lib pkgset overlays system utils;
+        nixosConfigurations = import ./hosts (lib.recursiveUpdate inputs {
+            inherit lib overlays system utils pkgset;
         });
 
-        devShell."${system}" = import ./shell.nix {
-            inherit pkgs;
-        };
+        devShell."${system}" = import ./shell.nix { pkgs = pkgset.nixpkgs; };
 
-        packages."${system}" = lib.mkMerge (map (overlay: (overlay osPkgs osPkgs)) self.overlays);
+        packages."${system}" = with pkgset; lib.mkMerge (map (overlay: (overlay nixos nixos)) self.overlays);
 
         nixosModules =
             let
@@ -68,15 +64,15 @@
 
             # modules
             moduleList = import ./modules/list.nix;
-            modulesAttrs = pathsToImportedAttrs moduleList;
+            modulesAttrs = utils.pathsToImportedAttrs moduleList;
 
             # profiles
             profilesList = import ./profiles/list.nix;
-            profilesAttrs = { profiles = pathsToImportedAttrs profilesList; };
+            profilesAttrs = { profiles = utils.pathsToImportedAttrs profilesList; };
 
             in
-            recursiveUpdate
-            (recursiveUpdate cachixAttrs modulesAttrs)
+            lib.recursiveUpdate
+            (lib.recursiveUpdate cachixAttrs modulesAttrs)
             profilesAttrs;
 
         templates.flk.path = ./.;

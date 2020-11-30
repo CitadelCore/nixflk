@@ -8,6 +8,7 @@
         ./java
         ./network
         ./python
+        ./rust
         ./versioning
         ./web
     ];
@@ -29,6 +30,7 @@
 
         packages = with pkgs; [
             # nix stuff
+            nixfmt
             nix-index
             nix-prefetch
             nix-prefetch-docker

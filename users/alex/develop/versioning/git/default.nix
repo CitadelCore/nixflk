@@ -1,5 +1,7 @@
 { config, lib, pkgs, ... }:
 {
+    home.packages = with pkgs.gitAndTools; [ pre-commit ];
+
     programs.git = {
         enable = true;
         package = lib.hiPrio pkgs.gitAndTools.gitFull;

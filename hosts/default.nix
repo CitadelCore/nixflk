@@ -13,7 +13,6 @@
 let
     inherit (utils) recImport;
     inherit (builtins) attrValues removeAttrs;
-    inherit (pkgset) osPkgs pkgs;
 
     config = hostName: lib.nixosSystem {
         inherit system;
@@ -29,11 +28,10 @@ let
                 [
                     "nixpkgs=${nixpkgs}"
                     "nixos=${nixos}"
-                    "nixos-unstable=${unstable}"
                     "nixos-config=${path}/configuration.nix"
                 ];
 
-                nixpkgs = { pkgs = osPkgs; };
+                nixpkgs = { pkgs = pkgset.nixos; };
 
                 nix.registry = {
                     nixos.flake = nixos;
@@ -42,10 +40,11 @@ let
                 };
             };
 
+            # allows overriding stable packages with unstable versions
             overrides = {
                 nixpkgs.overlays = let
                     overrides = let
-                        override = import ../pkgs/override.nix pkgs;
+                        override = import ../pkgs/override.nix pkgset.unstable;
 
                         overlay = pkg: final: prev: {
                             "${pkg.pname}" = pkg;
