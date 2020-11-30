@@ -1,19 +1,19 @@
 { pkgs, ... }:
+let
+    package = pkgs.dotnet-sdk_5;
+in
 {
-    home.packages = with pkgs; [
-        dotnet-sdk_3
-        omnisharp-roslyn
-    ];
-
     home = {
+        packages = with pkgs; [ package omnisharp-roslyn ];
+
         sessionVariables = let
-            sdkPath = "${pkgs.dotnet-sdk_3}/sdk/${pkgs.dotnet-sdk_3.version}";
-        in {
-            "DOTNET_ROOT" = pkgs.dotnet-sdk_3;
+            sdkPath = "${package}/sdk/${package.version}";
+        in
+        {
+            "DOTNET_ROOT" = package;
             "MSBuildSDKsPath" = "${sdkPath}/Sdks";
         };
     };
 
-    programs.vscode.userSettings.omnisharp.loggingLevel = "trace";
     programs.vscode.userSettings.omnisharp.path = "/home/alex/.nix-profile/bin/omnisharp";
 }

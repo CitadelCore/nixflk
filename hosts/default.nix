@@ -39,18 +39,9 @@ let
                     nixflk.flake = self;
                 };
             };
-
-            # allows overriding stable packages with unstable versions
+            
             overrides = {
-                nixpkgs.overlays = let
-                    overrides = let
-                        override = import ../pkgs/override.nix pkgset.unstable;
-
-                        overlay = pkg: final: prev: {
-                            "${pkg.pname}" = pkg;
-                        };
-                    in map overlay override;
-                in overrides ++ overlays;
+                nixpkgs.overlays = overlays;
             };
 
             local = import "${toString ./.}/${hostName}.nix";

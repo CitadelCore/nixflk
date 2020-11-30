@@ -21,6 +21,12 @@
 
         system = "x86_64-linux";
 
+        # uses override.nix to override packages to their unstable variants
+        packageOverrides = final: prev: import ./pkgs/override.nix (import unstable {
+            inherit system;
+            allowUnfree = true;
+        });
+
         # overlays are sourced from two locations:
         # pkgs/default.nix and the nix files in overlays/
         overlays = let
@@ -31,10 +37,9 @@
             packageOverlays = (attrValues (lib.filterAttrs (n: v: n != "pkgs") (
                 utils.pathsToImportedAttrs overlayPaths
             )));
-        in [(import ./pkgs)] ++ packageOverlays;
+        in [(import ./pkgs) packageOverrides] ++ packageOverlays;
 
-        pkgImport = pkgs:
-        import pkgs {
+        pkgImport = pkgs: import pkgs {
             inherit system overlays;
             config = { allowUnfree = true; };
         };
