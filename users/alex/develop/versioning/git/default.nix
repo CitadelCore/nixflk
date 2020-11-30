@@ -2,7 +2,14 @@
 {
     programs.git = {
         enable = true;
+        package = lib.hiPrio pkgs.gitAndTools.gitFull;
+
         lfs.enable = true;
+
+        signing = {
+            key = "A51550EDB450302C";
+            signByDefault = true;
+        };
 
         userEmail = "joseph@marsden.space";
         userName = "Alex Zero";

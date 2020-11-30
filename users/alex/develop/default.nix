@@ -8,6 +8,7 @@
         ./java
         ./network
         ./python
+        ./versioning
         ./web
     ];
 
