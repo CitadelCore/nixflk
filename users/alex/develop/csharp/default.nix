@@ -15,5 +15,8 @@ in
         };
     };
 
-    programs.vscode.userSettings.omnisharp.path = "/home/alex/.nix-profile/bin/omnisharp";
+    programs.vscode.userSettings.omnisharp = {
+        path = "/home/alex/.nix-profile/bin/omnisharp";
+        useGlobalMono = "never";
+    };
 }
