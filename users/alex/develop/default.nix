@@ -6,6 +6,7 @@
         ./devops
         ./golang
         ./java
+        ./network
         ./python
         ./web
     ];

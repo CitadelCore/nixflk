@@ -4,6 +4,7 @@
 , nixpkgs
 , unstable
 , pkgset
+, overlays
 , self
 , system
 , utils
@@ -30,7 +31,6 @@ let
                     "nixos=${nixos}"
                     "nixos-unstable=${unstable}"
                     "nixos-config=${path}/configuration.nix"
-                    "nixpkgs-overlays=${path}/overlays"
                 ];
 
                 nixpkgs = { pkgs = osPkgs; };
@@ -44,12 +44,14 @@ let
 
             overrides = {
                 nixpkgs.overlays = let
-                    override = import ../pkgs/override.nix pkgs;
+                    overrides = let
+                        override = import ../pkgs/override.nix pkgs;
 
-                    overlay = pkg: final: prev: {
-                        "${pkg.pname}" = pkg;
-                    };
-                in map overlay override;
+                        overlay = pkg: final: prev: {
+                            "${pkg.pname}" = pkg;
+                        };
+                    in map overlay override;
+                in overrides ++ overlays;
             };
 
             local = import "${toString ./.}/${hostName}.nix";

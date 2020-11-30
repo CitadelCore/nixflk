@@ -1,4 +1,8 @@
 { pkgs, ... }:
+let
+    packages = p: with p; [ ];
+    python = pkgs.python3Full.withPackages packages;
+in
 {
-    home.packages = with pkgs; [ python3Full python38Packages.pip python38Packages.setuptools ];
+    home.packages = with pkgs; [ python ];
 }

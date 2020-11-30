@@ -2,12 +2,14 @@
 {
     imports = [
         ../users/alex
+        ../profiles/core/ephemeral
+        ../profiles/core/security/tpm
+        ../profiles/develop
         ../profiles/graphical
         ../profiles/graphical/games
         ../profiles/graphical/barrier
         ../profiles/graphical/scream
         ../profiles/laptop
-        ../profiles/sysadmin
         ../profiles/virt/docker
     ];
 
@@ -23,15 +25,6 @@
             ];
             
             kernelModules = [ "dm-snapshot" ];
-
-            # nuke the temporary root volume on boot
-            postDeviceCommands = lib.mkAfter ''
-                zfs rollback -r rpool/local/root@blank
-            '';
-
-            # rm -r /etc/nixos
-            # sudo ln -s /home/alex/src/personal/nixflk /etc/nixos
-            # touch /etc/NIXOS
         };
 
         loader = {
@@ -50,52 +43,36 @@
         supportedFilesystems = [ "zfs" ];
     };
 
-    # link the config in the persistent volume to the temporary volume
-    system.activationScripts.linkNixos = {
-        text = ''
-            rm -rf /etc/nixos
-            ln -s /persist/nixos /etc/nixos
-        '';
+    fileSystems = {
+        "/" = {
+            device = "rpool/local/root";
+            fsType = "zfs";
+        };
 
-        deps = [];
-    };
+        "/nix" = {
+            device = "rpool/local/nix";
+            fsType = "zfs";
+        };
 
-    # we have a TPM 2.0
-    security.tpm2 = {
-        enable = true;
+        "/var/lib/docker" = {
+            device = "rpool/safe/docker";
+            fsType = "zfs";
+        };
 
-        abrmd.enable = true;
-        pkcs11.enable = true;
-    };
+        "/home" = {
+            device = "rpool/safe/home";
+            fsType = "zfs";
+        };
 
-    fileSystems."/" = {
-        device = "rpool/local/root";
-        fsType = "zfs";
-    };
+        "/persist" = {
+            device = "rpool/safe/persist";
+            fsType = "zfs";
+        };
 
-    fileSystems."/nix" = {
-        device = "rpool/local/nix";
-        fsType = "zfs";
-    };
-
-    fileSystems."/var/lib/docker" = {
-        device = "rpool/safe/docker";
-        fsType = "zfs";
-    };
-
-    fileSystems."/home" = {
-        device = "rpool/safe/home";
-        fsType = "zfs";
-    };
-
-    fileSystems."/persist" = {
-        device = "rpool/safe/persist";
-        fsType = "zfs";
-    };
-
-    fileSystems."/boot" = {
-        device = "/dev/disk/by-uuid/59A0-1D42";
-        fsType = "vfat";
+        "/boot" = {
+            device = "/dev/disk/by-uuid/59A0-1D42";
+            fsType = "vfat";
+        };
     };
 
     # we have enough memory we definitely don't need swap!
@@ -134,6 +111,7 @@
                     allowedIPs = [
                         "10.60.10.0/24"
                         "208.64.203.133/32" # Valve's Perforce server
+                        "2a10:4a80:7:8::1/128"
                         "2a10:4a80:7:8::10/128"
                         "2a10:4a80:7:8::30/128"
                     ];
@@ -191,7 +169,7 @@
 
     # enable dev docs
     documentation.dev.enable = true;
-
     console.useXkbConfig = true;
+
     system.stateVersion = "20.09";
 }

@@ -1,7 +1,6 @@
 { pkgs, ... }:
 {
     home.packages = with pkgs; [
-        clang
-        jetbrains.clion
+        nmap whois atftp
     ];
 }

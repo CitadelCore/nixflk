@@ -23,10 +23,21 @@
 
         system = "x86_64-linux";
 
+        # overlays are sourced from two locations:
+        # pkgs/default.nix and the nix files in overlays/
+        overlays = let
+            overlayDir = ./overlays;
+            fullPath = name: overlayDir + "/${name}";
+
+            overlayPaths = map fullPath (attrNames (readDir overlayDir));
+            packageOverlays = (attrValues (lib.filterAttrs (n: v: n != "pkgs") (
+                pathsToImportedAttrs overlayPaths
+            )));
+        in [(import ./pkgs)] ++ packageOverlays;
+
         pkgImport = pkgs:
         import pkgs {
-            inherit system;
-            overlays = attrValues self.overlays;
+            inherit system overlays;
             config = { allowUnfree = true; };
         };
 
@@ -37,34 +48,17 @@
     in
     with pkgset;
     {
+        inherit overlays;
+
         nixosConfigurations = import ./hosts (recursiveUpdate inputs {
-            inherit lib pkgset system utils;
+            inherit lib pkgset overlays system utils;
         });
 
         devShell."${system}" = import ./shell.nix {
             inherit pkgs;
         };
 
-        overlay = import ./pkgs;
-
-        overlays =
-            let
-            overlayDir = ./overlays;
-            fullPath = name: overlayDir + "/${name}";
-            overlayPaths = map fullPath (attrNames (readDir overlayDir));
-            in
-            pathsToImportedAttrs overlayPaths;
-
-        packages."${system}" =
-            let
-            packages = self.overlay osPkgs osPkgs;
-            overlays = lib.filterAttrs (n: v: n != "pkgs") self.overlays;
-            overlayPkgs =
-                genAttrs
-                (attrNames overlays)
-                (name: (overlays."${name}" osPkgs osPkgs)."${name}");
-            in
-            recursiveUpdate packages overlayPkgs;
+        packages."${system}" = lib.mkMerge (map (overlay: (overlay osPkgs osPkgs)) self.overlays);
 
         nixosModules =
             let

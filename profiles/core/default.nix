@@ -25,14 +25,6 @@ in
         '';
     };
 
-    security = {
-        # install the Arctarus Root CA
-        pki.certificateFiles = [ ./root.pem ];
-
-        hideProcessInformation = true;
-        protectKernelImage = true;
-    };
-
     services = {
         gvfs.enable = true;
         earlyoom.enable = true;
@@ -60,10 +52,12 @@ in
             parted
             pciutils
             psmisc
+            ripgrep
             tree
             utillinux
             unzip
             neovim
+            ntfs3g
             whois
             wget
             zip
