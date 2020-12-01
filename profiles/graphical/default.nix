@@ -27,6 +27,7 @@
         playerctl
         pavucontrol
         libnotify
+        networkmanagerapplet
         
         gnome3.nautilus
         gnome3.file-roller

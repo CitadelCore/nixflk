@@ -16,7 +16,7 @@ in
     };
 
     programs.vscode.userSettings.omnisharp = {
-        path = "/home/alex/.nix-profile/bin/omnisharp";
+        path = "${pkgs.omnisharp-roslyn}/bin/omnisharp";
         useGlobalMono = "never";
     };
 }
