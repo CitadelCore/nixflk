@@ -8,7 +8,8 @@
                 ./graphical
             ];
 
-            nixpkgs.overlays = config.nixpkgs.overlays;
+            # bring our package overlays in from the machine
+            nixpkgs = { inherit (config.nixpkgs) overlays; };
         };
     };
 

@@ -31,7 +31,7 @@ let
                     "nixos-config=${path}/configuration.nix"
                 ];
 
-                nixpkgs = { pkgs = pkgset.nixos; };
+                nixpkgs = { pkgs = pkgset.nixpkgs; };
 
                 nix.registry = {
                     nixos.flake = nixos;

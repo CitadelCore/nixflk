@@ -59,7 +59,7 @@
 
         devShell."${system}" = import ./shell.nix { pkgs = pkgset.nixpkgs; };
 
-        packages."${system}" = with pkgset; lib.mkMerge (map (overlay: (overlay nixos nixos)) self.overlays);
+        packages."${system}" = with pkgset; lib.mkMerge (map (overlay: (overlay nixpkgs nixpkgs)) self.overlays);
 
         nixosModules =
             let
