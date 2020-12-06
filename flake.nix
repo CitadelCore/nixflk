@@ -2,8 +2,8 @@
     description = "My Nix flake configurations.";
 
     inputs = {
-        nixos.url = "nixpkgs/nixos-20.09";
-        nixpkgs.url = "nixpkgs/release-20.09";
+        nixos.url = "github:NixOS/nixpkgs/nixos-20.09";
+        nixpkgs.url = "github:NixOS/nixpkgs/release-20.09";
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
         home = {

@@ -5,4 +5,7 @@ let
 in
 {
     home.packages = with pkgs; [ python ];
+    programs.vscode.userSettings.python = {
+        languageServer = "Pylance";
+    };
 }

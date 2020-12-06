@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
     home.packages = with pkgs; [
-        clang
+        (lib.hiPrio clang) gcc 
         jetbrains.clion
     ];
 }

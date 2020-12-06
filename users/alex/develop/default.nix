@@ -37,7 +37,7 @@
             nix-prefetch-scripts            
 
             # utility
-            gnumake file less wget
+            asciinema gnumake file less wget shellcheck
 
             # version control
             git p4 p4v subversion mercurialFull
