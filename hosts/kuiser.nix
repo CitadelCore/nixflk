@@ -90,7 +90,7 @@
             ens4u2u1u2c2.useDHCP = true;
             wlp0s20f3.useDHCP = true;
 
-            wg0.mtu = 1380;
+            wg0.mtu = 1420;
         };
 
         wireguard = {
