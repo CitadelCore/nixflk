@@ -1,4 +1,5 @@
 { pkgs, ... }:
 {
-    home.packages = with pkgs; [ go ];
+    home.packages = with pkgs; [ go delve ];
+    programs.vscode.userSettings.go.useLanguageServer = true;
 }

@@ -54,9 +54,11 @@ in
             ];
 
             floating.criteria = [
-                { title = "Steam - Update News"; }
                 { class = "Pavucontrol"; }
+                { class = "File-roller"; }
                 { class = "chaos"; }
+
+                { title = "Steam - Update News"; }
             ];
         };
     };
