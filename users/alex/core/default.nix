@@ -34,7 +34,7 @@
             "TERM" = "xterm";
 
             # vault variables for arctarus
-            "VAULT_ADDR" = "https://vault1.stir1.int.arctarus.co.uk";
+            "VAULT_ADDR" = "https://vault1.stir1.arctarus.net";
             "VAULT_ARC_ROLE" = "operator";
             "VAULT_ARC_SSH_ROLE" = "operator";
         };

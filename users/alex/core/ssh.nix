@@ -8,8 +8,8 @@
                 user = "pi";
             };
 
-            "deployer.int.arctarus.co.uk" = {
-                hostname = "deployer.int.arctarus.co.uk";
+            "deployer.stir1.arctarus.net" = {
+                hostname = "deployer.stir1.arctarus.net";
                 user = "jmarsden";
             };
 
@@ -21,7 +21,7 @@
                 };
             };
 
-            "10.8.3.11" = lib.hm.dag.entryAfter ["10.8.3.*"] {
+            "10.8.3.58" = lib.hm.dag.entryAfter ["10.8.3.*"] {
                 user = "joseph";
                 extraOptions = {
                     "PubkeyAuthentication" = "no";

@@ -80,10 +80,15 @@
 
     networking = {
         hostId = "68c855d2";
-        domain = "stir2.int.arctarus.co.uk";
+        domain = "stir2.arctarus.net";
 
         useDHCP = false;
         networkmanager.enable = true;
+
+        hosts = {
+            "2a10:4a80:7:8::30" = [ "deployer.stir1.arctarus.net" ];
+            "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
+        };
 
         interfaces = {
             enp0s31f6.useDHCP = true;
