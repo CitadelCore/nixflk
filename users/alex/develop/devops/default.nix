@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ lib, pkgs, ... }:
 {
     home = {
         packages = with pkgs; [
@@ -10,6 +10,9 @@
             consul
             vault
             nomad
+
+            # others
+            (lib.lowPrio juju)
         ];
 
         sessionVariables = {

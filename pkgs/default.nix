@@ -1,3 +1,3 @@
 final: prev: {
-    openstackclient = prev.python3.pkgs.callPackage ./tools/admin/openstackclient { };
+    juju = prev.callPackage ./applications/networking/juju { };
 }
