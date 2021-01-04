@@ -4,4 +4,5 @@
 # installed by the user elsewhere in the configuration.
 pkgs: with pkgs; {
     inherit dotnet-sdk_5 omnisharp-roslyn;
+    inherit vscode-extensions;
 }

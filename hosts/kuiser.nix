@@ -11,6 +11,7 @@
         ../profiles/graphical/scream
         ../profiles/laptop
         ../profiles/virt/docker
+        ../profiles/virt/libvirt
     ];
 
     boot = {

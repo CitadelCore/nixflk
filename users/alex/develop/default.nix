@@ -1,25 +1,13 @@
 { config, lib, pkgs, ... }:
 {
     imports = [
-        ./clang
-        ./csharp
         ./devops
-        ./golang
-        ./java
+        ./languages
         ./network
-        ./python
-        ./rust
+        ./tools
         ./versioning
         ./web
     ];
-
-    programs.vscode = {
-        enable = true;
-        userSettings = {
-            workbench.colorTheme = "Visual Studio 2019 Dark";
-            editor.fontLigatures = true;
-        };
-    };
 
     home = {
         sessionVariables = {

@@ -33,6 +33,9 @@
             # to keep compatibility with SSH sessions and sudo as root
             "TERM" = "xterm";
 
+            # ensure python requests uses our custom CA
+            "REQUESTS_CA_BUNDLE" = "/etc/ssl/certs/ca-certificates.crt";
+
             # vault variables for arctarus
             "VAULT_ADDR" = "https://vault1.stir1.arctarus.net";
             "VAULT_ARC_ROLE" = "operator";
