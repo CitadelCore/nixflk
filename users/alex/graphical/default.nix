@@ -5,6 +5,7 @@
         ./creative
         ./games
         ./media
+        ./utility
 
         ./autorandr.nix
         ./dunst.nix

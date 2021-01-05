@@ -54,8 +54,10 @@ in
             ];
 
             floating.criteria = [
+                { class = "Org.gnome.Nautilus"; }
                 { class = "Pavucontrol"; }
                 { class = "File-roller"; }
+                { class = "enigma"; }
                 { class = "chaos"; }
 
                 { title = "Steam - Update News"; }
