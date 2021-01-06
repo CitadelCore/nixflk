@@ -11,6 +11,9 @@
             vault
             nomad
 
+            # nix
+            colmena
+
             # others
             (lib.lowPrio juju)
         ];
