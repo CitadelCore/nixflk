@@ -1,15 +1,19 @@
 { lib, pkgs, ... }:
 {
+    _module.args.host = "kuiser";
+
     imports = [
         ../users/alex
         ../profiles/core/ephemeral
         ../profiles/core/security/tpm
+        ../profiles/core/zfs
         ../profiles/develop
         ../profiles/graphical
         ../profiles/graphical/games
         ../profiles/graphical/barrier
         ../profiles/graphical/scream
         ../profiles/laptop
+        ../profiles/locales/gb
         ../profiles/virt/docker
         ../profiles/virt/libvirt
     ];
@@ -33,15 +37,12 @@
             efi.canTouchEfiVariables = true;
         };
 
-        tmpOnTmpfs = true;
-
         kernelModules = [ "kvm-intel" ];
         kernelParams = [
             "zfs.zfs_arc_max=34359738368" # 32 GB max ARC
         ];
 
         extraModulePackages = [];
-        supportedFilesystems = [ "zfs" ];
     };
 
     fileSystems = {
@@ -81,7 +82,7 @@
 
     networking = {
         hostId = "68c855d2";
-        domain = "stir2.arctarus.net";
+        domain = "mobile.arctarus.net";
 
         useDHCP = false;
         networkmanager.enable = true;
@@ -127,7 +128,6 @@
     };
 
     services = {
-        fwupd.enable = true;
         autorandr.enable = true;
 
         # dock is not properly detected as a dock
@@ -146,12 +146,9 @@
                 Option "SuspendTime" "0"
                 Option "OffTime" "0"
             '';
-        };
-        
-        zfs = {
-            trim.enable = true;
-            autoScrub.enable = true;
-            autoSnapshot.enable = true;
+
+            displayManager.lightdm.enable = true;
+            windowManager.i3.enable = true;
         };
     };
 
@@ -166,12 +163,22 @@
         enableRedistributableFirmware = true;
     };
 
+    environment.systemPackages = with pkgs; [
+        vlc
+        playerctl
+        pavucontrol
+        libnotify
+        networkmanagerapplet
+
+        libreoffice-fresh
+
+        gnome3.eog
+        gnome3.nautilus
+        gnome3.file-roller
+    ];
+
     # enable nvidia support for Docker as we have a nvidia card
-    # also make it use our ZFS pool for storage
-    virtualisation.docker = {
-        enableNvidia = true;
-        storageDriver = "zfs";
-    };
+    virtualisation.docker.enableNvidia = true;
 
     # enable dev docs
     documentation.dev.enable = true;

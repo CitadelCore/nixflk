@@ -1,4 +1,4 @@
-{ config, lib, ... }:
+{ config, lib, host, ... }:
 {
     home-manager = {
         users.alex = {
@@ -6,7 +6,10 @@
                 ./core
                 ./develop
                 ./graphical
-            ];
+            ]
+
+            # add host specific user configuration
+            ++ (if host != null then [(./hosts + "/${host}")] else []);
 
             # bring our package overlays in from the machine
             nixpkgs = { inherit (config.nixpkgs) overlays; };

@@ -3,10 +3,7 @@ let inherit (lib) fileContents;
 
 in
 {
-    imports = [
-        ./security
-        ../../local/locale.nix
-    ];
+    imports = [ ./security ];
 
     nix = {
         package = pkgs.nixFlakes;
@@ -27,6 +24,7 @@ in
 
     services = {
         gvfs.enable = true;
+        fwupd.enable = true;
         earlyoom.enable = true;
     };
 

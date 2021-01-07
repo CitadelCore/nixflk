@@ -15,7 +15,6 @@
             shellAliases = {
                 "lh" = "ls -lah";
                 "hgrep" = "cat ~/.bash_history | grep $@";
-                "drx" = "dotnet ~/src/projects/drx/DRXUtility/bin/Debug/netcoreapp3.0/DRXUtility.dll $@";
             };
 
             initExtra = ". \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"";
