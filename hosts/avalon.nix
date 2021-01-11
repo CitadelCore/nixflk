@@ -8,11 +8,10 @@
         ../profiles/core/security/tpm
         ../profiles/develop
         ../profiles/graphical
-        ../profiles/graphical/games
         ../profiles/laptop
         ../profiles/locales/gb
-        ../profiles/virt/docker
-        ../profiles/virt/libvirt
+        #../profiles/virt/docker
+        #../profiles/virt/libvirt
     ];
 
     boot = {
@@ -33,8 +32,6 @@
             systemd-boot.enable = true;
             efi.canTouchEfiVariables = true;
         };
-
-        tmpOnTmpfs = true;
 
         kernelModules = [ "kvm-intel" ];
 
@@ -69,34 +66,26 @@
         };
 
         "/boot" = {
-            device = "/dev/disk/by-uuid/59A0-1D42";
+            device = "/dev/disk/by-uuid/AC3C-8188";
             fsType = "vfat";
         };
     };
 
-    swapDevices = [""];
+    swapDevices = [];
 
     networking = {
-        hostId = "9aefe563";
+        hostId = "64c49c88";
         domain = "mobile.arctarus.net";
         networkmanager.enable = true;
     };
 
-    services = {
-        xserver = {
-            displayManager.gdm = {
-                enable = true;
-                wayland = true;
-            };
-
-            desktopManager.gnome3.enable = true;
+    services.xserver = {
+        displayManager.gdm = {
+            enable = true;
+            wayland = true;
         };
 
-        zfs = {
-            trim.enable = true;
-            autoScrub.enable = true;
-            autoSnapshot.enable = true;
-        };
+        desktopManager.gnome3.enable = true;
     };
     
     hardware.enableRedistributableFirmware = true;
