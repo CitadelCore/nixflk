@@ -32,33 +32,19 @@ in
 
     environment = {
         systemPackages = with pkgs; [
-            binutils
-            coreutils
-            cryptsetup
-            curl
-            direnv
-            dnsutils
-            dosfstools
-            fd
-            file
-            htop
-            gptfdisk
-            iputils
-            jq
-            moreutils
-            nmap
-            parted
-            pciutils
-            psmisc
-            ripgrep
-            tree
-            utillinux
-            unzip
+            binutils coreutils dnsutils
+            pciutils iputils moreutils
+            utillinux dmidecode
+
+            cryptsetup dosfstools gptfdisk
+            parted fd file ntfs3g
+
+            nmap whois curl wget
+
+            direnv htop tree jq
+            psmisc ripgrep zip unzip
+            
             neovim
-            ntfs3g
-            whois
-            wget
-            zip
         ];
 
         shellAliases =

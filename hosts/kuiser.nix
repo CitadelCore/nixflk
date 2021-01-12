@@ -171,17 +171,10 @@
         };
 
         environment.systemPackages = with pkgs; [
-            vlc
-            playerctl
-            pavucontrol
-            libnotify
-            networkmanagerapplet
-
-            libreoffice-fresh
-
             gnome3.eog
             gnome3.nautilus
             gnome3.file-roller
+            libnotify networkmanagerapplet
         ];
 
         # enable nvidia support for Docker as we have a nvidia card

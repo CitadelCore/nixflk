@@ -15,7 +15,9 @@
             ../profiles/core/security/tpm
             ../profiles/develop
             ../profiles/graphical
+            ../profiles/graphical/wayland
             ../profiles/laptop
+            ../profiles/hardware/x1-tablet
             ../profiles/locales/gb
             #../profiles/virt/docker
             #../profiles/virt/libvirt
@@ -87,11 +89,7 @@
         };
 
         services.xserver = {
-            displayManager.gdm = {
-                enable = true;
-                wayland = true;
-            };
-
+            displayManager.gdm.enable = true;
             desktopManager.gnome3.enable = true;
         };
         

@@ -1,5 +1,3 @@
 {
-    imports = [
-        ./graphical
-    ];
+    imports = [ ./graphical ];
 }

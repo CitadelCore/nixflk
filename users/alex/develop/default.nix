@@ -26,9 +26,7 @@
 
             # utility
             asciinema gnumake file less wget shellcheck
-
-            # version control
-            git subversion mercurialFull
+            diffstat diffutils findutils patch gawk
 
             # security
             openssl git-crypt gnupg pass mkpasswd

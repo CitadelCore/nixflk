@@ -7,6 +7,11 @@
 
     nixpkgs.config.allowUnfree = true;
 
+    xdg = {
+        enable = true;
+        mime.enable = true;
+    };
+
     programs = {
         home-manager.enable = true;
 
@@ -17,7 +22,10 @@
                 "hgrep" = "cat ~/.bash_history | grep $@";
             };
 
-            initExtra = ". \"$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh\"";
+            initExtra = ''
+                . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
+                export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+            '';
         };
     };
 

@@ -1,5 +1,6 @@
 { lib, ... }:
 {
+    # reference: https://grahamc.com/blog/erase-your-darlings
     # nuke the temporary root volume on boot
     boot.initrd.postDeviceCommands = lib.mkAfter ''
         zfs rollback -r rpool/local/root@blank
@@ -13,5 +14,10 @@
         '';
 
         deps = [];
+    };
+
+    # redirect storage directories to persistent volume
+    environment.etc = {
+        "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections/";
     };
 }

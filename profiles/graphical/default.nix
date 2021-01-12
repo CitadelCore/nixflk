@@ -20,5 +20,9 @@
         libinput.enable = true;
     };
 
+    environment.systemPackages = with pkgs; [
+        playerctl pavucontrol alsaTools
+    ];
+
     programs.dconf.enable = true;
 }

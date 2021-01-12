@@ -1,7 +1,12 @@
 { config, pkgs, lib, ... }:
 {
     environment.systemPackages = with pkgs; [
-        acpi lm_sensors wirelesstools pciutils usbutils
+        # power management
+        acpi lm_sensors
+        
+        # utilities
+        pciutils usbutils v4l-utils
+        wirelesstools i2c-tools
     ];
 
     boot = {
@@ -10,7 +15,7 @@
     };
 
     hardware.bluetooth.enable = true;
-    programs.light.enable = true;
+    programs.light.enable = true; # todo: needed outside i3?
 
     services = {
         # better timesync for unstable internet connections
@@ -22,8 +27,15 @@
             enable = true;
             settings = {
                 "CPU_SCALING_GOVERNOR_ON_AC" = "performance";
-                "CPU_SCALING_GOVERNOR_ON_BAT" = "powersave";
+                "CPU_SCALING_GOVERNOR_ON_BAT" = "ondemand";
                 "CPU_HWP_ON_AC" = "performance";
+                "CPU_HWP_ON_BAT" = "balance_performance";
+
+                "ENERGY_PERF_POLICY_ON_AC" = "performance";
+                "ENERGY_PERF_POLICY_ON_BAT" = "balance-performance";
+
+                "USB_BLACKLIST_PRINTER" = 1;
+                "USB_BLACKLIST_WWAN" = 1;
             };
         };
 
