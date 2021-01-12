@@ -4,6 +4,11 @@
         acpi lm_sensors wirelesstools pciutils usbutils
     ];
 
+    boot = {
+        kernelModules = [ "acpi_call" ];
+        extraModulePackages = with config.boot.kernelPackages; [ acpi_call ];
+    };
+
     hardware.bluetooth.enable = true;
     programs.light.enable = true;
 

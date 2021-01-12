@@ -28,7 +28,7 @@
             asciinema gnumake file less wget shellcheck
 
             # version control
-            git p4 p4v subversion mercurialFull
+            git subversion mercurialFull
 
             # security
             openssl git-crypt gnupg pass mkpasswd

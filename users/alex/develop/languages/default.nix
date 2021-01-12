@@ -1,7 +1,7 @@
 {
     imports = [
         ./clang
-        ./csharp
+        #./csharp
         ./golang
         ./java
         ./python

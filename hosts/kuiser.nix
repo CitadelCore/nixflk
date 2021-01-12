@@ -1,188 +1,196 @@
-{ lib, pkgs, ... }:
-{
-    _module.args.host = "kuiser";
+{ lib, pkgs, nixos-hardware, ... }:
+[
+    # hardware modules
+    nixos-hardware.nixosModules.common-pc-laptop
+    nixos-hardware.nixosModules.common-pc-laptop-ssd
+    nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
 
-    imports = [
-        ../users/alex
-        ../profiles/core/ephemeral
-        ../profiles/core/security/tpm
-        ../profiles/core/zfs
-        ../profiles/develop
-        ../profiles/graphical
-        ../profiles/graphical/games
-        ../profiles/graphical/barrier
-        ../profiles/graphical/scream
-        ../profiles/laptop
-        ../profiles/locales/gb
-        ../profiles/virt/docker
-        ../profiles/virt/libvirt
-    ];
+    # main module
+    {
+        _module.args.host = "kuiser";
 
-    boot = {
-        initrd = {
-            availableKernelModules = [
-                "xhci_pci"
-                "nvme"
-                "usb_storage"
-                "usbhid"
-                "sd_mod"
-                "rtsx_pci_sdmmc"
-            ];
-            
-            kernelModules = [ "dm-snapshot" ];
-        };
-
-        loader = {
-            systemd-boot.enable = true;
-            efi.canTouchEfiVariables = true;
-        };
-
-        kernelModules = [ "kvm-intel" ];
-        kernelParams = [
-            "zfs.zfs_arc_max=34359738368" # 32 GB max ARC
+        imports = [
+            ../users/alex
+            ../profiles/core/ephemeral
+            ../profiles/core/security/tpm
+            ../profiles/core/zfs
+            ../profiles/develop
+            ../profiles/graphical
+            ../profiles/graphical/games
+            ../profiles/graphical/barrier
+            ../profiles/graphical/scream
+            ../profiles/laptop
+            ../profiles/locales/gb
+            ../profiles/virt/docker
+            ../profiles/virt/libvirt
         ];
 
-        extraModulePackages = [];
-    };
+        boot = {
+            initrd = {
+                availableKernelModules = [
+                    "xhci_pci"
+                    "nvme"
+                    "usb_storage"
+                    "usbhid"
+                    "sd_mod"
+                    "rtsx_pci_sdmmc"
+                ];
+                
+                kernelModules = [ "dm-snapshot" ];
+            };
 
-    fileSystems = {
-        "/" = {
-            device = "rpool/local/root";
-            fsType = "zfs";
+            loader = {
+                systemd-boot.enable = true;
+                efi.canTouchEfiVariables = true;
+            };
+
+            kernelModules = [ "kvm-intel" ];
+            kernelParams = [
+                "zfs.zfs_arc_max=34359738368" # 32 GB max ARC
+            ];
+
+            extraModulePackages = [];
         };
 
-        "/nix" = {
-            device = "rpool/local/nix";
-            fsType = "zfs";
-        };
+        fileSystems = {
+            "/" = {
+                device = "rpool/local/root";
+                fsType = "zfs";
+            };
 
-        "/var/lib/docker" = {
-            device = "rpool/safe/docker";
-            fsType = "zfs";
-        };
+            "/nix" = {
+                device = "rpool/local/nix";
+                fsType = "zfs";
+            };
 
-        "/home" = {
-            device = "rpool/safe/home";
-            fsType = "zfs";
-        };
+            "/var/lib/docker" = {
+                device = "rpool/safe/docker";
+                fsType = "zfs";
+            };
 
-        "/persist" = {
-            device = "rpool/safe/persist";
-            fsType = "zfs";
-        };
+            "/home" = {
+                device = "rpool/safe/home";
+                fsType = "zfs";
+            };
 
-        "/boot" = {
-            device = "/dev/disk/by-uuid/59A0-1D42";
-            fsType = "vfat";
-        };
-    };
+            "/persist" = {
+                device = "rpool/safe/persist";
+                fsType = "zfs";
+            };
 
-    # we have enough memory we definitely don't need swap!
-    swapDevices = [];
-
-    networking = {
-        hostId = "68c855d2";
-        domain = "mobile.arctarus.net";
-
-        useDHCP = false;
-        networkmanager.enable = true;
-
-        hosts = {
-            "2a10:4a80:7:8::30" = [ "deployer.stir1.arctarus.net" ];
-            "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
-        };
-
-        interfaces = {
-            enp0s31f6.useDHCP = true;
-            ens4u2u1u2c2.useDHCP = true;
-            wlp0s20f3.useDHCP = true;
-
-            wg0.mtu = 1420;
-        };
-
-        wireguard = {
-            enable = true;
-
-            # This is the fallback link to Helios Stirling (stir1)
-            # It is the backdoor to Arctarus infrastructure should any RIS components fail
-            interfaces.wg0 = {
-                listenPort = 51592;
-                ips = [ "10.8.16.15/32" "2a10:4a80:7:16::15/64" ];
-                privateKeyFile = "/persist/nixos/secrets/wireguard/kuiser/wg0.txt";
-
-                peers = [{
-                    endpoint = "81.145.136.67:51820";
-                    publicKey = "lna4F7/fJrC0DzOm6Dx3ggqx/smJ1/2faWQvLhr88Qs=";
-                    persistentKeepalive = 25; # we're mobile so almost certainly behind NAT
-
-                    allowedIPs = [
-                        "10.60.10.0/24"
-                        "208.64.203.133/32" # Valve's Perforce server
-                        "2a10:4a80:7:8::1/128"
-                        "2a10:4a80:7:8::10/128"
-                        "2a10:4a80:7:8::30/128"
-                    ];
-                }];
+            "/boot" = {
+                device = "/dev/disk/by-uuid/59A0-1D42";
+                fsType = "vfat";
             };
         };
-    };
 
-    services = {
-        autorandr.enable = true;
+        # we have enough memory we definitely don't need swap!
+        swapDevices = [];
 
-        # dock is not properly detected as a dock
-        # so lid switch on external power must be ignored
-        logind.lidSwitchExternalPower = "ignore";
+        networking = {
+            hostId = "68c855d2";
+            domain = "mobile.arctarus.net";
 
-        xserver = {
-            layout = "gb";
-            videoDrivers = [ "modesetting" "nvidia" ];
+            useDHCP = false;
+            networkmanager.enable = true;
 
-            # disable display blanking, as it really breaks the external monitors
-            # (better option than just disabling DPMS completely)
-            serverFlagsSection = ''
-                Option "BlankTime" "0"
-                Option "StandbyTime" "0"
-                Option "SuspendTime" "0"
-                Option "OffTime" "0"
-            '';
+            hosts = {
+                "2a10:4a80:7:8::30" = [ "deployer.stir1.arctarus.net" ];
+                "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
+            };
 
-            displayManager.lightdm.enable = true;
-            windowManager.i3.enable = true;
+            interfaces = {
+                enp0s31f6.useDHCP = true;
+                ens4u2u1u2c2.useDHCP = true;
+                wlp0s20f3.useDHCP = true;
+
+                wg0.mtu = 1420;
+            };
+
+            wireguard = {
+                enable = true;
+
+                # This is the fallback link to Helios Stirling (stir1)
+                # It is the backdoor to Arctarus infrastructure should any RIS components fail
+                interfaces.wg0 = {
+                    listenPort = 51592;
+                    ips = [ "10.8.16.15/32" "2a10:4a80:7:16::15/64" ];
+                    privateKeyFile = "/persist/nixos/secrets/wireguard/kuiser/wg0.txt";
+
+                    peers = [{
+                        endpoint = "81.145.136.67:51820";
+                        publicKey = "lna4F7/fJrC0DzOm6Dx3ggqx/smJ1/2faWQvLhr88Qs=";
+                        persistentKeepalive = 25; # we're mobile so almost certainly behind NAT
+
+                        allowedIPs = [
+                            "10.60.10.0/24"
+                            "208.64.203.133/32" # Valve's Perforce server
+                            "2a10:4a80:7:8::1/128"
+                            "2a10:4a80:7:8::10/128"
+                            "2a10:4a80:7:8::30/128"
+                        ];
+                    }];
+                };
+            };
         };
-    };
 
-    hardware = {
-        # Disabled until NVIDIA fixes external monitor support...
-        # nvidia.prime = {
-        #     offload.enable = true;
-        #     intelBusId = "PCI:0:2:0";
-        #     nvidiaBusId = "PCI:1:0:0";
-        # };
+        services = {
+            autorandr.enable = true;
 
-        enableRedistributableFirmware = true;
-    };
+            # dock is not properly detected as a dock
+            # so lid switch on external power must be ignored
+            logind.lidSwitchExternalPower = "ignore";
 
-    environment.systemPackages = with pkgs; [
-        vlc
-        playerctl
-        pavucontrol
-        libnotify
-        networkmanagerapplet
+            xserver = {
+                layout = "gb";
+                videoDrivers = [ "modesetting" "nvidia" ];
 
-        libreoffice-fresh
+                # disable display blanking, as it really breaks the external monitors
+                # (better option than just disabling DPMS completely)
+                serverFlagsSection = ''
+                    Option "BlankTime" "0"
+                    Option "StandbyTime" "0"
+                    Option "SuspendTime" "0"
+                    Option "OffTime" "0"
+                '';
 
-        gnome3.eog
-        gnome3.nautilus
-        gnome3.file-roller
-    ];
+                displayManager.lightdm.enable = true;
+                windowManager.i3.enable = true;
+            };
+        };
 
-    # enable nvidia support for Docker as we have a nvidia card
-    virtualisation.docker.enableNvidia = true;
+        hardware = {
+            # Disabled until NVIDIA fixes external monitor support...
+            # nvidia.prime = {
+            #     offload.enable = true;
+            #     intelBusId = "PCI:0:2:0";
+            #     nvidiaBusId = "PCI:1:0:0";
+            # };
 
-    # enable dev docs
-    documentation.dev.enable = true;
-    console.useXkbConfig = true;
+            enableRedistributableFirmware = true;
+        };
 
-    system.stateVersion = "20.09";
-}
+        environment.systemPackages = with pkgs; [
+            vlc
+            playerctl
+            pavucontrol
+            libnotify
+            networkmanagerapplet
+
+            libreoffice-fresh
+
+            gnome3.eog
+            gnome3.nautilus
+            gnome3.file-roller
+        ];
+
+        # enable nvidia support for Docker as we have a nvidia card
+        virtualisation.docker.enableNvidia = true;
+
+        # enable dev docs
+        documentation.dev.enable = true;
+        console.useXkbConfig = true;
+
+        system.stateVersion = "20.09";
+    }
+]

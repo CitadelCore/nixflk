@@ -1,92 +1,100 @@
-{ lib, pkgs, ... }:
-{
-    _module.args.host = "avalon";
+{ lib, pkgs, nixos-hardware, ... }:
+[
+    # hardware modules
+    nixos-hardware.nixosModules.common-pc-laptop
+    nixos-hardware.nixosModules.common-pc-laptop-ssd
+    nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
 
-    imports = [
-        ../users/alex
-        ../profiles/core/ephemeral
-        ../profiles/core/security/tpm
-        ../profiles/develop
-        ../profiles/graphical
-        ../profiles/laptop
-        ../profiles/locales/gb
-        #../profiles/virt/docker
-        #../profiles/virt/libvirt
-    ];
+    # main module
+    {
+        _module.args.host = "avalon";
 
-    boot = {
-        initrd = {
-            availableKernelModules = [
-                "xhci_pci"
-                "nvme"
-                "usb_storage"
-                "usbhid"
-                "sd_mod"
-                "rtsx_pci_sdmmc"
-            ];
-            
-            kernelModules = [ "dm-snapshot" ];
+        imports = [
+            ../users/alex
+            ../profiles/core/ephemeral
+            ../profiles/core/security/tpm
+            ../profiles/develop
+            ../profiles/graphical
+            ../profiles/laptop
+            ../profiles/locales/gb
+            #../profiles/virt/docker
+            #../profiles/virt/libvirt
+        ];
+
+        boot = {
+            initrd = {
+                availableKernelModules = [
+                    "xhci_pci"
+                    "nvme"
+                    "usb_storage"
+                    "usbhid"
+                    "sd_mod"
+                    "rtsx_pci_sdmmc"
+                ];
+                
+                kernelModules = [ "dm-snapshot" ];
+            };
+
+            loader = {
+                systemd-boot.enable = true;
+                efi.canTouchEfiVariables = true;
+            };
+
+            kernelModules = [ "kvm-intel" ];
+
+            extraModulePackages = [];
+            supportedFilesystems = [ "zfs" ];
         };
 
-        loader = {
-            systemd-boot.enable = true;
-            efi.canTouchEfiVariables = true;
+        fileSystems = {
+            "/" = {
+                device = "rpool/local/root";
+                fsType = "zfs";
+            };
+
+            "/nix" = {
+                device = "rpool/local/nix";
+                fsType = "zfs";
+            };
+
+            "/var/lib/docker" = {
+                device = "rpool/safe/docker";
+                fsType = "zfs";
+            };
+
+            "/home" = {
+                device = "rpool/safe/home";
+                fsType = "zfs";
+            };
+
+            "/persist" = {
+                device = "rpool/safe/persist";
+                fsType = "zfs";
+            };
+
+            "/boot" = {
+                device = "/dev/disk/by-uuid/AC3C-8188";
+                fsType = "vfat";
+            };
         };
 
-        kernelModules = [ "kvm-intel" ];
+        swapDevices = [];
 
-        extraModulePackages = [];
-        supportedFilesystems = [ "zfs" ];
-    };
-
-    fileSystems = {
-        "/" = {
-            device = "rpool/local/root";
-            fsType = "zfs";
+        networking = {
+            hostId = "64c49c88";
+            domain = "mobile.arctarus.net";
+            networkmanager.enable = true;
         };
 
-        "/nix" = {
-            device = "rpool/local/nix";
-            fsType = "zfs";
+        services.xserver = {
+            displayManager.gdm = {
+                enable = true;
+                wayland = true;
+            };
+
+            desktopManager.gnome3.enable = true;
         };
-
-        "/var/lib/docker" = {
-            device = "rpool/safe/docker";
-            fsType = "zfs";
-        };
-
-        "/home" = {
-            device = "rpool/safe/home";
-            fsType = "zfs";
-        };
-
-        "/persist" = {
-            device = "rpool/safe/persist";
-            fsType = "zfs";
-        };
-
-        "/boot" = {
-            device = "/dev/disk/by-uuid/AC3C-8188";
-            fsType = "vfat";
-        };
-    };
-
-    swapDevices = [];
-
-    networking = {
-        hostId = "64c49c88";
-        domain = "mobile.arctarus.net";
-        networkmanager.enable = true;
-    };
-
-    services.xserver = {
-        displayManager.gdm = {
-            enable = true;
-            wayland = true;
-        };
-
-        desktopManager.gnome3.enable = true;
-    };
-    
-    hardware.enableRedistributableFirmware = true;
-}
+        
+        hardware.enableRedistributableFirmware = true;
+    }
+]

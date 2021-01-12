@@ -3,6 +3,7 @@
 , nixos
 , nixpkgs
 , unstable
+, nixos-hardware
 , pkgset
 , overlays
 , self
@@ -44,14 +45,18 @@ let
                 nixpkgs.overlays = overlays;
             };
 
-            local = import "${toString ./.}/${hostName}.nix";
+            # this is a list of base modules per host to import
+            local = import "${toString ./.}/${hostName}.nix" {
+                inherit lib nixos-hardware;
+                pkgs = pkgset.nixpkgs;
+            };
 
             # Everything in `./modules/list.nix`.
             flakeModules =
                 attrValues (removeAttrs self.nixosModules [ "profiles" ]);
 
         in
-            flakeModules ++ [ core global local home-manager overrides ];
+            flakeModules ++ local ++ [ core global home-manager overrides ];
     };
 
     hosts = recImport {

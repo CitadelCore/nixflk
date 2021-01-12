@@ -6,13 +6,15 @@
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
+        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
+
         home = {
             url = "github:nix-community/home-manager/master";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-      outputs = inputs@{ self, nixos, nixpkgs, unstable, home }:
+      outputs = inputs@{ self, nixos, nixpkgs, unstable, nixos-hardware, home }:
     let
         inherit (builtins) attrNames attrValues readDir;
         inherit (nixos) lib;
