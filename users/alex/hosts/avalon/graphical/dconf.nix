@@ -13,6 +13,7 @@ in
 
         "org/gnome/settings-daemon/plugins/power" = {
             # disable automatic sleep on AC power
+            "power-button-action" = "nothing";
             "sleep-inactive-ac-type" = "nothing";
         };
     };
