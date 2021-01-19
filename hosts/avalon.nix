@@ -85,7 +85,11 @@
         networking = {
             hostId = "64c49c88";
             domain = "mobile.arctarus.net";
+
+            useDHCP = false;
             networkmanager.enable = true;
+
+            interfaces.wlp4s0.useDHCP = true;
         };
 
         services.xserver = {

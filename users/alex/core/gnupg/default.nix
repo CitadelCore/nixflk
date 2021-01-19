@@ -29,6 +29,10 @@
         enableSshSupport = true;
     };
 
+    home.file.".gnupg/scdaemon.conf".text = ''
+        disable-ccid
+    '';
+
     programs.bash.initExtra = ''
         export GPG_TTY="$(tty)"
         gpg-connect-agent /bye
