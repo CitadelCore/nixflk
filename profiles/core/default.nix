@@ -94,6 +94,9 @@ in
             up = ifSudo "s systemctl start";
             dn = ifSudo "s systemctl stop";
             jtl = "journalctl";
+
+            # ops
+            tf = "terraform";
         };
     };
 

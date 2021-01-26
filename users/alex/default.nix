@@ -3,6 +3,8 @@
     home-manager = {
         users.alex = {
             imports = [
+                ../../modules/home
+
                 ./core
                 ./develop
                 ./graphical

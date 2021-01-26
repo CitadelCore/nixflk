@@ -17,7 +17,6 @@
             ../profiles/develop
             ../profiles/graphical
             ../profiles/graphical/games
-            ../profiles/graphical/barrier
             ../profiles/graphical/scream
             ../profiles/laptop
             ../profiles/locales/gb
@@ -94,6 +93,9 @@
             useDHCP = false;
             networkmanager.enable = true;
 
+            # allow Barrier
+            firewall.allowedTCPPorts = [ 24800 ];
+
             hosts = {
                 "2a10:4a80:7:8::30" = [ "deployer.stir1.arctarus.net" ];
                 "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
@@ -108,7 +110,7 @@
             };
 
             wireguard = {
-                enable = true;
+                enable = false;
 
                 # This is the fallback link to Helios Stirling (stir1)
                 # It is the backdoor to Arctarus infrastructure should any RIS components fail
@@ -136,6 +138,7 @@
 
         services = {
             autorandr.enable = true;
+            hardware.bolt.enable = true;
 
             # dock is not properly detected as a dock
             # so lid switch on external power must be ignored

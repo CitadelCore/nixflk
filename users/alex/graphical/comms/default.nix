@@ -4,5 +4,6 @@
         quasselClient
         discord
         slack
+        zoom-us
     ];
 }

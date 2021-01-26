@@ -4,6 +4,7 @@
         ./games
 
         ./autorandr.nix
+        ./barrier.nix
         ./dunst.nix
         ./i3.nix
         ./i3lock.nix
