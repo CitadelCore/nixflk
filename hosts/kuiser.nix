@@ -186,6 +186,10 @@
         # enable dev docs
         documentation.dev.enable = true;
         console.useXkbConfig = true;
+        
+        # use UK keyboard layout
+        console.keyMap = lib.mkDefault "uk";
+        services.xserver.layout = lib.mkDefault "gb";
 
         system.stateVersion = "20.09";
     }

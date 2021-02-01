@@ -96,6 +96,10 @@
             displayManager.gdm.enable = true;
             desktopManager.gnome3.enable = true;
         };
+
+        # use US keyboard layout
+        #console.keyMap = lib.mkDefault "uk";
+        #services.xserver.layout = lib.mkDefault "gb";
         
         hardware.enableRedistributableFirmware = true;
     }
