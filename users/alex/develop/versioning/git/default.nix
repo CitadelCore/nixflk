@@ -26,6 +26,11 @@
                     sslCert = "/home/alex/Documents/keys/chaos/public.pem";
                     sslKey = "/home/alex/Documents/keys/chaos/private.pem";
                 };
+
+                "https://licensees.chaosinitiative.com" = {
+                    sslCert = "/home/alex/Documents/keys/chaos/public.pem";
+                    sslKey = "/home/alex/Documents/keys/chaos/private.pem";
+                };
             };
 
             credential = {

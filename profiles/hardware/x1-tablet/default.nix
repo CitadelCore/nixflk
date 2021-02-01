@@ -15,7 +15,7 @@ in
         loader.systemd-boot.consoleMode = "1";
 
         # use latest kernel version
-        kernelPackages = pkgs.linuxPackages_5_9;
+        kernelPackages = pkgs.linuxPackages_5_10;
         kernelPatches = [
             # fix for the keyboard function keys
             {

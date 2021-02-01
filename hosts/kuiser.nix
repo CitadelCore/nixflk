@@ -110,7 +110,7 @@
             };
 
             wireguard = {
-                enable = false;
+                enable = true;
 
                 # This is the fallback link to Helios Stirling (stir1)
                 # It is the backdoor to Arctarus infrastructure should any RIS components fail

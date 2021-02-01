@@ -4,6 +4,7 @@ let
 in
 {
     home.packages = with pkgs; [
+        postman
         nodejs-14_x
         jetbrains.webstorm
     ] ++ nodePackages;

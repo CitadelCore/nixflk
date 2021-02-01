@@ -7,8 +7,8 @@ rustPlatform.buildRustPackage {
     src = fetchFromGitHub {
         owner = "zhaofengli";
         repo = "colmena";
-        rev = "1125eb6d1bf4d07213087c0ade68c15f471d3654";
-        sha256 = "sha256-Lcqv8zQVyJqrytLg8X271swUKJfACnIpxh05qHmxSLE=";
+        rev = "f53ebef41c26b3b4cb024685e952a4450b631bd6";
+        sha256 = "sha256-I26WdIqM3lNSCrJnO+7nVLOFGn7wzVmdaRfpqD4lW50=";
     };
 
     cargoSha256 = "sha256-F3NRnNvHV3jQ6cknNgqmsu7Z4kvBgOSkre/Gry2CHMo=";
