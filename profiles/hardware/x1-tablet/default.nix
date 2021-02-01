@@ -50,6 +50,9 @@ in
         '';
     };
 
+    # enable display hidpi
+    hardware.video.hidpi.enable = true;
+
     # enable sensors
     hardware.sensor.iio.enable = true;
 
