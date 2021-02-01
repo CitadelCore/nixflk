@@ -75,7 +75,7 @@
             };
 
             "/boot" = {
-                device = "/dev/disk/by-uuid/AC3C-8188";
+                device = "/dev/disk/by-uuid/796D-161D";
                 fsType = "vfat";
             };
         };
