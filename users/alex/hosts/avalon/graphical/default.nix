@@ -8,6 +8,8 @@
             forceWayland = true;
         };
 
+        enableGnomeExtensions = true;
+
         profiles.default.settings = {
             # hardware video acceleration
             "media.ffvpx.enabled" = false;
@@ -15,9 +17,9 @@
         };
     };
 
-    home.sessionVariables = {
-        "MOZ_ENABLE_WAYLAND" = 1;
-        "MOZ_USE_XINPUT2" = 1;
-        "XDG_SESSION_TYPE" = "wayland";
+    systemd.user.sessionVariables = {
+        MOZ_ENABLE_WAYLAND = "1";
+        MOZ_USE_XINPUT2 = "1";
+        XDG_SESSION_TYPE = "wayland";
     };
 }

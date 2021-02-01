@@ -18,18 +18,25 @@
     #sound.extraConfig = ''
     #    options snd-hda-intel model=laptop-dmic
     #'';
-    
-    services.logind = {
-        # properly sleep on lid close
-        lidSwitchDocked = "suspend";
+
+    hardware = {
+        video.hidpi.enable = true;
+        sensor.iio.enable = true;
+        usbWwan.enable = true;
     };
 
-    # enable display hidpi
-    hardware.video.hidpi.enable = true;
+    services = {
+        fprintd.enable = true;
+        neard.enable = true;
 
-    # enable sensors
-    hardware.sensor.iio.enable = true;
+        # gpsd = {
+        #     enable = true;
+        #     device = "/dev/ttyUSB1";
+        # };
 
-    # enable the fingerprint sensor
-    services.fprintd.enable = true;
+        logind = {
+            # properly sleep on lid close
+            lidSwitchDocked = "suspend";
+        };
+    };
 }

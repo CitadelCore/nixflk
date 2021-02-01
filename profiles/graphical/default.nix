@@ -15,9 +15,13 @@
         };
     };
 
-    services.xserver = {
-        enable = true;
-        libinput.enable = true;
+    services = {
+        xserver = {
+            enable = true;
+            libinput.enable = true;
+        };
+
+        gnome3.chrome-gnome-shell.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
