@@ -5,6 +5,7 @@
         nixos.url = "github:NixOS/nixpkgs/nixos-20.09";
         nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
         unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+        master.url = "github:NixOS/nixpkgs/master";
 
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
@@ -14,7 +15,7 @@
         };
     };
 
-      outputs = inputs@{ self, nixos, nixpkgs, unstable, nixos-hardware, home }:
+      outputs = inputs@{ self, nixos, nixpkgs, unstable, master, nixos-hardware, home }:
     let
         inherit (builtins) attrNames attrValues readDir;
         inherit (nixos) lib;
@@ -50,6 +51,7 @@
             nixos = pkgImport nixos;
             nixpkgs = pkgImport nixpkgs;
             unstable = pkgImport unstable;
+            master = pkgImport master;
         };
     in
     {
