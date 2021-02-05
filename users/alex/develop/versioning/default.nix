@@ -3,6 +3,6 @@
     imports = [ ./git ];
 
     home.packages = with pkgs; [
-        subversion mercurialFull
+        p4 p4v subversion mercurialFull
     ];
 }
