@@ -3,7 +3,10 @@ let inherit (lib) fileContents;
 
 in
 {
-    imports = [ ./security ];
+    imports = [
+        ./boot
+        ./security
+    ];
 
     nix = {
         package = pkgs.nixFlakes;
