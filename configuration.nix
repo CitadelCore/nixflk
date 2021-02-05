@@ -6,12 +6,12 @@ let
     inherit (builtins) attrNames readDir;
 
     hostname = lib.fileContents /etc/hostname;
-    host = "/etc/nixos/hosts/${hostname}.nix";
+    host = "/persist/nixos/hosts/${hostname}.nix";
     config =
     if (builtins.pathExists host) then
         [ host ]
     else
-        [ /etc/nixos/hosts/NixOS.nix ];
+        [ /persist/nixos/hosts/NixOS.nix ];
 in
 {
     imports = (import ./modules/list.nix) ++ [
@@ -19,14 +19,14 @@ in
         builtins.fetchTarball
         "https://github.com/rycee/home-manager/archive/master.tar.gz"
         }/nixos"
-    /etc/nixos/profiles/core.nix
+    /persist/nixos/profiles/core.nix
     ] ++ config;
 
     networking.hostName = hostname;
     nix.nixPath = [
-    "nixpkgs=${<nixpkgs>}"
-    "nixos-config=/etc/nixos/configuration.nix"
-    "nixpkgs-overlays=/etc/nixos/overlays"
+        "nixpkgs=${<nixpkgs>}"
+        "nixos-config=/persist/nixos/configuration.nix"
+        "nixpkgs-overlays=/persist/nixos/overlays"
     ];
 
     nixpkgs.overlays =
