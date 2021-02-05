@@ -2,36 +2,16 @@
 {
     imports = [
         ./gnupg
-        ./ssh.nix
+        ./shell
+        ./ssh
     ];
 
     nixpkgs.config.allowUnfree = true;
+    programs.home-manager.enable = true;
 
     xdg = {
         enable = true;
         mime.enable = true;
-    };
-
-    programs = {
-        home-manager.enable = true;
-
-        bash = {
-            enable = true;
-            shellAliases = {
-                "lh" = "ls -lah";
-                "hgrep" = "cat ~/.bash_history | grep $@";
-            };
-
-            sessionVariables = {
-                # to keep compatibility with SSH sessions and sudo as root
-                "TERM" = "xterm";
-            };
-
-            initExtra = ''
-                . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
-                export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
-            '';
-        };
     };
 
     home = {
