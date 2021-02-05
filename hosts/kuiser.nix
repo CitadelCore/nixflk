@@ -145,7 +145,6 @@
             logind.lidSwitchExternalPower = "ignore";
 
             xserver = {
-                layout = "gb";
                 videoDrivers = [ "modesetting" "nvidia" ];
 
                 # disable display blanking, as it really breaks the external monitors

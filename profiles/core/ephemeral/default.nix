@@ -7,17 +7,20 @@
     ''; # touch /etc/NIXOS
 
     # link the config in the persistent volume to the temporary volume
-    system.activationScripts.linkNixos = {
+    system.activationScripts.linkPersist = {
         text = ''
-            rm -rf /etc/nixos
-            ln -s /persist/nixos /etc/nixos
+            mkPersistDir()
+            {
+                mkdir -p "$1"
+                rm -rf "$2"
+                ln -sT "$1" "$2"
+            }
+
+            mkPersistDir /persist/nixos /etc/nixos
+            mkPersistDir /persist/etc/NetworkManager/system-connections /etc/NetworkManager/system-connections
+            mkPersistDir /persist/var/lib/bluetooth /var/lib/bluetooth
         '';
 
         deps = [];
-    };
-
-    # redirect storage directories to persistent volume
-    environment.etc = {
-        "NetworkManager/system-connections".source = "/persist/etc/NetworkManager/system-connections/";
     };
 }

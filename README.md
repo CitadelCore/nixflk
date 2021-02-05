@@ -21,10 +21,11 @@ To build and switch to them, clone this repository and in `nix-shell` run `sudo 
 3. Partition disks
 ```sh
 DISK=/dev/disk/by-id/...
-sgdisk -Z $DISK
-sgdisk -a1 -n2:34:2047 -t2:EF02 $DISK
-sgdisk -n3:1M:+512M -t3:EF00 $DISK
-sgdisk -n1:0:0 -t1:BF01 $DISK
+parted $DISK -- mklabel gpt
+parted $DISK -- mkpart primary 512MiB -32GiB
+parted $DISK -- mkpart primary linux-swap -32GiB 100%
+parted $DISK -- mkpart ESP fat32 1MiB 512MiB
+parted $DISK -- set 3 esp on
 
 zpool create -o ashift=12 -O mountpoint=none -O atime=off -O xattr=sa -O acltype=posixacl -O encryption=aes-256-gcm -O keylocation=prompt -O keyformat=passphrase rpool $DISK-part1
 zfs create -o mountpoint=legacy rpool/local
@@ -40,6 +41,7 @@ zfs snapshot rpool/local/root@blank
 mount -t zfs rpool/local/root /mnt
 mount -t zfs rpool/safe/persist /mnt/persist
 
+mkswap -L swap $DISK-part2
 mkfs.vfat $DISK-part3
 mkdir /mnt/boot
 mount $DISK-part3 /mnt/boot
