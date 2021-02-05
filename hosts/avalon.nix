@@ -80,7 +80,10 @@
             };
         };
 
-        swapDevices = [];
+        swapDevices = [{
+            device = "/dev/disk/by-partuuid/c06e81a3-b500-4478-984a-840c1eb6395c";
+            randomEncryption.enable = true;
+        }];
 
         networking = {
             hostId = "64c49c88";
