@@ -23,7 +23,7 @@
         isNormalUser = true;
 
         description = "Alex Zero";
-        extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" ];
 
         hashedPassword = lib.fileContents ../../secrets/passwords/alex.txt;
         openssh.authorizedKeys.keyFiles = [ ./sshkey.txt ];

@@ -7,6 +7,9 @@
         # utilities
         pciutils usbutils v4l-utils
         wirelesstools i2c-tools
+
+        # libraries
+        libcamera
     ];
 
     boot = {
@@ -27,12 +30,12 @@
             enable = true;
             settings = {
                 "CPU_SCALING_GOVERNOR_ON_AC" = "performance";
-                "CPU_SCALING_GOVERNOR_ON_BAT" = "ondemand";
+                "CPU_SCALING_GOVERNOR_ON_BAT" = "powersave";
                 "CPU_HWP_ON_AC" = "performance";
-                "CPU_HWP_ON_BAT" = "balance_performance";
+                "CPU_HWP_ON_BAT" = "power";
 
                 "ENERGY_PERF_POLICY_ON_AC" = "performance";
-                "ENERGY_PERF_POLICY_ON_BAT" = "balance-performance";
+                "ENERGY_PERF_POLICY_ON_BAT" = "power";
 
                 "USB_BLACKLIST_PRINTER" = 1;
                 "USB_BLACKLIST_WWAN" = 1;

@@ -3,6 +3,7 @@
 , nixos
 , nixpkgs
 , unstable
+, master
 , nixos-hardware
 , pkgset
 , overlays
@@ -27,6 +28,8 @@ let
                 networking.hostName = hostName;
                 nix.nixPath = let path = toString ../.; in
                 [
+                    "master=${master}"
+                    "unstable=${unstable}"
                     "nixpkgs=${nixpkgs}"
                     "nixos=${nixos}"
                     "nixos-config=${path}/configuration.nix"

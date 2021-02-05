@@ -10,6 +10,8 @@
 
     security = {
         protectKernelImage = true;
-        hideProcessInformation = true;
+
+        # currently required for polkit to work properly...
+        # hideProcessInformation = true;
     };
 }

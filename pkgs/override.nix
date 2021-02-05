@@ -5,5 +5,4 @@
 pkgs: with pkgs; {
     inherit dotnet-sdk_5 omnisharp-roslyn;
     inherit vscode-extensions;
-    inherit linuxPackages_5_10;
 }
