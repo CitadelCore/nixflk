@@ -31,21 +31,27 @@ zpool create -o ashift=12 -O mountpoint=none -O atime=off -O xattr=sa -O acltype
 zfs create -o mountpoint=legacy rpool/local
 zfs create rpool/local/root
 zfs create rpool/local/nix
+zfs create rpool/local/docker
 zfs create -o mountpoint=legacy -o com.sun:auto-snapshot=true rpool/safe
-zfs create rpool/safe/docker
 zfs create -o compression=lz4 rpool/safe/home
 zfs create rpool/safe/persist
 
 zfs snapshot rpool/local/root@blank
 
 mount -t zfs rpool/local/root /mnt
-mount -t zfs rpool/safe/persist /mnt/persist
 
-mkswap -L swap $DISK-part2
-mkfs.vfat $DISK-part3
+mkdir /mnt/nix
+mkdir /mnt/home
+mkdir /mnt/persist
 mkdir /mnt/boot
+mount -t zfs rpool/local/nix /mnt/nix
+mount -t zfs rpool/safe/home /mnt/home
+mount -t zfs rpool/safe/persist /mnt/persist
 mount $DISK-part3 /mnt/boot
 
+mkswap -L swap $DISK-part2
+
+mkdir -p /mnt/etc/nixos
 nixos-generate-config --root /mnt
 ```
 

@@ -60,7 +60,7 @@
             };
 
             "/var/lib/docker" = {
-                device = "rpool/safe/docker";
+                device = "rpool/local/docker";
                 fsType = "zfs";
             };
 
