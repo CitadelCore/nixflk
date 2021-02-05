@@ -21,13 +21,16 @@ To build and switch to them, clone this repository and in `nix-shell` run `sudo 
 3. Partition disks
 ```sh
 DISK=/dev/disk/by-id/...
-parted $DISK -- mklabel gpt
-parted $DISK -- mkpart primary 512MiB -32GiB
-parted $DISK -- mkpart primary linux-swap -32GiB 100%
-parted $DISK -- mkpart ESP fat32 1MiB 512MiB
-parted $DISK -- set 3 esp on
+sgdisk -z $DISK
 
-zpool create -o ashift=12 -O mountpoint=none -O atime=off -O xattr=sa -O acltype=posixacl -O encryption=aes-256-gcm -O keylocation=prompt -O keyformat=passphrase rpool $DISK-part1
+sgdisk -n1:1M:+512M -t1:EF00 $DISK
+sgdisk -n2:0:+32G -t2:8200 $DISK
+sgdisk -n3:0:0 -t3:BF00 $DISK
+
+mkfs.vfat $DISK-part1
+mkswap -L swap $DISK-part2
+
+zpool create -o ashift=12 -O mountpoint=none -O atime=off -O xattr=sa -O acltype=posixacl -O encryption=aes-256-gcm -O keylocation=prompt -O keyformat=passphrase rpool $DISK-part3
 zfs create -o mountpoint=legacy rpool/local
 zfs create rpool/local/root
 zfs create rpool/local/nix
@@ -35,21 +38,16 @@ zfs create rpool/local/docker
 zfs create -o mountpoint=legacy -o com.sun:auto-snapshot=true rpool/safe
 zfs create -o compression=lz4 rpool/safe/home
 zfs create rpool/safe/persist
-
 zfs snapshot rpool/local/root@blank
 
 mount -t zfs rpool/local/root /mnt
 
-mkdir /mnt/nix
-mkdir /mnt/home
-mkdir /mnt/persist
-mkdir /mnt/boot
+cd /mnt
+mkdir nix home persist boot
 mount -t zfs rpool/local/nix /mnt/nix
 mount -t zfs rpool/safe/home /mnt/home
 mount -t zfs rpool/safe/persist /mnt/persist
-mount $DISK-part3 /mnt/boot
-
-mkswap -L swap $DISK-part2
+mount $DISK-part1 /mnt/boot
 
 mkdir -p /mnt/etc/nixos
 nixos-generate-config --root /mnt
