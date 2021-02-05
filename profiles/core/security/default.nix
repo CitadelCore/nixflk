@@ -15,7 +15,9 @@
 
         doas = {
             enable = true;
-            wheelNeedsPassword = true;
+            extraRules = [
+                { groups = [ "wheel" ]; noPass = false; persist = true; }
+            ];
         };
     };
 }
