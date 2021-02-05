@@ -2,6 +2,7 @@
 {
     imports = [
         ./certs
+        ./hardening
         ./pam
         ./smartcard
     ];
@@ -9,9 +10,12 @@
     programs.ssh.startAgent = true;
 
     security = {
-        protectKernelImage = true;
+        # replace sudo with doas
+        sudo.enable = false;
 
-        # currently required for polkit to work properly...
-        # hideProcessInformation = true;
+        doas = {
+            enable = true;
+            wheelNeedsPassword = true;
+        };
     };
 }

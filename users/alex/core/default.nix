@@ -22,6 +22,11 @@
                 "hgrep" = "cat ~/.bash_history | grep $@";
             };
 
+            sessionVariables = {
+                # to keep compatibility with SSH sessions and sudo as root
+                "TERM" = "xterm";
+            };
+
             initExtra = ''
                 . "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"
                 export XDG_DATA_DIRS="$HOME/.nix-profile/share:$XDG_DATA_DIRS"
@@ -37,9 +42,6 @@
         ];
 
         sessionVariables = {
-            # to keep compatibility with SSH sessions and sudo as root
-            "TERM" = "xterm";
-
             # ensure python requests uses our custom CA
             "REQUESTS_CA_BUNDLE" = "/etc/ssl/certs/ca-certificates.crt";
 
