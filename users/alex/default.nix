@@ -1,4 +1,4 @@
-{ config, lib, host, ... }:
+{ config, lib, pkgs, host, ... }:
 {
     home-manager = {
         users.alex = {
@@ -25,6 +25,7 @@
         description = "Alex Zero";
         extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" ];
 
+        shell = pkgs.fish;
         hashedPassword = lib.fileContents ../../secrets/passwords/alex.txt;
         openssh.authorizedKeys.keyFiles = [ ./sshkey.txt ];
     };

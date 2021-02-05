@@ -1,7 +1,5 @@
 { pkgs, ... }:
 {
-    imports = [ ./dconf.nix ];
-
     programs.firefox = {
         enable = true;
         package = pkgs.wrapFirefox pkgs.firefox-unwrapped {

@@ -1,8 +1,6 @@
 { pkgs, ... }:
 {
     imports = [
-        ./games
-
         ./autorandr.nix
         ./barrier.nix
         ./dunst.nix
