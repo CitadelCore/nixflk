@@ -70,5 +70,13 @@
             coreOffset = -95;
             gpuOffset = -48;
         };
+
+        # binds the spidev driver to the fingerprint reader
+        # so it's accessible under /dev/spidev in userspace
+        udev.extraRules = let script = pkgs.writeShellScript "" ''
+            echo spidev > "$1/driver_override" && echo "$2" > "$1/subsystem/drivers/spidev/bind"
+        ''; in ''
+            ACTION=="add|change", SUBSYSTEM=="spi", ENV{MODALIAS}=="acpi:SYNA8002:", PROGRAM+="${script} %S%p %k"
+        '';
     };
 }
