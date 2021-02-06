@@ -1,11 +1,15 @@
 { pkgs, ... }:
 {
     boot = {
+        extraModprobeConfig = ''
+            options thinkpad_acpi fan_control=1 experimental=1
+        '';
+
         # we're hidpi so use lower res for boot
         loader.systemd-boot.consoleMode = "1";
 
         # use latest stable kernel version
-        kernelPackages = pkgs.linuxPackages_5_9;
+        kernelPackages = pkgs.linuxPackages_5_10;
         kernelPatches = [
             {
                 name = "tpx1-cover";
