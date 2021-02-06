@@ -4,6 +4,7 @@
         ./certs
         ./hardening
         ./pam
+        ./secureboot
         ./smartcard
     ];
 

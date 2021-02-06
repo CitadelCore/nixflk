@@ -4,9 +4,9 @@
     inputs = {
         # use unstable for entire system instead of nixos-20.09 until 21.05 comes out
         # because we can't have an updated gnome3 without it
-        nixos.url = "github:NixOS/nixpkgs/nixos-unstable";
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-        unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+        nixos.url = "github:CitadelCore/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:CitadelCore/nixpkgs/nixos-unstable";
+        unstable.url = "github:CitadelCore/nixpkgs/nixos-unstable";
 
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
