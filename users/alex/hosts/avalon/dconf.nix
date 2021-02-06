@@ -19,8 +19,8 @@ in
         };
 
         "org/gnome/settings-daemon/plugins/power" = {
-            # autobrightness is very stuttery, so turn it off
-            "ambient-enabled" = false;
+            # enable automatic ambient brightness
+            "ambient-enabled" = true;
 
             # disable automatic sleep on AC power
             "sleep-inactive-ac-type" = "nothing";
