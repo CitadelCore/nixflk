@@ -102,6 +102,7 @@
             desktopManager.gnome3.enable = true;
         };
 
+        services.udisks2.enable = true;
         services.gnome3.chrome-gnome-shell.enable = true;
 
         environment.systemPackages = with pkgs; [
