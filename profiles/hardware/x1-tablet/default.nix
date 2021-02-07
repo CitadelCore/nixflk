@@ -1,11 +1,15 @@
 { pkgs, ... }:
 {
     boot = {
+        extraModprobeConfig = ''
+            options thinkpad_acpi fan_control=1 experimental=1
+        '';
+
         # we're hidpi so use lower res for boot
         loader.systemd-boot.consoleMode = "1";
 
         # use latest stable kernel version
-        kernelPackages = pkgs.linuxPackages_5_9;
+        kernelPackages = pkgs.linuxPackages_5_10;
         kernelPatches = [
             {
                 name = "tpx1-cover";
@@ -66,5 +70,13 @@
             coreOffset = -95;
             gpuOffset = -48;
         };
+
+        # binds the spidev driver to the fingerprint reader
+        # so it's accessible under /dev/spidev in userspace
+        udev.extraRules = let script = pkgs.writeShellScript "" ''
+            echo spidev > "$1/driver_override" && echo "$2" > "$1/subsystem/drivers/spidev/bind"
+        ''; in ''
+            ACTION=="add|change", SUBSYSTEM=="spi", ENV{MODALIAS}=="acpi:SYNA8002:", PROGRAM+="${script} %S%p %k"
+        '';
     };
 }

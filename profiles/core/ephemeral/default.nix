@@ -19,6 +19,9 @@
             mkPersistDir /persist/nixos /etc/nixos
             mkPersistDir /persist/etc/NetworkManager/system-connections /etc/NetworkManager/system-connections
             mkPersistDir /persist/var/lib/bluetooth /var/lib/bluetooth
+
+            # make sure /persist/nixos has correct perms
+            chmod -R 600 /persist/nixos/secrets
         '';
 
         deps = [];

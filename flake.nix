@@ -2,20 +2,21 @@
     description = "My Nix flake configurations.";
 
     inputs = {
-        nixos.url = "github:NixOS/nixpkgs/nixos-20.09";
-        nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
-        unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
-        master.url = "github:NixOS/nixpkgs/master";
+        # use unstable for entire system instead of nixos-20.09 until 21.05 comes out
+        # because we can't have an updated gnome3 without it
+        nixos.url = "github:CitadelCore/nixpkgs/nixos-unstable";
+        nixpkgs.url = "github:CitadelCore/nixpkgs/nixos-unstable";
+        unstable.url = "github:CitadelCore/nixpkgs/nixos-unstable";
 
         nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 
         home = {
-            url = "github:nix-community/home-manager/release-20.09";
+            url = "github:nix-community/home-manager/master";
             inputs.nixpkgs.follows = "nixpkgs";
         };
     };
 
-      outputs = inputs@{ self, nixos, nixpkgs, unstable, master, nixos-hardware, home }:
+      outputs = inputs@{ self, nixos, nixpkgs, unstable, nixos-hardware, home }:
     let
         inherit (builtins) attrNames attrValues readDir;
         inherit (nixos) lib;
@@ -51,7 +52,6 @@
             nixos = pkgImport nixos;
             nixpkgs = pkgImport nixpkgs;
             unstable = pkgImport unstable;
-            master = pkgImport master;
         };
     in
     {

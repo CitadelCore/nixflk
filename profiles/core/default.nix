@@ -37,7 +37,7 @@ in
         systemPackages = with pkgs; [
             # general purpose tools
             direnv htop tree jq screen
-            psmisc ripgrep zip unzip
+            psmisc ripgrep zip unzip git
 
             # network tools
             nmap whois curl wget

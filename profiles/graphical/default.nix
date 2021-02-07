@@ -24,6 +24,8 @@
         gnome3.chrome-gnome-shell.enable = true;
     };
 
+    security.chromiumSuidSandbox.enable = true;
+
     environment.systemPackages = with pkgs; [
         playerctl pavucontrol alsaTools
     ];

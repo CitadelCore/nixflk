@@ -15,6 +15,11 @@
         };
     };
 
+    programs.chromium = {
+        enable = true;
+        package = pkgs.google-chrome;
+    };
+
     systemd.user.sessionVariables = {
         MOZ_ENABLE_WAYLAND = "1";
         MOZ_USE_XINPUT2 = "1";
