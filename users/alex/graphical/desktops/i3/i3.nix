@@ -14,7 +14,8 @@ in
 
             keybindings = lib.mkOptionDefault {
                 "${mod}+Return" = "exec termite";
-                "${mod}+L" = "exec --no-startup-id ${pkgs.systemd}/bin/loginctl lock-session";
+                #"${mod}+L" = "exec --no-startup-id ${pkgs.systemd}/bin/loginctl lock-session";
+                "${mod}+L" = "exec --no-startup-id ${pkgs.i3lock}/bin/i3lock -c 000000";
                 "${mod}+Shift+e" = "exec --no-startup-id rofi -show power-menu -modi power-menu:rofi-power-menu -width 20 -lines 6";
 
                 # screenshots
