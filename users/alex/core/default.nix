@@ -7,7 +7,11 @@
     ];
 
     nixpkgs.config.allowUnfree = true;
-    programs.home-manager.enable = true;
+    
+    programs = {
+        home-manager.enable = true;
+        command-not-found.enable = true;
+    };
 
     xdg = {
         enable = true;
