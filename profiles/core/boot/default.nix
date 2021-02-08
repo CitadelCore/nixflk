@@ -8,7 +8,7 @@
 
         # enable the SGX driver for all machines
         extraModulePackages = with pkgs.linuxPackages; [
-            intel-sgx-dcap
+            intel-sgx-driver
         ];
     };
 }
