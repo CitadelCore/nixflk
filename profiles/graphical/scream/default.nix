@@ -20,7 +20,8 @@ in
             Restart = "always";
         };
 
-        wantedBy = [ "graphical.target" ];
+        wantedBy = [ "graphical-session.target" ];
+        partOf = [ "graphical-session.target" ];
     };
 
     networking.firewall.allowedUDPPorts = [ 4010 ];

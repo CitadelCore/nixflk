@@ -31,11 +31,7 @@
 
     home.file.".gnupg/scdaemon.conf".text = ''
         disable-ccid
-    '';
-
-    programs.bash.initExtra = ''
-        export GPG_TTY="$(tty)"
-        gpg-connect-agent /bye
-        export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
+        card-timeout 1
+        reader-port Yubico YubiKey
     '';
 }
