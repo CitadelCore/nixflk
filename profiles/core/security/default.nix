@@ -11,6 +11,9 @@
     programs.ssh.startAgent = true;
 
     security = {
+        # enable intel SGX support
+        sgx.enable = true;
+
         # replace sudo with doas
         sudo.enable = false;
 
