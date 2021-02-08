@@ -18,6 +18,10 @@ in
 
     config = mkIf cfg.enable {
         systemd.user.services.barrier = {
+            Install = {
+                WantedBy = [ "graphical-session.target" ];
+            };
+
             Unit = {
                 After = [ "graphical-session-pre.target" ];
                 PartOf = [ "graphical-session.target" ];
