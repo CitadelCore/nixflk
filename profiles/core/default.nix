@@ -50,6 +50,9 @@ in
             binutils coreutils dnsutils
             pciutils iputils moreutils
             utillinux dmidecode
+
+            # misc libraries
+            intel-sgx-sdk
             
             # neovim as text editor
             (neovim.override {

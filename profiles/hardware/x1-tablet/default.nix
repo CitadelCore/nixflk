@@ -9,7 +9,6 @@
         loader.systemd-boot.consoleMode = "1";
 
         # use latest stable kernel version
-        kernelPackages = pkgs.linuxPackages_5_10;
         kernelPatches = [
             {
                 name = "tpx1-cover";

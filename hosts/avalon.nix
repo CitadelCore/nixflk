@@ -43,8 +43,6 @@
             };
 
             kernelModules = [ "kvm-intel" ];
-
-            extraModulePackages = [];
             supportedFilesystems = [ "zfs" ];
         };
 
