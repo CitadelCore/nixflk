@@ -1,6 +1,7 @@
 {
     services.barrier = {
         enable = true;
+        name = "kuiser";
         config = ''
             section: screens
                 DESKTOP-T33DUIP:
@@ -11,7 +12,7 @@
                     preserveFocus = false
                     switchCorners = none 
                     switchCornerSize = 0
-                thinkpad-alex:
+                kuiser:
                     halfDuplexCapsLock = false
                     halfDuplexNumLock = false
                     halfDuplexScrollLock = false
@@ -26,8 +27,8 @@
 
             section: links
                 DESKTOP-T33DUIP:
-                    right = thinkpad-alex
-                thinkpad-alex:
+                    right = kuiser
+                kuiser:
                     left = DESKTOP-T33DUIP
             end
 

@@ -11,6 +11,10 @@ in
             default = false;
         };
 
+        name = mkOption {
+            type = types.str;
+        };
+
         config = mkOption {
             type = types.lines;
         };
@@ -28,7 +32,7 @@ in
             };
 
             Service = {
-                ExecStart = "${pkgs.barrier}/bin/barriers --no-daemon --debug INFO --name thinkpad-alex --enable-crypto --address :24800 --config ${configFile}";
+                ExecStart = "${pkgs.barrier}/bin/barriers --no-daemon --debug INFO --name ${cfg.name} --enable-crypto --address :24800 --config ${configFile}";
                 ExecStop = "${pkgs.procps}/bin/pkill barriers";
                 Restart = "always";
             };
