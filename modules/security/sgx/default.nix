@@ -9,8 +9,8 @@ in
 
         driver = mkOption {
             type = types.package;
-            default = pkgs.linuxPackages.intel-sgx-driver;
-            defaultText = "pkgs.linuxPackages.intel-sgx-driver";
+            default = pkgs.linuxPackages.intel-sgx-sgx1;
+            defaultText = "pkgs.linuxPackages.intel-sgx-sgx1";
             example = literalExample "pkgs.linuxPackages.intel-sgx-dcap";
             description = "The SGX driver package to use.";
         };
