@@ -254,7 +254,7 @@ in stdenv.mkDerivation {
         texinfo bison flex
     ];
     
-    makeFlags = [ type "DEBUG=1" ]
+    makeFlags = [ type ]
     # include the path to the SDK for PSW builds which depend on it
     ++ (lib.optional (type == "psw") "SGX_SDK=${pkgs.intel-sgx-sdk}/sdk")
     ++ (lib.optional debug "DEBUG=1");
