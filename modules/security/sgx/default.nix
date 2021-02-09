@@ -77,15 +77,12 @@ in
             };
             
             serviceConfig = {
-                #Type = "forking";
+                Type = "forking";
                 
                 # for strace: ${pkgs.strace}/bin/strace -o /var/opt/aesmd/trace.log
-                ExecStart = "${path}/aesm_service --no-daemon";
+                ExecStart = "${path}/aesm_service";
                 ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
-                ExecStartPre = [
-                    "${pkgs.coreutils}/bin/mkdir -p /var/opt/aesmd/data /var/opt/aesmd/fwdir/data"
-                    "${pkgs.coreutils}/bin/ln -s ${path}/data/white_list_cert_to_be_verify.bin /var/opt/aesmd/data/"
-                ];
+                ExecStartPre = [ "${pkgs.coreutils}/bin/mkdir -p /var/opt/aesmd/data /var/opt/aesmd/fwdir/data" ];
 
                 Restart = "on-failure";
                 RestartSec = "15s";
