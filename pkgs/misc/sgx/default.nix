@@ -4,7 +4,6 @@ assert builtins.elem type [ "sdk" "psw" ];
 { lib
 , pkgs
 , cmake
-, clang
 , stdenv
 , fetchurl
 , fetchFromGitHub
