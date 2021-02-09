@@ -11,6 +11,9 @@
     programs.ssh.startAgent = true;
 
     security = {
+        # enable auditing
+        auditd.enable = true;
+
         # enable intel SGX support
         sgx.enable = true;
 

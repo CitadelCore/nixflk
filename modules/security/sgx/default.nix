@@ -7,6 +7,12 @@ in
     options.security.sgx = {
         enable = mkEnableOption "Intel SGX";
 
+        config = mkOption {
+            type = types.lines;
+            default = "";
+            description = "Configuration for the SGX daemon.";
+        };
+
         packages = {
             psw = mkOption {
                 default = pkgs.intel-sgx-psw;
@@ -33,5 +39,81 @@ in
     config = mkIf cfg.enable {
         boot.extraModulePackages = [ cfg.packages.driver ];
         services.udev.packages = [ cfg.packages.psw ];
+
+        # aesmd depends on auditd
+        security.auditd.enable = true;
+
+        # write service config file
+        environment.etc."aesmd.conf".text = cfg.config;
+
+        # create service user and groups
+        users = {
+            users.aesmd = {
+                group = "aesmd";
+                extraGroups = [ "sgx_prv" ];
+                description = "Intel SGX Service Account";
+            };
+
+            groups = {
+                aesmd = {};
+                sgx_prv = {};
+            };
+        };
+
+        systemd.services.aesmd = let
+            path = "${cfg.packages.psw}/aesm";
+        in {
+            description = "Intel(R) Architectural Enclave Service Manager";
+            after = [ "syslog.target" "network.target" "auditd.service" ];
+            wantedBy = [ "multi-user.target" ];
+
+            # restart when config file changes
+            restartTriggers = [ config.environment.etc."aesmd.conf".source ];
+
+            environment = {
+                NAME = "aesm_service";
+                AESM_PATH = "/var/opt/aesmd";
+                LD_LIBRARY_PATH = "${cfg.packages.psw}/lib:${path}";
+            };
+            
+            serviceConfig = {
+                #Type = "forking";
+                
+                # for strace: ${pkgs.strace}/bin/strace -o /var/opt/aesmd/trace.log
+                ExecStart = "${path}/aesm_service --no-daemon";
+                ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
+                ExecStartPre = [
+                    "${pkgs.coreutils}/bin/mkdir -p /var/opt/aesmd/data /var/opt/aesmd/fwdir/data"
+                    "${pkgs.coreutils}/bin/ln -s ${path}/data/white_list_cert_to_be_verify.bin /var/opt/aesmd/data/"
+                ];
+
+                Restart = "on-failure";
+                RestartSec = "15s";
+
+                # environment
+                User = "aesmd";
+                Group = "aesmd";
+
+                WorkingDirectory = "/var/opt/aesmd";
+                RuntimeDirectory = "aesmd";
+                RuntimeDirectoryMode = "0755";
+                ReadWritePaths = [ "/var/opt/aesmd" ];
+
+                # sandboxing
+                ProtectHome = true;
+                DevicePolicy = "closed";
+                DeviceAllow = [
+                    "/dev/isgx rw"
+                    "/dev/sgx rw"
+                    "/dev/sgx/enclave rw"
+                    "/dev/sgx/provision rw"
+                ];
+            };
+        };
+
+        systemd.tmpfiles.rules = [
+            "d /var/opt/aesmd 0750 aesmd aesmd - -"
+            "z /var/opt/aesmd 0750 aesmd aesmd - -"
+        ];
     };
 }

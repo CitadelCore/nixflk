@@ -1,4 +1,4 @@
-{ type }:
+{ type, debug ? false }:
 assert builtins.elem type [ "sdk" "psw" ];
 
 { lib
@@ -230,11 +230,11 @@ in stdenv.mkDerivation {
         # render: copy shared libraries
         mkdir -p $out/lib
         cp ${build}/libsgx_uae_service.so $out/lib/
-        cp ${build}/libsgx_epid.so $out/lib/
-        cp ${build}/libsgx_launch.so $out/lib/
-        cp ${build}/libsgx_quote_ex.so $out/lib/
+        cp ${build}/libsgx_epid.so $out/lib/libsgx_epid.so.1
+        cp ${build}/libsgx_launch.so $out/lib/libsgx_launch.so.1
+        cp ${build}/libsgx_quote_ex.so $out/lib/libsgx_quote_ex.so.1
         cp ${build}/libsgx_urts.so $out/lib/
-        cp ${build}/libsgx_enclave_common.so $out/lib/
+        cp ${build}/libsgx_enclave_common.so $out/lib/libsgx_enclave_common.so.1
 
         # install provided udev rules
         mkdir -p $out/etc/udev/rules.d
@@ -253,10 +253,14 @@ in stdenv.mkDerivation {
         protobuf which file git gnum4
         texinfo bison flex
     ];
-
-    makeFlags = [ type ]
+    
+    makeFlags = [ type "DEBUG=1" ]
     # include the path to the SDK for PSW builds which depend on it
-    ++ (lib.optional (type == "psw") "SGX_SDK=${pkgs.intel-sgx-sdk}/sdk");
+    ++ (lib.optional (type == "psw") "SGX_SDK=${pkgs.intel-sgx-sdk}/sdk")
+    ++ (lib.optional debug "DEBUG=1");
+
+    # must disable hardening for debug builds
+    hardeningDisable = lib.optional debug "fortify";
 
     dontUseCmakeConfigure = true;
 

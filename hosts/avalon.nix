@@ -37,11 +37,7 @@
                 kernelModules = [ "dm-snapshot" ];
             };
 
-            loader = {
-                systemd-boot.enable = true;
-                efi.canTouchEfiVariables = true;
-            };
-
+            loader.efi.canTouchEfiVariables = true;
             kernelModules = [ "kvm-intel" ];
             supportedFilesystems = [ "zfs" ];
         };
