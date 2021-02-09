@@ -8,7 +8,8 @@
         # we're hidpi so use lower res for boot
         loader.systemd-boot.consoleMode = "1";
 
-        # use latest stable kernel version
+        # load spidev to support binding the fingerprint reader to it later
+        kernelModules = [ "spidev" ];
         kernelPatches = [
             {
                 name = "tpx1-cover";
