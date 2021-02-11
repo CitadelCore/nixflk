@@ -76,4 +76,6 @@ in
             serif = [ "Noto Serif" ];
         };
     };
+
+    hardware.enableRedistributableFirmware = true;
 }
