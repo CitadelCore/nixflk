@@ -60,7 +60,7 @@
 
     security = {
         # enable apparmor - not 100% useful yet
-        # apparmor.enable = true;
+        apparmor.enable = true;
 
         allowSimultaneousMultithreading = true;
         forcePageTableIsolation = true;
@@ -75,12 +75,16 @@
         unprivilegedUsernsClone = true;
     };
 
-    services.usbguard = {
-        # enabled on a per-device basis
-        enable = lib.mkDefault false;
-        package = pkgs.usbguard-nox;
-        rules = builtins.readFile ./usbguard.conf;
+    services = {
+        dbus.apparmor = "enabled";
 
-        IPCAllowedGroups = [ "wheel" ];
+        usbguard = {
+            # enabled on a per-device basis
+            enable = lib.mkDefault false;
+            package = pkgs.usbguard-nox;
+            rules = builtins.readFile ./usbguard.conf;
+
+            IPCAllowedGroups = [ "wheel" ];
+        };
     };
 }
