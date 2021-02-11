@@ -22,7 +22,7 @@
         keyboard.layout = "gb";
 
         sessionPath = [
-            "\${HOME}/src/helios/tools"
+            "\${HOME}/src/corp/arctarus/infra/tools"
         ];
 
         sessionVariables = {

@@ -77,10 +77,8 @@ in
             };
             
             serviceConfig = {
-                Type = "forking";
-                
                 # for strace: ${pkgs.strace}/bin/strace -o /var/opt/aesmd/trace.log
-                ExecStart = "${path}/aesm_service";
+                ExecStart = "${path}/aesm_service --no-daemon";
                 ExecReload = "${pkgs.coreutils}/bin/kill -HUP $MAINPID";
                 ExecStartPre = [ "${pkgs.coreutils}/bin/mkdir -p /var/opt/aesmd/data /var/opt/aesmd/fwdir/data" ];
 
@@ -97,7 +95,41 @@ in
                 ReadWritePaths = [ "/var/opt/aesmd" ];
 
                 # sandboxing
+                CapabilityBoundingSet = "";
+                LockPersonality = true;
+                MemoryDenyWriteExecute = false;
+                NoNewPrivileges = true;
+                RemoveIPC = true;
+                ProcSubset = "pid";
+
+                PrivateDevices = false;
+                PrivateMounts = true;
+                PrivateNetwork = false;
+                PrivateTmp = true;
+                PrivateUsers = true;
+
+                ProtectClock = true;
+                ProtectControlGroups = true;
                 ProtectHome = true;
+                ProtectKernelLogs = true;
+                ProtectKernelModules = true;
+                ProtectKernelTunables = true;
+                ProtectHostname = true;
+                ProtectProc = "noaccess";
+                ProtectSystem = "strict";
+                RestrictAddressFamilies = [ "~AF_INET" "~AF_INET6" ];
+                RestrictNamespaces = true;
+                RestrictRealtime = true;
+                RestrictSUIDSGID = true;
+
+                SystemCallFilter = [
+                    "@system-service"
+                    "~@aio" "~@chown" "~@keyring" "~@memlock"
+                    "~@resources" "~@privileged" "~@setuid" "~@sync" "~@timer"
+                ];
+                SystemCallArchitectures = "native";
+                SystemCallErrorNumber = "EPERM";
+
                 DevicePolicy = "closed";
                 DeviceAllow = [
                     "/dev/isgx rw"

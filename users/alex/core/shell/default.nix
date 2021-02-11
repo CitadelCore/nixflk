@@ -1,3 +1,4 @@
+{ pkgs, ... }:
 {
     programs = {
         fish = {
@@ -54,6 +55,19 @@
                 set -x EDITOR vim
                 set -x TERM xterm
             '';
+
+            plugins = with pkgs; [
+                {
+                    # for bash script compatibility
+                    name = "bass";
+                    src = fetchFromGitHub {
+                        owner = "edc";
+                        repo = "bass";
+                        rev = "df4a1ebf8c0536e4bd7b7828a4c0dcb2b7b5d22b";
+                        sha256 = "1dgydrza6lvx3dl9spkla1g728x5rr76mqrwk2afrl732439y6jl";
+                    };
+                }
+            ];
         };
 
         direnv = {
