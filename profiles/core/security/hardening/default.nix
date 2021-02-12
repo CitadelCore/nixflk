@@ -83,4 +83,7 @@
 
         IPCAllowedGroups = [ "wheel" ];
     };
+
+    # binary wrapper config is elsewhere
+    programs.firejail.enable = true;
 }
