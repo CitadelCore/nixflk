@@ -2,6 +2,8 @@
 {
     programs.ssh = {
         enable = true;
+        controlMaster = "auto";
+        controlPersist = "10m";
         matchBlocks = {
             "arcvault-1" = {
                 hostname = "arcvault-1.local";
