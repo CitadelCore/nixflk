@@ -28,7 +28,7 @@
         # uses override.nix to override packages to their unstable variants
         packageOverrides = final: prev: import ./pkgs/override.nix (import unstable {
             inherit system;
-            allowUnfree = true;
+            config.allowUnfree = true;
         });
 
         # overlays are sourced from two locations:
@@ -45,7 +45,7 @@
 
         pkgImport = pkgs: import pkgs {
             inherit system overlays;
-            config = { allowUnfree = true; };
+            config.allowUnfree = true;
         };
 
         pkgset = {
