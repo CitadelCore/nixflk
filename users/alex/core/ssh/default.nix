@@ -3,6 +3,7 @@
     programs.ssh = {
         enable = true;
         controlMaster = "auto";
+        controlPath = "~/.ssh/master-%C";
         controlPersist = "10m";
         matchBlocks = {
             "arcvault-1" = {
