@@ -2,7 +2,11 @@
 {
     # This is a subset of the security hardening configuration present in nixpkgs
     # The goal here is to turn on as many hardening options as we can without sacrificing performance or usability
-    nix.allowedUsers = [ "@users" ];
+    nix = {
+        useSandbox = true;
+        allowedUsers = [ "@wheel" ];
+        trustedUsers = [ "root" "@wheel" ];
+    };
 
     # perf test this later to see if it's viable
     # environment = {

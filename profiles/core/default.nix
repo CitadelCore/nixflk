@@ -13,11 +13,9 @@ in
         systemFeatures = [ "nixos-test" "benchmark" "big-parallel" "kvm" ];
 
         autoOptimiseStore = true;
-        gc.automatic = true;
         optimise.automatic = true;
-        useSandbox = true;
-        allowedUsers = [ "@wheel" ];
-        trustedUsers = [ "root" "@wheel" ];
+
+        #gc.automatic = true;
 
         extraOptions = ''
             experimental-features = nix-command flakes ca-references
