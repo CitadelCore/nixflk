@@ -3,6 +3,7 @@
     programs.vscode = {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
+            ms-vscode.cpptools
             #ms-dotnettools.csharp
             ms-azuretools.vscode-docker
             #ms-python.vscode-pylance

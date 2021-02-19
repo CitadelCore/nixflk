@@ -29,4 +29,13 @@
             }
         '';
     };
+
+    programs.firefox = {
+        enable = true;
+    };
+
+    programs.chromium = {
+        enable = true;
+        package = pkgs.google-chrome;
+    };
 }

@@ -14,7 +14,6 @@ assert builtins.elem type [ "sgx" ];
 , valgrind
 , doxygen
 , python3
-, breakpointHook
 }:
 
 let
@@ -51,7 +50,7 @@ in llvmPackages_8.stdenv.mkDerivation rec {
         substituteInPlace debugger/oegdb \
             --replace 'gdb -iex' '${gdb}/bin/gdb -iex'
         substituteInPlace scripts/lvi-mitigation/invoke_compiler \
-            --replace '/usr/bin/"$compiler"' '${clang}/bin/clang' \
+            --replace '/usr/bin/"$compiler"' '"$compiler"' \
             --replace 'export PATH=/bin:/usr/local:"$lvi_bin_path"' 'export PATH=$PATH:"$lvi_bin_path"'
     '';
 
@@ -78,22 +77,21 @@ in llvmPackages_8.stdenv.mkDerivation rec {
         ${mkWrapper "clang++"}
     '';
 
-    buildInputs = [
-        openssl breakpointHook
-    ];
+    buildInputs = [ openssl ];
 
     nativeBuildInputs = [
+        gcc10 llvmPackages_8.clang
         cmake perl valgrind doxygen python3
     ];
 
     cmakeFlags = [
         "-DCMAKE_BUILD_TYPE=Release"
-        "-DENABLE_FULL_LIBCXX_TESTS=ON"
-        "-DENABLE_FULL_STRESS_TESTS=ON"
+        #"-DENABLE_FULL_LIBCXX_TESTS=ON"
+        #"-DENABLE_FULL_STRESS_TESTS=ON"
         "-DENABLE_REFMAN=ON"
 
-        # "-DLVI_MITIGATION=ControlFlow"
-        # "-DLVI_MITIGATION_BINDIR=/build/source/lvi_mitigation_bin"
+        "-DLVI_MITIGATION=ControlFlow"
+        "-DLVI_MITIGATION_BINDIR=/build/source/lvi_mitigation_bin"
     ];
 
     # required, otherwise we fail on -nostdinc++

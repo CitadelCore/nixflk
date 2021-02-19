@@ -8,8 +8,8 @@
             # hashicorp stack
             terraform packer vagrant
             consul
-            vault
-            nomad
+            vault boundary
+            nomad waypoint
 
             # nix
             colmena
