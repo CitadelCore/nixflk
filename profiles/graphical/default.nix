@@ -28,6 +28,7 @@
 
     environment.systemPackages = with pkgs; [
         playerctl pavucontrol alsaTools
+        modem-manager-gui
     ];
 
     programs.dconf.enable = true;
