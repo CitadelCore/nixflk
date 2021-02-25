@@ -2,6 +2,7 @@
 {
     home.packages = with pkgs; [
         # Office
+        xournalpp
         libreoffice-fresh
 
         # Sound
