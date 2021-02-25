@@ -63,14 +63,6 @@
             lidSwitchDocked = "suspend";
         };
 
-        # undervolt cpu and igpu
-        # units are in mV (milivolts)
-        undervolt = {
-            enable = true;
-            coreOffset = -95;
-            gpuOffset = -48;
-        };
-
         # binds the spidev driver to the fingerprint reader
         # so it's accessible under /dev/spidev in userspace
         udev.extraRules = let script = pkgs.writeShellScript "" ''
