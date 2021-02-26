@@ -43,33 +43,11 @@
             kernelParams = [
                 "zfs.zfs_arc_max=34359738368" # 32 GB max ARC
             ];
-
-            supportedFilesystems = [ "zfs" ];
         };
 
         fileSystems = {
-            "/" = {
-                device = "rpool/local/root";
-                fsType = "zfs";
-            };
-
-            "/nix" = {
-                device = "rpool/local/nix";
-                fsType = "zfs";
-            };
-
             "/var/lib/docker" = {
                 device = "rpool/safe/docker";
-                fsType = "zfs";
-            };
-
-            "/home" = {
-                device = "rpool/safe/home";
-                fsType = "zfs";
-            };
-
-            "/persist" = {
-                device = "rpool/safe/persist";
                 fsType = "zfs";
             };
 
@@ -185,6 +163,9 @@
         # use UK keyboard layout
         console.keyMap = lib.mkDefault "uk";
         services.xserver.layout = lib.mkDefault "gb";
+
+        # use dcap for sgx (temp)
+        security.sgx.packages.driver = pkgs.linuxPackages.intel-sgx-dcap;
 
         system.stateVersion = "20.09";
     }
