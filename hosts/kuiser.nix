@@ -13,6 +13,7 @@
             ../users/alex
             ../profiles/core/ephemeral
             ../profiles/core/security/tpm
+            ../profiles/core/security/sshd
             ../profiles/core/zfs
             ../profiles/develop
             ../profiles/graphical
