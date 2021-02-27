@@ -21,7 +21,7 @@
             mkPersistDir /persist/var/lib/bluetooth /var/lib/bluetooth
 
             # make sure /persist/nixos has correct perms, fine if it doesn't exist
-            chmod -R u=rwX,g=,o= /persist/nixos/secrets > /dev/null 2>&1
+            chmod -R u=rwX,g=,o= /persist/nixos/secrets || true > /dev/null 2>&1
         '';
 
         deps = [];
