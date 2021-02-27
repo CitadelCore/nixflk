@@ -21,9 +21,32 @@
             mkPersistDir /persist/var/lib/bluetooth /var/lib/bluetooth
 
             # make sure /persist/nixos has correct perms, fine if it doesn't exist
-            chmod -R u=rwX,g=,o= /persist/nixos/secrets > /dev/null 2>&1
+            chmod -R u=rwX,g=,o= /persist/nixos/secrets || true > /dev/null 2>&1
         '';
 
         deps = [];
+    };
+
+    # set up our zfs filesystems
+    fileSystems = {
+        "/" = {
+            device = "rpool/local/root";
+            fsType = "zfs";
+        };
+
+        "/nix" = {
+            device = "rpool/local/nix";
+            fsType = "zfs";
+        };
+
+        "/home" = {
+            device = "rpool/safe/home";
+            fsType = "zfs";
+        };
+
+        "/persist" = {
+            device = "rpool/safe/persist";
+            fsType = "zfs";
+        };
     };
 }

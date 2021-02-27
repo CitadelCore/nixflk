@@ -7,7 +7,7 @@
 
     # main module
     {
-        _module.args.host = "avalon";
+        _module.args.host = "redshift";
 
         imports = [
             ../users/alex
@@ -17,7 +17,6 @@
             ../profiles/graphical
             ../profiles/graphical/wayland
             ../profiles/laptop
-            ../profiles/hardware/x1-tablet
             ../profiles/locales/gb
             #../profiles/virt/docker
             #../profiles/virt/libvirt
@@ -29,7 +28,6 @@
                     "xhci_pci"
                     "nvme"
                     "usb_storage"
-                    "usbhid"
                     "sd_mod"
                     "rtsx_pci_sdmmc"
                 ];
@@ -48,24 +46,27 @@
             };
 
             "/boot" = {
-                device = "/dev/disk/by-uuid/F0E0-F1B2";
+                device = "/dev/disk/by-uuid/0ECD-3BA9";
                 fsType = "vfat";
             };
         };
 
         swapDevices = [{
-            device = "/dev/disk/by-partuuid/c06e81a3-b500-4478-984a-840c1eb6395c";
+            device = "/dev/disk/by-partuuid/98e7dbe7-570e-4876-9d03-608e032f1a01";
             randomEncryption.enable = true;
         }];
 
         networking = {
-            hostId = "64c49c88";
+            hostId = "b72a26e5";
             domain = "mobile.arctarus.net";
 
             useDHCP = false;
             networkmanager.enable = true;
 
-            interfaces.wlp4s0.useDHCP = true;
+            interfaces = {
+                enp0s31f6.useDHCP = true;
+                wlp0s20f3.useDHCP = true;
+            };
         };
 
         # stuff below here should probably be
