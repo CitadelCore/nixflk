@@ -26,4 +26,23 @@
         QT_QPA_PLATFORM = "wayland";
         XDG_SESSION_TYPE = "wayland";
     };
+
+    home.packages = with pkgs; [
+        gnome3.dconf-editor
+        gnome3.gnome-shell-extensions
+        gnomeExtensions.topicons-plus
+    ];
+
+    dconf.settings = {
+        "org/gnome/shell" = {
+            # enable our extensions here
+            enabled-extensions = [
+                "TopIcons@phocean.net"
+            ];
+        };
+
+        "org/gnome/shell/extensions/topicons" = {
+            tray-pos = "right";
+        };
+    };
 }
