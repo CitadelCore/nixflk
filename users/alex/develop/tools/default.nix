@@ -10,11 +10,12 @@
         nix-index
         nix-prefetch
         nix-prefetch-docker
-        nix-prefetch-scripts            
+        nix-prefetch-scripts
 
         # utility
         asciinema gnumake file less wget shellcheck
         diffstat diffutils findutils patch gawk graphviz
+        ripgrep-all
 
         # hardware
         acpica-tools iasl efivar

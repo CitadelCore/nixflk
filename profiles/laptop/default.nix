@@ -1,5 +1,7 @@
 { config, pkgs, lib, ... }:
 {
+    imports = [ ../personal ];
+
     environment.systemPackages = with pkgs; [
         # power management
         acpi lm_sensors
@@ -10,6 +12,9 @@
 
         # libraries
         libcamera
+
+        # support calls
+        calls
     ];
 
     boot = {
@@ -19,6 +24,7 @@
 
     hardware.bluetooth.enable = true;
     programs.light.enable = true; # todo: needed outside i3?
+    networking.domain = "mobile.arctarus.net";
 
     services = {
         # better timesync for unstable internet connections

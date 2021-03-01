@@ -14,6 +14,7 @@
             ../profiles/core/ephemeral
             ../profiles/core/security/tpm
             ../profiles/core/security/sshd
+            #../profiles/core/security/vpn
             ../profiles/core/zfs
             ../profiles/develop
             ../profiles/graphical
@@ -63,10 +64,6 @@
 
         networking = {
             hostId = "68c855d2";
-            domain = "mobile.arctarus.net";
-
-            useDHCP = false;
-            networkmanager.enable = true;
 
             # allow Barrier
             firewall.allowedTCPPorts = [ 24800 ];

@@ -23,6 +23,8 @@ in
         '';
     };
 
+    networking.useDHCP = false;
+
     services = {
         gvfs.enable = true;
         fwupd.enable = true;

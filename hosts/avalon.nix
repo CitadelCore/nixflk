@@ -13,14 +13,15 @@
             ../users/alex
             ../profiles/core/ephemeral
             ../profiles/core/security/tpm
+            #../profiles/core/security/vpn
             ../profiles/develop
             ../profiles/graphical
             ../profiles/graphical/wayland
             ../profiles/laptop
             ../profiles/hardware/x1-tablet
             ../profiles/locales/gb
-            #../profiles/virt/docker
-            #../profiles/virt/libvirt
+            ../profiles/virt/docker
+            ../profiles/virt/libvirt
         ];
 
         boot = {
@@ -60,11 +61,6 @@
 
         networking = {
             hostId = "64c49c88";
-            domain = "mobile.arctarus.net";
-
-            useDHCP = false;
-            networkmanager.enable = true;
-
             interfaces.wlp4s0.useDHCP = true;
         };
 
