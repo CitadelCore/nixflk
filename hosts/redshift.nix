@@ -17,6 +17,7 @@
             ../profiles/graphical
             ../profiles/graphical/wayland
             ../profiles/laptop
+            ../profiles/hardware/p15v
             ../profiles/locales/gb
             #../profiles/virt/docker
             #../profiles/virt/libvirt
