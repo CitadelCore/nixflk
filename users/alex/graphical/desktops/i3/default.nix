@@ -16,13 +16,6 @@
             package = pkgs.noto-fonts;
         };
 
-        theme = {
-            name = "Adwaita";
-            package = pkgs.gnome3.gnome_themes_standard;
-        };
-
-        iconTheme = theme;
-
         gtk3.extraCss = ''
             VteTerminal, vte-terminal {
                 padding: 15px;
