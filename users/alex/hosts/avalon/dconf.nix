@@ -12,26 +12,5 @@ in
             "sources" = [ (mkTuple [ "xkb" "us" ]) ];
             "xkb-options" = [ "terminate:ctrl_alt_bksp" "lv3_ralt_switch" ];
         };
-
-        "org/gnome/desktop/interface" = {
-            "gtk-im-module" = "ibus";
-            "gtk-theme" = "Adwaita-dark";
-        };
-
-        "org/gnome/settings-daemon/plugins/power" = {
-            # enable automatic ambient brightness
-            "ambient-enabled" = true;
-
-            # disable automatic sleep on AC power
-            "sleep-inactive-ac-type" = "nothing";
-        };
-
-        "org/gnome/shell/weather" = {
-            "automatic-location" = true;
-        };
-
-        "org/gnome/system/location" = {
-            "enabled" = true;
-        };
     };
 }

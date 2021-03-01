@@ -1,6 +1,7 @@
 { lib, ... }:
 {
     imports = [
+        ./dconf
         ./gnupg
         ./shell
         ./ssh
