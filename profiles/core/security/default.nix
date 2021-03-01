@@ -23,7 +23,12 @@
         doas = {
             enable = true;
             extraRules = [
-                { groups = [ "wheel" ]; noPass = false; persist = true; }
+                {
+                    groups = [ "wheel" ];
+                    noPass = false;
+                    persist = true;
+                    setEnv = [ "COLORTERM" "NIX_PATH" "PATH" ];
+                }
             ];
         };
     };
