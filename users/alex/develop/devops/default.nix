@@ -1,9 +1,11 @@
 { lib, pkgs, ... }:
 {
     home = {
-        packages = with pkgs; [
+        packages = with pkgs; let
+            npc = nodePackagesCustom;
+        in [
             # cloud providers
-            awscli2
+            awscli2 #npc.aws-cdk
 
             # hashicorp stack
             terraform packer vagrant

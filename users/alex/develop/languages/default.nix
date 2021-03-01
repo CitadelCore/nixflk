@@ -4,6 +4,7 @@
         ./csharp
         ./golang
         ./java
+        ./javascript
         ./python
         ./rust
     ];
