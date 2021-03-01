@@ -53,12 +53,14 @@ in
 
             # misc libraries
             intel-sgx-sdk
-            
-            # neovim as text editor
-            (neovim.override {
-                vimAlias = true;
-            })
         ];
+    };
+
+    # neovim as text editor
+    programs.neovim = {
+        enable = true;
+        viAlias = true;
+        vimAlias = true;
     };
 
     fonts = {
