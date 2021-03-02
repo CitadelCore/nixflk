@@ -1,4 +1,4 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, meta, ... }:
 {
     home.packages = with pkgs.gitAndTools; [ pre-commit ];
 
@@ -13,8 +13,8 @@
             signByDefault = true;
         };
 
-        userEmail = "joseph@marsden.space";
-        userName = "Alex Zero";
+        userEmail = meta.email;
+        userName = meta.name;
 
         extraConfig = {
             core = {
@@ -23,13 +23,13 @@
 
             http = {
                 "https://teamdepot.chaosinitiative.com" = {
-                    sslCert = "/home/alex/Documents/keys/chaos/public.pem";
-                    sslKey = "/home/alex/Documents/keys/chaos/private.pem";
+                    sslCert = "/home/${meta.username}/Documents/keys/chaos/public.pem";
+                    sslKey = "/home/${meta.username}/Documents/keys/chaos/private.pem";
                 };
 
                 "https://licensees.chaosinitiative.com" = {
-                    sslCert = "/home/alex/Documents/keys/chaos/public.pem";
-                    sslKey = "/home/alex/Documents/keys/chaos/private.pem";
+                    sslCert = "/home/${meta.username}/Documents/keys/chaos/public.pem";
+                    sslKey = "/home/${meta.username}/Documents/keys/chaos/private.pem";
                 };
             };
 
