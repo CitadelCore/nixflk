@@ -20,8 +20,11 @@
             mkPersistDir /persist/etc/NetworkManager/system-connections /etc/NetworkManager/system-connections
             mkPersistDir /persist/var/lib/bluetooth /var/lib/bluetooth
 
-            # make sure /persist/nixos has correct perms, fine if it doesn't exist
-            chmod -R u=rwX,g=,o= /persist/nixos/secrets || true > /dev/null 2>&1
+            # make sure /persist/nixos has correct perms, fine if it doesn't exist yet
+            chown -R root:sysconf /persist/nixos > /dev/null 2>&1 || true
+            find /persist/nixos -type d -exec chmod a+s {} + > /dev/null 2>&1 || true
+            setfacl -R -d --set=u::rwX,g::rwX,o::0 /persist/nixos > /dev/null 2>&1 || true
+            setfacl -R --set=u::rwX,g::rwX,o::0 /persist/nixos > /dev/null 2>&1 || true
         '';
 
         deps = [];

@@ -31,7 +31,12 @@ in
         earlyoom.enable = true;
     };
 
-    users.mutableUsers = false;
+    users = {
+        mutableUsers = false;
+
+        # this group owns /persist/nixos configuration
+        groups.sysconf.gid = 600;
+    };
 
     environment = {
         systemPackages = with pkgs; [

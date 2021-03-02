@@ -23,7 +23,7 @@
         isNormalUser = true;
 
         description = "Alex Zero";
-        extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "sysconf" ];
 
         shell = pkgs.fish;
         hashedPassword = lib.fileContents ../../secrets/passwords/alex.txt;
