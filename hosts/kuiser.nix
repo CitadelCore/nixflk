@@ -78,8 +78,6 @@
                 enp0s31f6.useDHCP = true;
                 ens4u2u1u2c2.useDHCP = true;
                 wlp0s20f3.useDHCP = true;
-
-                wg0.mtu = 1420;
             };
 
             # wireguard = {
@@ -88,6 +86,7 @@
             #     # This is the fallback link to Helios Stirling (stir1)
             #     # It is the backdoor to Arctarus infrastructure should any RIS components fail
             #     interfaces.wg0 = {
+            #         mtu = 1420;
             #         listenPort = 51592;
             #         ips = [ "10.8.16.15/32" "2a10:4a80:7:16::15/64" ];
             #         privateKeyFile = "/persist/nixos/secrets/wireguard/kuiser/wg0.txt";

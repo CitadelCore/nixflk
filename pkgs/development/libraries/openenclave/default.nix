@@ -35,7 +35,7 @@ in llvmPackages_8.stdenv.mkDerivation rec {
         owner = "openenclave";
         repo = "openenclave";
         rev = "v${version}";
-        sha256 = "15f2gaf093kkilazyibbgbij1gk1p2zcb9b40r5nvhjaqbh974a1";
+        sha256 = "sha256-ffXDVEmTeqNvYJ497LGV8NONu/CibfCZ8+nNsjrONOs=";
         fetchSubmodules = true;
     };
 

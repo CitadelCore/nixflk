@@ -11,6 +11,8 @@
     environment.systemPackages = with pkgs; [
         opensc
         
+        # TODO: move to user module;
+        # these are convenience tools and GRAPHICAL
         yubikey-manager
         yubikey-manager-qt
         yubikey-personalization
