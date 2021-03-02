@@ -57,18 +57,7 @@
             randomEncryption.enable = true;
         }];
 
-        networking = {
-            hostId = "b72a26e5";
-            domain = "mobile.arctarus.net";
-
-            useDHCP = false;
-            networkmanager.enable = true;
-
-            interfaces = {
-                enp0s31f6.useDHCP = true;
-                wlp0s20f3.useDHCP = true;
-            };
-        };
+        networking.hostId = "b72a26e5";
 
         # stuff below here should probably be
         # moved out to a common "gdm/gnome" profile

@@ -59,10 +59,7 @@
             randomEncryption.enable = true;
         }];
 
-        networking = {
-            hostId = "64c49c88";
-            interfaces.wlp4s0.useDHCP = true;
-        };
+        networking.hostId = "64c49c88";
 
         # stuff below here should probably be
         # moved out to a common "gdm/gnome" profile

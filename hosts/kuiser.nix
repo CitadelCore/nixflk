@@ -74,12 +74,6 @@
                 "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
             };
 
-            interfaces = {
-                enp0s31f6.useDHCP = true;
-                ens4u2u1u2c2.useDHCP = true;
-                wlp0s20f3.useDHCP = true;
-            };
-
             # wireguard = {
             #     enable = true;
 
