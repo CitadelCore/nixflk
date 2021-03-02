@@ -64,6 +64,8 @@ stdenv.mkDerivation {
         "-Dv4l2=true"
     ];
 
+    dontWrapQtApps = true;
+
     meta = with lib; {
         description = "An open source camera stack and framework for Linux, Android, and ChromeOS";
         homepage = "https://libcamera.org";
