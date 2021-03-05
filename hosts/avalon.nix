@@ -18,7 +18,7 @@
             ../profiles/graphical
             ../profiles/graphical/wayland
             ../profiles/laptop
-            ../profiles/hardware/x1-tablet
+            ../profiles/hardware/system/x1-tablet
             ../profiles/locales/gb
             ../profiles/virt/docker
             ../profiles/virt/libvirt

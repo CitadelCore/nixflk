@@ -6,6 +6,9 @@ in
     imports = [
         ./boot
         ./security
+
+        # global hardware profiles
+        ../hardware/common
     ];
 
     nix = {

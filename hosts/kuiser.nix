@@ -21,7 +21,7 @@
             ../profiles/graphical/games
             ../profiles/graphical/scream
             ../profiles/laptop
-            ../profiles/hardware/p72
+            ../profiles/hardware/system/p72
             ../profiles/locales/gb
             ../profiles/virt/docker
             ../profiles/virt/libvirt
@@ -111,8 +111,6 @@
             logind.lidSwitchExternalPower = "ignore";
 
             xserver = {
-                videoDrivers = [ "modesetting" "nvidia" ];
-
                 # disable display blanking, as it really breaks the external monitors
                 # (better option than just disabling DPMS completely)
                 serverFlagsSection = ''
@@ -127,16 +125,7 @@
             };
         };
 
-        hardware = {
-            # Disabled until NVIDIA fixes external monitor support...
-            # nvidia.prime = {
-            #     offload.enable = true;
-            #     intelBusId = "PCI:0:2:0";
-            #     nvidiaBusId = "PCI:1:0:0";
-            # };
-
-            enableRedistributableFirmware = true;
-        };
+        hardware.enableRedistributableFirmware = true;
 
         environment.systemPackages = with pkgs; [
             gnome3.eog
@@ -145,12 +134,8 @@
             libnotify networkmanagerapplet
         ];
 
-        # enable nvidia support for Docker as we have a nvidia card
-        virtualisation.docker.enableNvidia = true;
-
         # enable dev docs
         documentation.dev.enable = true;
-        console.useXkbConfig = true;
         
         # use UK keyboard layout
         console.keyMap = lib.mkDefault "uk";

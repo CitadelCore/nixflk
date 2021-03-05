@@ -1,7 +1,7 @@
 { pkgs, ... }:
 {
     imports = [
-        ../capabilities/fingerprint
+        ../../capabilities/fingerprint
     ];
 
     # use the newer DCAP SGX driver because we have FLC support

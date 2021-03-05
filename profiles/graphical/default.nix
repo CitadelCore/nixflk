@@ -1,6 +1,7 @@
 { pkgs, ... }:
 {
     sound.enable = true;
+    console.useXkbConfig = true;
 
     hardware = {
         opengl = {
