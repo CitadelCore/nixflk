@@ -3,7 +3,7 @@
     imports = [
         ../../capabilities/fingerprint
         ../../capabilities/graphics/nvidia
-        ../../capabilities/graphics/nvidia/prime
+        #../../capabilities/graphics/nvidia/prime
     ];
 
     # use the newer DCAP SGX driver because we have FLC support

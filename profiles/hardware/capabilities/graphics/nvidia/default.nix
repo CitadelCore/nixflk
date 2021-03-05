@@ -19,8 +19,5 @@
         options nvidia "NVreg_DynamicPowerManagement=0x02"
     '';
 
-    hardware.nvidia = {
-        modesetting.enable = true;
-        powerManagement.enable = true;
-    };
+    hardware.nvidia.modesetting.enable = true;
 }
