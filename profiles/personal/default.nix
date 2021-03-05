@@ -1,6 +1,14 @@
 {
     imports = [ ./boot ];
 
+    services = {
+        # for network discovery
+        avahi = {
+            enable = true;
+            nssmdns = true;
+        };
+    };
+
     networking.networkmanager = {
         enable = true;
 
