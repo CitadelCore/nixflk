@@ -1,80 +1,73 @@
-{ lib, pkgs, nixos-hardware, ... }:
-[
-    # hardware modules
-    nixos-hardware.nixosModules.common-pc-laptop
-    nixos-hardware.nixosModules.common-pc-laptop-ssd
-    nixos-hardware.nixosModules.common-cpu-intel-kaby-lake
+{ lib, pkgs, users, profiles, ... }:
+{
+    imports = lib.arnix.mkProfileDefaults [
+        users.alex
+        profiles.core.ephemeral
+        profiles.core.security.tpm
+        #profiles.core.security.vpn
+        profiles.core.zfs
+        profiles.develop
+        profiles.graphical
+        profiles.graphical.wayland
+        profiles.laptop
+        profiles.hardware.system.x1-tablet
+        profiles.locales.gb
+        profiles.virt.docker
+        profiles.virt.libvirt
+    ];
 
-    # main module
-    {
-        _module.args.host = "avalon";
+    _module.args.host = "avalon";
 
-        imports = [
-            ../users/alex
-            ../profiles/core/ephemeral
-            ../profiles/core/security/tpm
-            #../profiles/core/security/vpn
-            ../profiles/develop
-            ../profiles/graphical
-            ../profiles/graphical/wayland
-            ../profiles/laptop
-            ../profiles/hardware/system/x1-tablet
-            ../profiles/locales/gb
-            ../profiles/virt/docker
-            ../profiles/virt/libvirt
-        ];
-
-        boot = {
-            initrd = {
-                availableKernelModules = [
-                    "xhci_pci"
-                    "nvme"
-                    "usb_storage"
-                    "usbhid"
-                    "sd_mod"
-                    "rtsx_pci_sdmmc"
-                ];
-                
-                kernelModules = [ "dm-snapshot" ];
-            };
-
-            loader.efi.canTouchEfiVariables = true;
-            kernelModules = [ "kvm-intel" ];
+    boot = {
+        initrd = {
+            availableKernelModules = [
+                "xhci_pci"
+                "nvme"
+                "usb_storage"
+                "usbhid"
+                "sd_mod"
+                "rtsx_pci_sdmmc"
+            ];
+            
+            kernelModules = [ "dm-snapshot" ];
         };
 
-        fileSystems = {
-            "/var/lib/docker" = {
-                device = "rpool/local/docker";
-                fsType = "zfs";
-            };
+        loader.efi.canTouchEfiVariables = true;
+        kernelModules = [ "kvm-intel" ];
+    };
 
-            "/boot" = {
-                device = "/dev/disk/by-uuid/F0E0-F1B2";
-                fsType = "vfat";
-            };
+    fileSystems = {
+        "/var/lib/docker" = {
+            device = "rpool/local/docker";
+            fsType = "zfs";
         };
 
-        swapDevices = [{
-            device = "/dev/disk/by-partuuid/c06e81a3-b500-4478-984a-840c1eb6395c";
-            randomEncryption.enable = true;
-        }];
-
-        networking.hostId = "64c49c88";
-
-        # stuff below here should probably be
-        # moved out to a common "gdm/gnome" profile
-        services.xserver = {
-            displayManager.gdm.enable = true;
-            desktopManager.gnome3.enable = true;
+        "/boot" = {
+            device = "/dev/disk/by-uuid/F0E0-F1B2";
+            fsType = "vfat";
         };
+    };
 
-        services.udisks2.enable = true;
-        services.gnome3.chrome-gnome-shell.enable = true;
+    swapDevices = [{
+        device = "/dev/disk/by-partuuid/c06e81a3-b500-4478-984a-840c1eb6395c";
+        randomEncryption.enable = true;
+    }];
 
-        environment.systemPackages = with pkgs; [
-            gnome3.gnome-tweaks
-        ];
-        
-        hardware.enableRedistributableFirmware = true;
-    }
-]
+    networking.hostId = "64c49c88";
+
+    # stuff below here should probably be
+    # moved out to a common "gdm/gnome" profile
+    services.xserver = {
+        displayManager.gdm.enable = true;
+        desktopManager.gnome3.enable = true;
+    };
+
+    services.udisks2.enable = true;
+    services.gnome3.chrome-gnome-shell.enable = true;
+
+    environment.systemPackages = with pkgs; [
+        gnome3.gnome-tweaks
+    ];
+    
+    hardware.enableRedistributableFirmware = true;
+}

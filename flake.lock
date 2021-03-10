@@ -1,5 +1,51 @@
 {
   "nodes": {
+    "arnix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixos": [
+          "nixos"
+        ],
+        "nixos-hardware": [
+          "nixos-hardware"
+        ],
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nur": "nur",
+        "unstable": [
+          "unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1615329601,
+        "narHash": "sha256-B62+Pat+63LnFniC2ChPHKOiaKGsNuB134q09rpqP1s=",
+        "type": "git",
+        "url": "file:///home/alex/src/corp/arctarus/arnix"
+      },
+      "original": {
+        "owner": "ArctarusLimited",
+        "ref": "master",
+        "repo": "arnix",
+        "type": "github"
+      }
+    },
+    "flake-utils": {
+      "locked": {
+        "lastModified": 1608663846,
+        "narHash": "sha256-YOAXeoNLW0IubQ6AZLGuSj5kAD5n4DYXLYReLtyds1A=",
+        "owner": "numtide",
+        "repo": "flake-utils",
+        "rev": "a68df93a37cd5137ac22ffeb2d8a03acf253cc24",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "ref": "flatten-tree-system",
+        "repo": "flake-utils",
+        "type": "github"
+      }
+    },
     "home": {
       "inputs": {
         "nixpkgs": [
@@ -69,8 +115,24 @@
         "type": "github"
       }
     },
+    "nur": {
+      "locked": {
+        "lastModified": 1615359887,
+        "narHash": "sha256-dBU2Ava8A4gOz3v3Svas//z/zk04adKOY/zRKWL2bJ4=",
+        "owner": "nix-community",
+        "repo": "NUR",
+        "rev": "369ea69f02aacebc0f54e2a68ee89144cfae503a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "NUR",
+        "type": "github"
+      }
+    },
     "root": {
       "inputs": {
+        "arnix": "arnix",
         "home": "home",
         "nixos": "nixos",
         "nixos-hardware": "nixos-hardware",

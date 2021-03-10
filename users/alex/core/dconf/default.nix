@@ -18,6 +18,11 @@ in
             "gtk-theme" = "Adwaita-dark";
         };
 
+        "org/gnome/desktop/screensaver" = {
+            "idle-activation-enabled" = false;
+            "lock-delay" = "uint32 0";
+        };
+
         "org/gnome/desktop/session" = {
             # do not automatically lock
             "idle-delay" = "uint32 0";
@@ -25,6 +30,7 @@ in
 
         "org/gnome/settings-daemon/plugins/power" = {
             # disable automatic sleep on AC power
+            "idle-dim" = false;
             "sleep-inactive-ac-type" = "nothing";
         };
 
