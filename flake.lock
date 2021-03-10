@@ -18,10 +18,12 @@
         ]
       },
       "locked": {
-        "lastModified": 1615329601,
-        "narHash": "sha256-B62+Pat+63LnFniC2ChPHKOiaKGsNuB134q09rpqP1s=",
-        "type": "git",
-        "url": "file:///home/alex/src/corp/arctarus/arnix"
+        "lastModified": 1615394712,
+        "narHash": "sha256-VlyGNvpuS9fPVqQvqcFRHBCZKzQU2nA2Kwv4qyOBHyI=",
+        "owner": "ArctarusLimited",
+        "repo": "arnix",
+        "rev": "94e7edd7ad83a2b59fe72b55e4600082d7848d9f",
+        "type": "github"
       },
       "original": {
         "owner": "ArctarusLimited",
@@ -53,11 +55,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1614639498,
-        "narHash": "sha256-LdViQ/r6W8M2MpKR1zcSY9qCPAfA/FK3X5dTTIhO6hc=",
+        "lastModified": 1615236417,
+        "narHash": "sha256-ialggc4ff+coOaKIxreoynh+FPSs2cergePIQE1U8jE=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "e72e241d7a602559285205820cfd708282a4197a",
+        "rev": "57a7e5e2c53de58215fdac1910470bef36dd30cd",
         "type": "github"
       },
       "original": {
@@ -85,11 +87,11 @@
     },
     "nixos-hardware": {
       "locked": {
-        "lastModified": 1614460257,
-        "narHash": "sha256-hFR865O5gIuFNiwFyx/K2g8AeLvGy/f3/SHalF85zuM=",
+        "lastModified": 1615281383,
+        "narHash": "sha256-23XBOcZapDtm7IzYYHub4tNpo4AsSz6qLXsHTCNuDAA=",
         "owner": "NixOS",
         "repo": "nixos-hardware",
-        "rev": "c9b965a43e582765f797f8b75d50cb2874b30f30",
+        "rev": "831de9cac9ff2ea8cf4c3742020ea92e82ac8ac3",
         "type": "github"
       },
       "original": {
