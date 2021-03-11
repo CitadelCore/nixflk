@@ -18,7 +18,7 @@
 
             # others
             (lib.lowPrio juju)
-            python38Packages.charm-tools
+            #python38Packages.charm-tools
         ];
 
         sessionVariables = {
