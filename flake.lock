@@ -3,12 +3,11 @@
     "arnix": {
       "inputs": {
         "flake-utils": "flake-utils",
+        "home": "home",
         "nixos": [
           "nixos"
         ],
-        "nixos-hardware": [
-          "nixos-hardware"
-        ],
+        "nixos-hardware": "nixos-hardware",
         "nixpkgs": [
           "nixpkgs"
         ],
@@ -18,11 +17,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1615394712,
-        "narHash": "sha256-VlyGNvpuS9fPVqQvqcFRHBCZKzQU2nA2Kwv4qyOBHyI=",
+        "lastModified": 1615476889,
+        "narHash": "sha256-PhJZOhlv6g+VqA26EDnIXrr5ORNKU5c9WEwqAguX4zk=",
         "owner": "ArctarusLimited",
         "repo": "arnix",
-        "rev": "94e7edd7ad83a2b59fe72b55e4600082d7848d9f",
+        "rev": "843bae31fca3eeedfd16b87567dc6f0d02b79bef",
         "type": "github"
       },
       "original": {
@@ -55,11 +54,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1615236417,
-        "narHash": "sha256-ialggc4ff+coOaKIxreoynh+FPSs2cergePIQE1U8jE=",
+        "lastModified": 1615419569,
+        "narHash": "sha256-+ewB0sQGeoYryWZk2Ww2Lm/5jeqhlYTjGy6zEX2Mm1I=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "57a7e5e2c53de58215fdac1910470bef36dd30cd",
+        "rev": "040ea28e448a93d24540b7cf2eda4b25300c5ab1",
         "type": "github"
       },
       "original": {
@@ -119,11 +118,11 @@
     },
     "nur": {
       "locked": {
-        "lastModified": 1615359887,
-        "narHash": "sha256-dBU2Ava8A4gOz3v3Svas//z/zk04adKOY/zRKWL2bJ4=",
+        "lastModified": 1615472916,
+        "narHash": "sha256-Bh4ZWcAeBxt3d5cyqEvdXhHflE4EPQU7FkUJ0kF0Ulg=",
         "owner": "nix-community",
         "repo": "NUR",
-        "rev": "369ea69f02aacebc0f54e2a68ee89144cfae503a",
+        "rev": "9a3d31ac1f34f24d3aeb8951a5e0b3cc0970a6ae",
         "type": "github"
       },
       "original": {
@@ -135,9 +134,7 @@
     "root": {
       "inputs": {
         "arnix": "arnix",
-        "home": "home",
         "nixos": "nixos",
-        "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs",
         "unstable": "unstable"
       }

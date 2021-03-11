@@ -8,13 +8,6 @@
         nixpkgs.url = "github:CitadelCore/nixpkgs/nixos-unstable";
         unstable.url = "github:CitadelCore/nixpkgs/nixos-unstable";
 
-        nixos-hardware.url = "github:NixOS/nixos-hardware/master";
-
-        home = {
-            url = "github:nix-community/home-manager/master";
-            inputs.nixpkgs.follows = "nixpkgs";
-        };
-
         # arnix contains the shared base configuration
         arnix = {
             url = "github:ArctarusLimited/arnix/master";
@@ -22,7 +15,6 @@
                 nixos.follows = "nixos";
                 nixpkgs.follows = "nixpkgs";
                 unstable.follows = "unstable";
-                nixos-hardware.follows = "nixos-hardware";
             };
         };
     };
