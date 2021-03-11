@@ -7,7 +7,6 @@
         profiles.core.security.sshd
         #profiles.core.security.vpn
         profiles.core.zfs
-        profiles.develop
         profiles.graphical
         profiles.graphical.games
         profiles.graphical.scream
@@ -17,8 +16,6 @@
         profiles.virt.docker
         profiles.virt.libvirt
     ];
-
-    _module.args.host = "kuiser";
 
     boot = {
         initrd = {
@@ -97,7 +94,6 @@
 
     services = {
         autorandr.enable = true;
-        hardware.bolt.enable = true;
 
         # dock is not properly detected as a dock
         # so lid switch on external power must be ignored
@@ -117,8 +113,6 @@
             windowManager.i3.enable = true;
         };
     };
-
-    hardware.enableRedistributableFirmware = true;
 
     environment.systemPackages = with pkgs; [
         gnome3.eog

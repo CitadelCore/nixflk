@@ -5,7 +5,6 @@
         profiles.core.ephemeral
         profiles.core.security.tpm
         profiles.core.zfs
-        profiles.develop
         profiles.graphical
         profiles.graphical.wayland
         profiles.laptop
@@ -14,8 +13,6 @@
         profiles.virt.docker
         profiles.virt.libvirt
     ];
-
-    _module.args.host = "redshift";
 
     boot = {
         initrd = {
@@ -60,12 +57,9 @@
         desktopManager.gnome3.enable = true;
     };
 
-    services.udisks2.enable = true;
     services.gnome3.chrome-gnome-shell.enable = true;
 
     environment.systemPackages = with pkgs; [
         gnome3.gnome-tweaks
     ];
-    
-    hardware.enableRedistributableFirmware = true;
 }
