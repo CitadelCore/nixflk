@@ -50,4 +50,8 @@
 
         thermald.enable = true;
     };
+
+    # enable intel SGX support
+    # TODO: this should be for all Intel machines that support it, not for laptops!
+    security.sgx.enable = true;
 }
