@@ -34,9 +34,6 @@ in
 
             # inherit the user meta configuration
             _module.args.meta = meta;
-
-            # bring our package overlays in from the machine
-            #nixpkgs = { inherit (config.nixpkgs) overlays; };
         };
     };
 

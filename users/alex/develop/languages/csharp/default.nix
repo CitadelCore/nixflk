@@ -1,6 +1,6 @@
 { pkgs, ... }:
 let
-    package = pkgs.dotnet-sdk_5;
+    package = with pkgs; (with dotnetCorePackages; combinePackages [ sdk_2_1 sdk_3_0 sdk_3_1 sdk_5_0 ]);
 in
 {
     home = {
@@ -11,7 +11,7 @@ in
         in
         {
             "DOTNET_ROOT" = package;
-            "MSBuildSDKsPath" = "${sdkPath}/Sdks";
+            #"MSBuildSDKsPath" = "${sdkPath}/Sdks";
         };
     };
 

@@ -21,5 +21,9 @@
 
     outputs = inputs@{ arnix, ... }: let
         inherit (arnix) lib;
-    in lib.mkTopLevelArnixRepo ./. arnix inputs;
+    in lib.mkTopLevelArnixRepo {
+        inherit inputs;
+        parent = arnix;
+        root = ./.;
+    };
 }
