@@ -1,6 +1,6 @@
 { lib, pkgs, users, profiles, ... }:
 {
-    imports = lib.arnix.mkProfileDefaults [
+    imports = lib.arnix.mkProf [
         users.alex
         profiles.core.ephemeral
         profiles.core.security.tpm
