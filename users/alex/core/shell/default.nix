@@ -31,19 +31,19 @@
                 ns = "n search --no-update-lock-file";
                 nf = "n flake";
                 srch = "ns nixpkgs";
-                nrb = "doas nixos-rebuild";
+                nrb = "sudo nixos-rebuild";
 
                 # top
                 top = "gotop";
 
                 # systemd
                 ctl = "systemctl";
-                stl = "doas systemctl";
+                stl = "sudo systemctl";
                 utl = "systemctl --user";
                 ut = "systemctl --user start";
                 un = "systemctl --user stop";
-                up = "doas systemctl start";
-                dn = "doas systemctl stop";
+                up = "sudo systemctl start";
+                dn = "sudo systemctl stop";
                 jtl = "journalctl";
 
                 # ops
@@ -51,9 +51,12 @@
             };
 
             shellInit = ''
-                set -x XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+                set -x UID (id -u)
                 set -x EDITOR vim
                 set -x TERM xterm
+
+                set -x XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+                set -x SSH_AUTH_SOCK "/run/user/$UID/gnupg/S.gpg-agent.ssh"
             '';
 
             plugins = with pkgs; [
