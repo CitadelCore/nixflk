@@ -15,6 +15,6 @@
         gimp-with-plugins
         
         # 3D design
-        blender
+        #blender
     ];
 }
