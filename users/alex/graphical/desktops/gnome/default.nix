@@ -10,8 +10,9 @@
 
         profiles.default.settings = {
             # hardware video acceleration
-            "media.ffvpx.enabled" = false;
             "media.ffmpeg.vaapi.enabled" = true;
+            "media.ffvpx.enabled" = false;
+            "media.rdd-vpx.enabled" = false;
         };
     };
 
