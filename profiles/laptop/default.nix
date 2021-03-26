@@ -1,6 +1,7 @@
-{ config, pkgs, lib, profiles, ... }:
+{ config, pkgs, lib, repos, ... }:
 {
-    imports = with profiles; lib.arnix.mkProf [ roles.personal ];
+    imports = with repos.self.profiles;
+        lib.arnix.mkProf [ roles.personal ];
 
     environment.systemPackages = with pkgs; [
         # power management

@@ -1,21 +1,25 @@
-{ lib, pkgs, users, profiles, ... }:
-{
-    imports = lib.arnix.mkProf [
-        users.alex
+{ lib, pkgs, repos, ... }:
+
+let
+    inherit (lib.arnix) mkProf;
+in {
+    imports = (with repos.root; mkProf [
         profiles.core.ephemeral
         profiles.core.security.tpm
         profiles.core.security.sshd
         #profiles.core.security.vpn
         profiles.core.zfs
+        profiles.locales.gb
+        profiles.virt.docker
+        profiles.virt.libvirt
+    ]) ++ (with repos.self; mkProf [
+        users.alex
         profiles.graphical
         profiles.graphical.games
         profiles.graphical.scream
         profiles.laptop
         profiles.hardware.system.p72
-        profiles.locales.gb
-        profiles.virt.docker
-        profiles.virt.libvirt
-    ];
+    ]);
 
     boot = {
         initrd = {

@@ -1,18 +1,19 @@
-{ lib, pkgs, users, profiles, ... }:
+{ lib, pkgs, repos, ... }:
 {
-    imports = lib.arnix.mkProf [
-        users.alex
+    imports = (with repos.root; mkProf [
         profiles.core.ephemeral
         profiles.core.security.tpm
         profiles.core.zfs
+        profiles.locales.gb
+        profiles.virt.docker
+        profiles.virt.libvirt
+    ]) ++ (with repos.self; mkProf [
+        users.alex
         profiles.graphical
         profiles.graphical.wayland
         profiles.laptop
         profiles.hardware.system.p15v
-        profiles.locales.gb
-        profiles.virt.docker
-        profiles.virt.libvirt
-    ];
+    ]);
 
     boot = {
         initrd = {
