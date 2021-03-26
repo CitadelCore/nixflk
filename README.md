@@ -1,18 +1,18 @@
 ## Flake configurations
 
-This repository contains the Nix flake configurations for my NixOS laptop. It's a heavily modified version of the original nixflk flake.
+This repository contains the Nix flake configurations for my personal NixOS machines.
 
-- `hosts`: Top-level definitions for each host managed by this repository.
-- `lib`: Utility function library.
-- `modules`: Nix modules that I have created.
-- `overlays`: Package overlays for existing packages.
-- `pkgs`: Nix packages that I have created.
-- `profiles`: Machine-specific profiles.
-- `secrets`: Secrets encrypted with git-crypt.
-- `users/<user>`: User-specific profiles.
-- `users/<user>/hosts/<host>`: User and machine specific profiles.
+Once upon a time this was a modified version of `nixflk`, but after it deviated into devos I rewrote a lot of it myself.
 
-To build and switch to them, clone this repository and in `nix-shell` run `sudo nixos-rebuild switch`.
+- `extern`: External imports. Same as with devos.
+- `hosts`: Top-level host definitions, one nix file per host.
+- `modules`: NixOS and home-manager modules.
+- `overlays`: Package overlays, merged with the ones in arnix.
+- `profiles`: Shared NixOS machine configurations.
+- `secrets`: Secrets encrypted with `git-crypt`.
+- `users`: Home-manager users. One folder per user.
+
+To build and switch, clone this repository and run `nrb switch`.
 
 ### Sanity checks
 
