@@ -14,6 +14,11 @@ This repository contains the Nix flake configurations for my NixOS laptop. It's 
 
 To build and switch to them, clone this repository and in `nix-shell` run `sudo nixos-rebuild switch`.
 
+### Sanity checks
+
+Enable hooks for sanity checking:
+`git config --local core.hooksPath .githooks/`
+
 ### New host deployment
 
 1. Boot into installer

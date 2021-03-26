@@ -27,6 +27,9 @@
         ];
 
         sessionVariables = {
+            # setup arnix repo for development
+            "ARNIX_REPO_PATH" = "$HOME/src/corp/arctarus/arnix";
+
             # ensure python requests uses our custom CA
             "REQUESTS_CA_BUNDLE" = "/etc/ssl/certs/ca-certificates.crt";
 

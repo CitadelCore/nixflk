@@ -31,7 +31,6 @@
                 ns = "n search --no-update-lock-file";
                 nf = "n flake";
                 srch = "ns nixpkgs";
-                nrb = "sudo nixos-rebuild";
 
                 # top
                 top = "gotop";

@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+
+remote="$1"
+url="$2"
+
+if [[ ! -v ARNIX_REPO_PATH ]] || [[ ! -d "$ARNIX_REPO_PATH" ]]; then
+	# no local arnix repo available
+	exit 0
+fi
+
+LOCAL_REF="$(git -C "$ARNIX_REPO_PATH" rev-parse master)"
+REMOTE_REF="$(git -C "$ARNIX_REPO_PATH" rev-parse origin/master)"
+
+if [[ "$LOCAL_REF" != "$REMOTE_REF" ]]; then
+	echo -e >&2 "\e[93mDevelopment Arnix repo has commits that are not yet on master."
+	echo -e >&2 "\e[93mTo avoid breakages, please push these before pushing this repository."
+	exit 1
+fi
+
+# has flake.lock been committed?
+if [[ ! -z "$(git status --porcelain flake.lock)" ]]; then
+	echo -e >&2 "\e[93mflake.lock is dirty. Please commit or revert your changes before pushing."
+	exit 1
+fi
+
+# arnix up to date in flake.lock?
+LOCKED_REF="$(nix flake metadata --json 2> /dev/null | jq -r .locks.nodes.arnix.locked.rev)"
+
+if [[ "$LOCKED_REF" != "$REMOTE_REF" ]]; then
+	echo -e >&2 "\e[93mThe latest Arnix ref is not in the flake.lock."
+	echo -e >&2 "\e[93mPlease update it with 'nix flake update' and commit before pushing."
+	exit 1
+fi
+
+exit 0
