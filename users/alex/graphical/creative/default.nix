@@ -15,6 +15,10 @@
         gimp-with-plugins
         
         # 3D design
-        #blender
+        #blender # Currently broken
+
+        # Video capture
+        obs-studio
+        obs-v4l2sink
     ];
 }

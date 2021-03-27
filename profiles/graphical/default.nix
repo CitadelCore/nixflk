@@ -24,6 +24,7 @@
     services = {
         xserver = {
             enable = true;
+            wacom.enable = true;
             libinput.enable = true;
         };
 

@@ -3,17 +3,23 @@
     programs.vscode = {
         enable = true;
         extensions = with pkgs.vscode-extensions; [
+            # first party extensions
             ms-vscode.cpptools
-            #ms-dotnettools.csharp
+            ms-dotnettools.csharp
             ms-azuretools.vscode-docker
-            #ms-python.vscode-pylance
+            ms-python.python
+            ms-python.vscode-pylance
             #ms-toolsai.jupyter
 
-            golang.Go
+            # official language support
             bbenoist.Nix
-            #arrterian.nix-env-selector
-            #brettm12345.nixfmt-vscode
+            golang.Go
+            #rust-lang.rust
+            hashicorp.terraform
 
+            # third party extensions
+            #arrterian.nix-env-selector
+            brettm12345.nixfmt-vscode
             #timonwong.shellcheck
         ];
 
