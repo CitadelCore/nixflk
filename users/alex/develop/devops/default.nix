@@ -5,7 +5,7 @@
             npc = nodePackagesCustom;
         in [
             # cloud providers
-            awscli2 #npc.aws-cdk
+            awscli2 aws-sam-cli #npc.aws-cdk
 
             # hashicorp stack
             terraform packer vagrant

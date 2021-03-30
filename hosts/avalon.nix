@@ -1,5 +1,7 @@
 { lib, pkgs, repos, ... }:
-{
+let
+    inherit (lib.arnix) mkProf;
+in {
     imports = (with repos.root; mkProf [
         profiles.core.ephemeral
         profiles.core.security.tpm
