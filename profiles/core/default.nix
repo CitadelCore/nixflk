@@ -1,7 +1,5 @@
 { lib, ... }:
 {
-    imports = [ ./hacks.nix ];
-
     boot = {
         loader = {
             grub.enable = false;

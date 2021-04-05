@@ -1,11 +1,7 @@
 { inputs, ... }:
 with inputs;
 {
-    modules = [];
-    overlays = [];
-
-    # passed to all nixos modules
-    specialArgs = {
-
-    };
+    modules = [
+        inputs.sops-nix.nixosModules.sops
+    ];
 }

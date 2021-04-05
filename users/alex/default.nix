@@ -1,9 +1,9 @@
-{ config, lib, pkgs, hostName, ... }:
+{ config, lib, pkgs, name, ... }:
 
 let
     # switch name depending on whether
     # this is a work machine or not (to avoid confusion)
-    work = hostName == "redshift";
+    work = name == "redshift";
     meta = if work then {
         role = "work";
         name = "Joseph Marsden";
@@ -30,7 +30,7 @@ in
             ]
 
             # add host specific user configuration
-            ++ (if hostName != null then [(./hosts + "/${hostName}")] else []);
+            ++ (if name != null then [(./hosts + "/${name}")] else []);
 
             # inherit the user meta configuration
             _module.args.meta = meta;

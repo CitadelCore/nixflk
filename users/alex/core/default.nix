@@ -1,5 +1,7 @@
-{ lib, ... }:
-{
+{ lib, ... }: let
+    inherit (lib) mapAttrsToList;
+    inherit (builtins) concatStringsSep;
+in {
     imports = [
         ./dconf
         ./gnupg
@@ -26,9 +28,16 @@
             "\${HOME}/src/corp/arctarus/infra/tools"
         ];
 
-        sessionVariables = {
+        sessionVariables = let
+            # global flake override paths
+            flakeOverrides = concatStringsSep ";" (mapAttrsToList (k: v: "${k}=${v}") {
+                "github:ArctarusLimited/arnix/master" = "$HOME/src/corp/arctarus/arnix";
+                "git+ssh://git@github.com/ArctarusLimited/infra.git" = "$HOME/src/corp/arctarus/infra";
+            });
+        in {
             # setup arnix repo for development
             "ARNIX_REPO_PATH" = "$HOME/src/corp/arctarus/arnix";
+            "NIX_FLAKE_URL_OVERRIDES" = flakeOverrides;
 
             # ensure python requests uses our custom CA
             "REQUESTS_CA_BUNDLE" = "/etc/ssl/certs/ca-certificates.crt";

@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-remote="$1"
-url="$2"
-
 if [[ ! -v ARNIX_REPO_PATH ]] || [[ ! -d "$ARNIX_REPO_PATH" ]]; then
 	# no local arnix repo available
 	exit 0
@@ -18,7 +15,7 @@ if [[ "$LOCAL_REF" != "$REMOTE_REF" ]]; then
 fi
 
 # has flake.lock been committed?
-if [[ ! -z "$(git status --porcelain flake.lock)" ]]; then
+if [[ -n "$(git status --porcelain flake.lock)" ]]; then
 	echo -e >&2 "\e[93mflake.lock is dirty. Please commit or revert your changes before pushing."
 	exit 1
 fi

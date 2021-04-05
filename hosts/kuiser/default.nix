@@ -117,13 +117,6 @@ in {
         };
     };
 
-    environment.systemPackages = with pkgs; [
-        gnome3.eog
-        gnome3.nautilus
-        gnome3.file-roller
-        libnotify networkmanagerapplet
-    ];
-
     # enable dev docs
     documentation.dev.enable = true;
     

@@ -14,7 +14,7 @@
             nomad waypoint
 
             # nix
-            colmena deploy-rs
+            colmena
 
             # others
             (lib.lowPrio juju)

@@ -24,8 +24,15 @@
         ];
 
         userSettings = {
-            workbench.colorTheme = "Visual Studio 2019 Dark";
             editor.fontLigatures = true;
+
+            workbench = {
+                colorTheme = "Visual Studio 2019 Dark";
+                editorAssociations = [{
+                    viewType = "jupyter.notebook.ipynb";
+                    filenamePattern = "*.ipynb";
+                }];
+            };
         };
     };
 }

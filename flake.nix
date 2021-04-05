@@ -15,8 +15,14 @@
                 nixos.follows = "nixos";
                 nixpkgs.follows = "nixpkgs";
                 unstable.follows = "unstable";
+
+                # override home-manager to the master branch
+                home.url = "github:nix-community/home-manager/master";
             };
         };
+
+        # additional imports
+        sops-nix.url = "github:Mic92/sops-nix";
     };
 
     outputs = inputs@{ arnix, ... }: let

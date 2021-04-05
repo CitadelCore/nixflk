@@ -1,7 +1,7 @@
 {
     # allowed unfree packages
     unfree = [
-        "1password" "postman" "p4" "p4v"
+        "1password" "postman"
         "pycharm-professional" "clion" "webstorm"
 
         "vscode"
