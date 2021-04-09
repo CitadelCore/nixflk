@@ -34,8 +34,6 @@
             "*.arctarus.co.uk".user = "jmarsden";
             "*.as210072.net".user = "jmarsden";
             "*.as50329.net".user = "jmarsden";
-            "2a0d:1a40:7551:*".user = "jmarsden";
-            "2a0d:1a40:561:*".user = "jmarsden";
             "2a10:4a80:*".user = "jmarsden";
         };
     };

@@ -9,7 +9,7 @@ Once upon a time this was a modified version of `nixflk`, but after it deviated 
 - `modules`: NixOS and home-manager modules.
 - `overlays`: Package overlays, merged with the ones in arnix.
 - `profiles`: Shared NixOS machine configurations.
-- `secrets`: Secrets encrypted with `git-crypt`.
+- `secrets`: Secrets encrypted with `sops`.
 - `users`: Home-manager users. One folder per user.
 
 To build and switch, clone this repository and run `nrb switch`.

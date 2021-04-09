@@ -3,24 +3,14 @@
 let
     # switch name depending on whether
     # this is a work machine or not (to avoid confusion)
-    work = name == "redshift";
-    meta = if work then {
-        role = "work";
-        name = "Joseph Marsden";
-        email = "joseph.marsden@speech-graphics.com";
-        username = "jmarsden";
-    } else {
-        role = "personal";
-        name = "Alex Zero";
-        email = "joseph@marsden.space";
-        username = "alex";
-    };
+    role = if name == "redshift" then "work" else "personal";
+    my = import ./my.nix { inherit role; };
 in
 {
-    _module.args.meta = meta;
+    _module.args = { inherit my; };
 
     home-manager = {
-        users."${meta.username}" = {
+        users."${my.username}" = {
             imports = [
                 ../../modules/home
 
@@ -33,19 +23,19 @@ in
             ++ (if name != null then [(./hosts + "/${name}")] else []);
 
             # inherit the user meta configuration
-            _module.args.meta = meta;
+            _module.args = { inherit my; };
         };
     };
 
-    users.users."${meta.username}" = {
+    users.users."${my.username}" = {
         uid = 1000;
         isNormalUser = true;
 
-        description = meta.name;
+        description = my.name;
         extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "sysconf" ];
 
         shell = pkgs.fish;
-        hashedPassword = lib.fileContents ../../secrets/passwords/alex.txt;
+        hashedPassword = lib.fileContents ./password.txt;
         openssh.authorizedKeys.keyFiles = [ ./sshkey.txt ];
     };
 }

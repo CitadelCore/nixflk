@@ -1,4 +1,4 @@
-{ meta, ... }:
+{ my, ... }:
 {
     home = {
         sessionPath = [ "\${HOME}/.npm-packages/bin" ];
@@ -8,7 +8,7 @@
         };
 
         file.".npmrc".text = ''
-            prefix=/home/${meta.username}/.npm-packages
+            prefix=/home/${my.username}/.npm-packages
         '';
     };
 }

@@ -11,7 +11,7 @@
 
     home = {
         sessionVariables = {
-            PAGER = "less";
+            PAGER = "less -R";
             LESS = "-iFJMRW -x4";
             LESSOPEN = "|${pkgs.lesspipe}/bin/lesspipe.sh %s";
         };

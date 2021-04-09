@@ -1,9 +1,9 @@
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, my, ... }:
 {
     programs.gpg = {
         enable = true;
         settings = {
-            "default-key" = "0xA51550EDB450302C";
+            "default-key" = my.pgp.fingerprint;
             "no-emit-version" = true;
             "no-comments" = true;
             "keyid-format" = "0xlong";
@@ -29,9 +29,16 @@
         enableSshSupport = true;
     };
 
-    home.file.".gnupg/scdaemon.conf".text = ''
-        disable-ccid
-        card-timeout 1
-        reader-port Yubico YubiKey
-    '';
+    home = {
+        file.".gnupg/scdaemon.conf".text = ''
+            disable-ccid
+            card-timeout 1
+            reader-port Yubico YubiKey
+        '';
+
+        sessionVariables = {
+            "SSH_AUTH_SOCK" = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
+            "SOPS_PGP_FP" = my.pgp.fingerprint;
+        };
+    };
 }

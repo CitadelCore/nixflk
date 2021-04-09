@@ -1,4 +1,4 @@
-{ config, lib, pkgs, meta, ... }:
+{ config, lib, pkgs, my, ... }:
 {
     home.packages = with pkgs.gitAndTools; [ pre-commit ];
 
@@ -13,8 +13,8 @@
             signByDefault = true;
         };
 
-        userEmail = meta.email;
-        userName = meta.name;
+        userEmail = my.email;
+        userName = my.name;
 
         extraConfig = {
             core = {
@@ -23,13 +23,13 @@
 
             http = {
                 "https://teamdepot.chaosinitiative.com" = {
-                    sslCert = "/home/${meta.username}/Documents/keys/chaos/public.pem";
-                    sslKey = "/home/${meta.username}/Documents/keys/chaos/private.pem";
+                    sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
+                    sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
                 };
 
                 "https://licensees.chaosinitiative.com" = {
-                    sslCert = "/home/${meta.username}/Documents/keys/chaos/public.pem";
-                    sslKey = "/home/${meta.username}/Documents/keys/chaos/private.pem";
+                    sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
+                    sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
                 };
             };
 
@@ -39,5 +39,10 @@
 
             pull.rebase = false;
         };
+    };
+
+    programs.gh = {
+        enable = true;
+        gitProtocol = "ssh";
     };
 }

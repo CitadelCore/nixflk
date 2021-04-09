@@ -5,7 +5,7 @@
             grub.enable = false;
 
             systemd-boot = let
-                basePath = "/persist/nixos/secrets/secureboot";
+                basePath = "/persist/secrets/secureboot";
             in {
                 enable = true;
                 signed = true;
