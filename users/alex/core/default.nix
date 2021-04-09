@@ -32,7 +32,7 @@ in {
             # global flake override paths
             flakeOverrides = concatStringsSep ";" (mapAttrsToList (k: v: "${k}=${v}") {
                 "github:ArctarusLimited/arnix/master" = "$HOME/src/corp/arctarus/arnix";
-                "git+ssh://git@github.com/ArctarusLimited/infra.git" = "$HOME/src/corp/arctarus/infra";
+                "git+ssh://git@github.com/ArctarusLimited/infra.git?dir=nix" = "$HOME/src/corp/arctarus/infra/nix";
             });
         in {
             # setup arnix repo for development
