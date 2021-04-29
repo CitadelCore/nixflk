@@ -4,6 +4,7 @@
         quasselClient
         discord
         slack
+        tdesktop # Telegram
         zoom-us
     ];
 }
