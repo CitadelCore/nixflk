@@ -24,12 +24,7 @@
     };
 
     systemd.user.sessionVariables = {
-        # Hack? Should be set in hardware profile
-        LIBVA_DRIVER_NAME = "iHD";
-        MOZ_ENABLE_WAYLAND = "1";
         MOZ_USE_XINPUT2 = "1";
-        QT_QPA_PLATFORM = "wayland";
-        XDG_SESSION_TYPE = "wayland";
     };
 
     home.packages = with pkgs; [

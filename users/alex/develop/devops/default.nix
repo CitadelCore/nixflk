@@ -8,7 +8,7 @@
             awscli2 aws-sam-cli #npc.aws-cdk
 
             # hashicorp stack
-            terraform packer vagrant
+            terraform_0_14 packer vagrant
             consul
             vault boundary
             nomad waypoint

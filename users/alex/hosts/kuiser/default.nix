@@ -1,9 +1,8 @@
 {
     imports = [
-        ../../graphical/desktops/i3
+        ../../graphical/desktops/gnome
         ../../graphical/gaming
 
-        ./autorandr.nix
         ./barrier.nix
     ];
 }

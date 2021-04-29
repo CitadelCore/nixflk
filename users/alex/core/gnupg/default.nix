@@ -22,6 +22,12 @@
             "cert-digest-algo" = "SHA512";
             "default-preference-list" = "SHA512 SHA384 SHA256 SHA224 AES256 AES192 AES CAST5 ZLIB BZIP2 ZIP Uncompressed";
         };
+
+        scdaemonSettings = {
+            card-timeout = "1";
+            disable-ccid = true;
+            reader-port = "Yubico YubiKey";
+        };
     };
 
     services.gpg-agent = {
@@ -29,16 +35,8 @@
         enableSshSupport = true;
     };
 
-    home = {
-        file.".gnupg/scdaemon.conf".text = ''
-            disable-ccid
-            card-timeout 1
-            reader-port Yubico YubiKey
-        '';
-
-        sessionVariables = {
-            "SSH_AUTH_SOCK" = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
-            "SOPS_PGP_FP" = my.pgp.fingerprint;
-        };
+    home.sessionVariables = {
+        "SSH_AUTH_SOCK" = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
+        "SOPS_PGP_FP" = my.pgp.fingerprint;
     };
 }

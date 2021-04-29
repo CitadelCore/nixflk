@@ -32,6 +32,7 @@
             };
 
             "*.arctarus.co.uk".user = "jmarsden";
+            "*.arctarus.net".user = "jmarsden";
             "*.as210072.net".user = "jmarsden";
             "*.as50329.net".user = "jmarsden";
             "2a10:4a80:*".user = "jmarsden";

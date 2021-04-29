@@ -11,9 +11,11 @@ in {
         profiles.locales.gb
         profiles.virt.docker
         profiles.virt.libvirt
+        profiles.graphical
+        profiles.graphical.gnome
+        #profiles.graphical.wayland
     ]) ++ (with repos.self; mkProf [
         users.alex
-        profiles.graphical
         profiles.graphical.games
         profiles.graphical.scream
         profiles.laptop
@@ -71,25 +73,18 @@ in {
     };
 
     services = {
-        autorandr.enable = true;
-
         # dock is not properly detected as a dock
         # so lid switch on external power must be ignored
         logind.lidSwitchExternalPower = "ignore";
 
-        xserver = {
-            # disable display blanking, as it really breaks the external monitors
-            # (better option than just disabling DPMS completely)
-            serverFlagsSection = ''
-                Option "BlankTime" "0"
-                Option "StandbyTime" "0"
-                Option "SuspendTime" "0"
-                Option "OffTime" "0"
-            '';
-
-            displayManager.lightdm.enable = true;
-            windowManager.i3.enable = true;
-        };
+        # disable display blanking, as it really breaks the external monitors
+        # (better option than just disabling DPMS completely)
+        xserver.serverFlagsSection = ''
+            Option "BlankTime" "0"
+            Option "StandbyTime" "0"
+            Option "SuspendTime" "0"
+            Option "OffTime" "0"
+        '';
     };
 
     # enable dev docs

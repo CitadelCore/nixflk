@@ -10,10 +10,11 @@ in {
         profiles.locales.gb
         profiles.virt.docker
         profiles.virt.libvirt
+        profiles.graphical
+        profiles.graphical.gnome
+        profiles.graphical.wayland
     ]) ++ (with repos.self; mkProf [
         users.alex
-        profiles.graphical
-        profiles.graphical.wayland
         profiles.laptop
         profiles.hardware.system.x1-tablet
     ]);
@@ -61,8 +62,6 @@ in {
         displayManager.gdm.enable = true;
         desktopManager.gnome3.enable = true;
     };
-
-    services.gnome3.chrome-gnome-shell.enable = true;
 
     environment.systemPackages = with pkgs; [
         gnome3.gnome-tweaks
