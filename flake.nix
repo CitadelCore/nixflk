@@ -30,9 +30,10 @@
 
     outputs = inputs@{ arnix, ... }: let
         inherit (arnix) lib;
-    in lib.mkTopLevelArnixRepo {
+    in lib.mkArnixRepo {
         inherit inputs;
         parent = arnix;
+        name = "toplevel";
         root = ./.;
     };
 }

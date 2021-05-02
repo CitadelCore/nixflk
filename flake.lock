@@ -19,11 +19,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1619665605,
-        "narHash": "sha256-RWX2a6y3M+Ne4tTLm+XkANjLqSvsgitOl/g1bVXZ6qs=",
+        "lastModified": 1619939979,
+        "narHash": "sha256-RjXSYoSkzvaFFodT6URrfw1sseXMOosAo165d2ajoE8=",
         "owner": "ArctarusLimited",
         "repo": "arnix",
-        "rev": "1b0712c6018ac6b97ce7878e586760dcaf7c3704",
+        "rev": "894eb9cd858c6443bf82eb44352ce3234f0782e0",
         "type": "github"
       },
       "original": {
@@ -41,11 +41,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1617150719,
-        "narHash": "sha256-a7m7J3Lezhaj8XRRs2rOyQjTTj82RtanTla2R8HY0TE=",
+        "lastModified": 1619939702,
+        "narHash": "sha256-ETNQSN5MI14KWx1WzJwB5VD9MADnCuJJhTMYgoRlAf0=",
         "owner": "ArctarusLimited",
         "repo": "colmena",
-        "rev": "ed9ba3041881a69287b65c72bb0511a6876fa067",
+        "rev": "af5d834e2138a7ebbc4be054b4fcac07abcfa0f0",
         "type": "github"
       },
       "original": {
@@ -92,11 +92,11 @@
         "nixpkgs": "nixpkgs_2"
       },
       "locked": {
-        "lastModified": 1619654218,
-        "narHash": "sha256-Ppc7R8mDPNRvAXwzPxQlF0p9S2f+Q8ZteQRovD1YywQ=",
+        "lastModified": 1619907041,
+        "narHash": "sha256-BTvU2QTX1/I+2T9001Jd9f/azzXuVBM58OLLYXEQX3U=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "137a584e22e13a8d0d82102dedaca17f36110a94",
+        "rev": "ca7868dc2977e2bdb4b1c909768c686d4ec0a412",
         "type": "github"
       },
       "original": {

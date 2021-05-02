@@ -16,6 +16,9 @@
             # nix
             colmena
 
+            # kubernetes
+            kubectl
+
             # others
             (lib.lowPrio juju)
             #python38Packages.charm-tools
