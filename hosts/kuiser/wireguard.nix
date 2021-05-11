@@ -20,11 +20,11 @@ in {
                 persistentKeepalive = 25; # we're mobile so almost certainly behind NAT
 
                 allowedIPs = [
-                    "10.60.10.0/24"
+                    #"10.60.10.0/24"
                     "208.64.203.133/32" # Valve's Perforce server
-                    "2a10:4a80:7:8::1/128"
-                    "2a10:4a80:7:8::10/128"
-                    "2a10:4a80:7:8::30/128"
+                    #"2a10:4a80:7:8::1/128"
+                    #"2a10:4a80:7:8::10/128"
+                    #"2a10:4a80:7:8::30/128"
                 ];
             }];
         };

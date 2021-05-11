@@ -8,11 +8,6 @@
 
         lfs.enable = true;
 
-        signing = {
-            key = "A51550EDB450302C";
-            signByDefault = true;
-        };
-
         userEmail = my.email;
         userName = my.name;
 
@@ -21,25 +16,31 @@
                 autocrlf = "input";
             };
 
-            http = {
-                "https://teamdepot.chaosinitiative.com" = {
-                    sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
-                    sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
-                };
-
-                "https://licensees.chaosinitiative.com" = {
-                    sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
-                    sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
-                };
-            };
-
             credential = {
                 helper = "store --file ~/.gitcred";
             };
 
             pull.rebase = false;
         };
-    };
+    } // (lib.optionalAttrs (my.role == "personal") {
+        # special options like signing and chaos HTTP should be personal only
+        signing = {
+            key = "A51550EDB450302C";
+            signByDefault = true;
+        };
+
+        extraConfig.http = {
+            "https://teamdepot.chaosinitiative.com" = {
+                sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
+                sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
+            };
+
+            "https://licensees.chaosinitiative.com" = {
+                sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
+                sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
+            };
+        };
+    });
 
     programs.gh = {
         enable = true;

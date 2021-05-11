@@ -9,9 +9,16 @@
         ./termite.nix
     ];
 
-    services.redshift = {
-        enable = true;
-        provider = "geoclue2";
+
+    services = {
+        redshift = {
+            enable = true;
+            provider = "geoclue2";
+        };
+
+        # Supports Keybase
+        kbfs.enable = true;
+        keybase.enable = true;
     };
 
     xresources.extraConfig = (

@@ -13,5 +13,6 @@
         };
     };
 in {
+    inherit role;
     pgp.fingerprint = "A0AA4646B8F69D4545535A88A51550EDB450302C";
 } // roles.${role}

@@ -1,10 +1,11 @@
 { pkgs, ... }:
 {
     home.packages = with pkgs; [
-        quasselClient
         discord
+        quasselClient
         slack
         tdesktop # Telegram
         zoom-us
+        keybase-gui
     ];
 }
