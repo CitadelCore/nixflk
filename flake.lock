@@ -19,11 +19,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1620886944,
-        "narHash": "sha256-hUQyX7Yf2abTwVjQ8+6FCnDM6IyHvLfY22N0I2c7M/4=",
+        "lastModified": 1620887404,
+        "narHash": "sha256-gSMYrHh3zVt2MnDLDtS9k2LBAGDl3dBIyFxWEGneelk=",
         "owner": "ArctarusLimited",
         "repo": "arnix",
-        "rev": "4287c96c7d76e972beebe730da723c8ec792c2b2",
+        "rev": "abb055f197e098da62fc9d7350d3e028edee6b97",
         "type": "github"
       },
       "original": {
