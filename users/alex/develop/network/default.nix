@@ -1,6 +1,9 @@
 { pkgs, ... }:
 {
     home.packages = with pkgs; [
-        nmap whois atftp
+        nmap # Network scanning
+        whois # DNS resolution
+        atftp # TFTP client
+        net-snmp # SNMP tools
     ];
 }
