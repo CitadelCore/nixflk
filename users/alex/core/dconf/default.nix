@@ -1,14 +1,14 @@
 { lib, pkgs, ... }:
 
 let
-    inherit (lib.hm.gvariant) mkTuple;
+    inherit (lib.hm.gvariant) mkTuple mkUint32;
 in
 {
     home.packages = with pkgs; [ dconf2nix ];
 
     dconf.settings = {
         "org/gnome/desktop/input-sources" = {
-            "current" = "uint32 0";
+            "current" = mkUint32 0;
             "sources" = [ (mkTuple [ "xkb" "gb" ]) ];
             "xkb-options" = [ "terminate:ctrl_alt_bksp" "lv3_ralt_switch" ];
         };
@@ -20,12 +20,12 @@ in
 
         "org/gnome/desktop/screensaver" = {
             "idle-activation-enabled" = false;
-            "lock-delay" = "uint32 0";
+            "lock-delay" = mkUint32 0;
         };
 
         "org/gnome/desktop/session" = {
             # do not automatically lock
-            "idle-delay" = "uint32 0";
+            "idle-delay" = mkUint32 0;
         };
 
         "org/gnome/settings-daemon/plugins/power" = {

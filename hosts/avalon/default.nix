@@ -56,13 +56,6 @@ in {
 
     networking.hostId = "64c49c88";
 
-    # stuff below here should probably be
-    # moved out to a common "gdm/gnome" profile
-    services.xserver = {
-        displayManager.gdm.enable = true;
-        desktopManager.gnome3.enable = true;
-    };
-
     environment.systemPackages = with pkgs; [
         gnome3.gnome-tweaks
     ];

@@ -32,9 +32,14 @@
         chrony.enable = true;
         timesyncd.enable = true;
 
+        # printing via CUPS
+        printing.enable = true;
+
         # power management
         tlp = {
-            enable = true;
+            # TLP and Power Profiles Daemon can't be enabled at the same time
+            # The latter is required for Gnome so we must do this
+            enable = !config.services.power-profiles-daemon.enable;
             settings = {
                 "CPU_SCALING_GOVERNOR_ON_AC" = "performance";
                 "CPU_SCALING_GOVERNOR_ON_BAT" = "powersave";

@@ -2,11 +2,10 @@
     description = "My Nix flake configurations.";
 
     inputs = {
-        # use unstable for entire system instead of nixos-20.09 until 21.05 comes out
-        # because we can't have an updated gnome3 without it
-        nixos.url = "github:CitadelCore/nixpkgs/nixos-unstable";
-        nixpkgs.url = "github:CitadelCore/nixpkgs/nixos-unstable";
-        unstable.url = "github:CitadelCore/nixpkgs/nixos-unstable";
+        # use custom repo for secure boot + iptables fixes
+        nixos.url = "github:CitadelCore/nixpkgs/release-21.05";
+        nixpkgs.url = "github:CitadelCore/nixpkgs/release-21.05";
+        unstable.url = "nixpkgs";
 
         # arnix contains the shared base configuration
         arnix = {
@@ -15,9 +14,6 @@
                 nixos.follows = "nixos";
                 nixpkgs.follows = "nixpkgs";
                 unstable.follows = "unstable";
-
-                # override home-manager to the master branch
-                home.url = "github:nix-community/home-manager/master";
             };
         };
 

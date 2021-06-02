@@ -6,6 +6,7 @@
 
         "vscode"
         "vscode-extension-ms-vscode-cpptools"
+        "vscode-extension-ms-toolsai-jupyter"
         "vscode-extension-MS-python-vscode-pylance"
 
         "chromium" "chromium-unwrapped"

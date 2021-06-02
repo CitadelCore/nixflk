@@ -1,7 +1,7 @@
 { config, lib, pkgs, ... }:
 with lib;
 let
-    package = pkgs.scream-receivers.override {
+    package = pkgs.scream.override {
         pulseSupport = true;
     };
 in
@@ -15,7 +15,7 @@ in
         };
 
         serviceConfig = {
-            ExecStart = "${package}/bin/scream-pulse -u";
+            ExecStart = "${package}/bin/scream -o pulse -u";
             ExecStop = "${pkgs.procps}/bin/pkill scream";
             Restart = "always";
         };
