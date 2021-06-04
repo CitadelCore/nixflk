@@ -4,7 +4,9 @@
         sessionPath = [ "\${HOME}/.npm-packages/bin" ];
         sessionVariables = {
             "NPM_PACKAGES" = "$HOME/.npm-packages";
-            "MANPATH" = "$HOME/.npm-packages/share/man";
+
+            # TODO: fix this, this breaks the system-wide manpages
+            # "MANPATH" = "$HOME/.npm-packages/share/man";
         };
 
         file.".npmrc".text = ''

@@ -16,6 +16,7 @@ in {
     ]) ++ (with repos.self; mkProf [
         users.alex
         profiles.laptop
+        profiles.roles.dev
         profiles.hardware.system.x1-tablet
     ]);
 

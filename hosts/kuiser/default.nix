@@ -19,6 +19,7 @@ in {
         profiles.graphical.games
         profiles.graphical.scream
         profiles.laptop
+        profiles.roles.dev
         profiles.hardware.system.p72
     ]) ++ [
         ./wireguard.nix
@@ -86,9 +87,6 @@ in {
             Option "OffTime" "0"
         '';
     };
-
-    # enable dev docs
-    documentation.dev.enable = true;
     
     # use UK keyboard layout
     console.keyMap = lib.mkDefault "uk";
