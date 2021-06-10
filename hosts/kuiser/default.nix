@@ -68,7 +68,6 @@ in {
         firewall.allowedTCPPorts = [ 24800 ];
 
         hosts = {
-            "2a10:4a80:7:8::30" = [ "deployer.stir1.arctarus.net" ];
             "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
         };
     };

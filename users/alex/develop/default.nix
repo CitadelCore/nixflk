@@ -8,12 +8,4 @@
         ./versioning
         ./web
     ];
-
-    home = {
-        sessionVariables = {
-            PAGER = "less -R";
-            LESS = "-iFJMRW -x4";
-            LESSOPEN = "|${pkgs.lesspipe}/bin/lesspipe.sh %s";
-        };
-    };
 }

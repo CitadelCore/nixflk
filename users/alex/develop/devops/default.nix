@@ -9,7 +9,7 @@
 
             # hashicorp stack
             terraform_0_14 packer vagrant
-            consul
+            consul consul-template
             vault boundary
             nomad waypoint
 
