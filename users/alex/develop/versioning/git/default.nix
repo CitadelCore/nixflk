@@ -1,8 +1,9 @@
-{ config, lib, pkgs, my, ... }:
-{
+{ config, lib, pkgs, my, ... }: let
+    inherit (lib) recursiveUpdate;
+in {
     home.packages = with pkgs.gitAndTools; [ pre-commit ];
 
-    programs.git = {
+    programs.git = recursiveUpdate {
         enable = true;
         package = lib.hiPrio pkgs.gitAndTools.gitFull;
 
@@ -22,7 +23,7 @@
 
             pull.rebase = false;
         };
-    } // (lib.optionalAttrs (my.role == "personal") {
+    } (lib.optionalAttrs (my.role == "personal") {
         # special options like signing and chaos HTTP should be personal only
         signing = {
             key = "A51550EDB450302C";
@@ -30,11 +31,6 @@
         };
 
         extraConfig.http = {
-            "https://teamdepot.chaosinitiative.com" = {
-                sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
-                sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";
-            };
-
             "https://licensees.chaosinitiative.com" = {
                 sslCert = "/home/${my.username}/Documents/keys/chaos/public.pem";
                 sslKey = "/home/${my.username}/Documents/keys/chaos/private.pem";

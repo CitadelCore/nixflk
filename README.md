@@ -4,15 +4,7 @@ This repository contains the Nix flake configurations for my personal NixOS mach
 
 Once upon a time this was a modified version of `nixflk`, but after it deviated into devos I rewrote a lot of it myself.
 
-- `extern`: External imports. Same as with devos.
-- `hosts`: Top-level host definitions, one nix file per host.
-- `modules`: NixOS and home-manager modules.
-- `overlays`: Package overlays, merged with the ones in arnix.
-- `profiles`: Shared NixOS machine configurations.
-- `secrets`: Secrets encrypted with `sops`.
-- `users`: Home-manager users. One folder per user.
-
-To build and switch, clone this repository and run `nrb switch`.
+See the Arnix repo for further documentation. To build and switch, clone this repository and run `nrb switch`.
 
 ### Sanity checks
 

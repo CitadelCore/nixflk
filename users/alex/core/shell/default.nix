@@ -75,7 +75,9 @@
         direnv = {
             enable = true;
             enableFishIntegration = true;
-            enableNixDirenvIntegration = true;
+
+            # enable nix integration
+            nix-direnv.enable = true;
         };
     };
 }

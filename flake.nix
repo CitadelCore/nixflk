@@ -3,8 +3,8 @@
 
     inputs = {
         # use custom repo for secure boot + iptables fixes
-        nixos.url = "github:CitadelCore/nixpkgs/release-21.05";
-        nixpkgs.url = "github:CitadelCore/nixpkgs/release-21.05";
+        nixos.url = "nixpkgs/release-21.05";
+        nixpkgs.url = "nixpkgs/release-21.05";
         unstable.url = "nixpkgs";
 
         # arnix contains the shared base configuration

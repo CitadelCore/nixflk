@@ -5,5 +5,6 @@
         whois # DNS resolution
         atftp # TFTP client
         net-snmp # SNMP tools
+        wireshark # Protocol analyser
     ];
 }
