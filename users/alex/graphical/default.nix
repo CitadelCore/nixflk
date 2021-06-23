@@ -5,6 +5,7 @@
         ./creative
         ./media
         ./utility
+        ./web
 
         ./termite.nix
     ];

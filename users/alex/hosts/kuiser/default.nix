@@ -1,6 +1,6 @@
 {
     imports = [
-        ../../graphical/desktops/gnome
+        ../../graphical/desktops/plasma5
         ../../graphical/gaming
 
         ./barrier.nix

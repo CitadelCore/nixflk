@@ -12,8 +12,7 @@ in {
         profiles.virt.docker
         profiles.virt.libvirt
         profiles.graphical
-        profiles.graphical.gnome
-        #profiles.graphical.wayland
+        profiles.graphical.plasma5
     ]) ++ (with repos.self; mkProf [
         users.alex
         profiles.graphical.games
