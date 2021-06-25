@@ -1,23 +1,27 @@
 { lib, pkgs, repos, ... }:
 let
-    inherit (lib.arnix) mkProf;
-in {
-    imports = (with repos.root; mkProf [
-        profiles.core.ephemeral
-        profiles.core.security.tpm
-        profiles.core.zfs
-        profiles.locales.gb
-        profiles.virt.docker
-        profiles.virt.libvirt
-        profiles.graphical
-        profiles.graphical.gnome
-        profiles.graphical.wayland
-    ]) ++ (with repos.self; mkProf [
-        users.alex
-        profiles.laptop
-        profiles.roles.dev
-        profiles.hardware.system.p15v
-    ]);
+    inherit (lib.arnix) mkProfile;
+in mkProfile {
+    requires.users = [ "alex" ];
+
+    requires.profiles = [
+        # root profiles
+        "core/ephemeral"
+        "core/security/tpm"
+        "core/zfs"
+        "graphical"
+        "graphical/gnome"
+        "graphical/wayland"
+        "hardware/system/p15v"
+        "locales/gb"
+        "roles/dev"
+        "roles/personal"
+        "virt/docker"
+        "virt/libvirt"
+
+        # local profiles
+        "laptop"
+    ];
 
     boot = {
         initrd = {

@@ -1,27 +1,33 @@
 { lib, pkgs, repos, ... }:
 let
-    inherit (lib.arnix) mkProf;
-in {
-    imports = (with repos.root; mkProf [
-        profiles.core.ephemeral
-        profiles.core.security.tpm
-        profiles.core.security.sshd
-        #profiles.core.security.vpn
-        profiles.core.zfs
-        profiles.locales.gb
-        profiles.virt.docker
-        profiles.virt.libvirt
-        profiles.graphical
-        profiles.graphical.plasma5
-    ]) ++ (with repos.self; mkProf [
-        users.alex
-        profiles.graphical.games
-        profiles.graphical.scream
-        profiles.laptop
-        profiles.roles.dev
-        profiles.hardware.system.p72
-    ]) ++ [
+    inherit (lib.arnix) mkProfile;
+in mkProfile {
+    imports = [
         ./wireguard.nix
+    ];
+
+    requires.users = [ "alex" ];
+
+    requires.profiles = [
+        # root profiles
+        "core/ephemeral"
+        "core/security/sshd"
+        "core/security/tpm"
+        #"core/security/vpn"
+        "core/zfs"
+        "graphical"
+        "graphical/plasma5"
+        "hardware/system/p72"
+        "locales/gb"
+        "roles/dev"
+        "roles/personal"
+        "virt/docker"
+        "virt/libvirt"
+
+        # local profiles
+        "graphical/games"
+        "graphical/scream"
+        "laptop"
     ];
 
     boot = {

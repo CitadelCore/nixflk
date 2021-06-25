@@ -1,8 +1,5 @@
 { config, pkgs, lib, repos, ... }:
 {
-    imports = with repos.self.profiles;
-        lib.arnix.mkProf [ roles.personal ];
-
     environment.systemPackages = with pkgs; [
         # power management
         acpi lm_sensors

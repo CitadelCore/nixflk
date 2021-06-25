@@ -6,9 +6,11 @@
         "flake-utils": "flake-utils",
         "home": "home",
         "impermanence": "impermanence",
+        "nixlib": "nixlib",
         "nixos": [
           "nixos"
         ],
+        "nixos-generators": "nixos-generators",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": [
           "nixpkgs"
@@ -19,11 +21,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1624444244,
-        "narHash": "sha256-xrRRau8Bzi/BhVxSXY+oEorhsXmcBsXDYvOko34V15k=",
+        "lastModified": 1624588228,
+        "narHash": "sha256-ibUXJB1jUhtCwkgUopU9Vbgl6OiojkkjSb0hWbv2qyA=",
         "owner": "ArctarusLimited",
         "repo": "arnix",
-        "rev": "e6feb2cd97bd17439dea59d48ff0118d68439b13",
+        "rev": "9f3966f233d57baa66365e86832417bf18cb3c10",
         "type": "github"
       },
       "original": {
@@ -147,6 +149,21 @@
         "type": "github"
       }
     },
+    "nixlib": {
+      "locked": {
+        "lastModified": 1624148832,
+        "narHash": "sha256-HlXFOXPklqUF2eGPPm8kgfvU2psksLDaVGa2JMnpPTo=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "95c4b09c919abfbadc24386008541db16ba712d8",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixos": {
       "locked": {
         "lastModified": 1624431834,
@@ -160,6 +177,31 @@
         "id": "nixpkgs",
         "ref": "release-21.05",
         "type": "indirect"
+      }
+    },
+    "nixos-generators": {
+      "inputs": {
+        "nixlib": [
+          "arnix",
+          "nixlib"
+        ],
+        "nixpkgs": [
+          "arnix",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1624469844,
+        "narHash": "sha256-4ZpNEGkA7rLPC+ei4aBR6SdjplF6SE/M+sQlLS4dTVw=",
+        "owner": "nix-community",
+        "repo": "nixos-generators",
+        "rev": "ee75b41fa129750595e148d6f809f3f5e1f335c4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixos-generators",
+        "type": "github"
       }
     },
     "nixos-hardware": {
