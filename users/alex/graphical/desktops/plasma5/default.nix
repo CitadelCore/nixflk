@@ -6,4 +6,9 @@
         gwenview
         yakuake
     ]);
+
+    services.kdeconnect = {
+        enable = true;
+        indicator = true;
+    };
 }

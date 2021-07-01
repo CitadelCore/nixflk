@@ -1,5 +1,6 @@
-{ config, lib, pkgs, ... }:
-{
+{ config, lib, pkgs, ... }: let
+    inherit (lib) recursiveUpdate;
+in {
     programs.ssh = {
         enable = true;
         controlMaster = "auto";
@@ -22,9 +23,10 @@
             "10.8.3.*" = lenient;
             "2a10:4a80:7:3:*" = lenient;
 
-            "2a10:4a80:7:3::58" = lib.hm.dag.entryAfter ["2a10:4a80:7:3:*"] {
+            "switch-r1core1.stir1.arctarus.net" = recursiveUpdate lenient {
                 user = "joseph";
                 extraOptions = {
+                    # old machine, sending public keys sometimes makes it crash
                     "PubkeyAuthentication" = "no";
                 };
             };

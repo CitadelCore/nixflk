@@ -20,14 +20,15 @@ Enable hooks for sanity checking:
 DISK=/dev/disk/by-id/...
 sgdisk -z $DISK
 
-sgdisk -n1:1M:+512M -t1:EF00 $DISK
-sgdisk -n2:0:+32G -t2:8200 $DISK
-sgdisk -n3:0:0 -t3:BF00 $DISK
+sgdisk -a1 -n1:34:2047 -t1:EF02 $DISK
+sgdisk -n2:1M:+512M -t2:EF00 $DISK
+sgdisk -n3:513M:+32G -t3:8200 $DISK
+sgdisk -n4:0:0 -t4:BF00 $DISK
 
-mkfs.vfat $DISK-part1
-mkswap -L swap $DISK-part2
+mkfs.vfat $DISK-part2
+mkswap -L swap $DISK-part3
 
-zpool create -o ashift=12 -O mountpoint=none -O atime=off -O xattr=sa -O acltype=posixacl -O encryption=aes-256-gcm -O keylocation=prompt -O keyformat=passphrase rpool $DISK-part3
+zpool create -o ashift=12 -O mountpoint=none -O atime=off -O xattr=sa -O acltype=posixacl -O encryption=aes-256-gcm -O keylocation=prompt -O keyformat=passphrase rpool $DISK-part4
 zfs create -o mountpoint=legacy rpool/local
 zfs create rpool/local/root
 zfs create rpool/local/nix
@@ -44,7 +45,7 @@ mkdir nix home persist boot
 mount -t zfs rpool/local/nix /mnt/nix
 mount -t zfs rpool/safe/home /mnt/home
 mount -t zfs rpool/safe/persist /mnt/persist
-mount $DISK-part1 /mnt/boot
+mount $DISK-part2 /mnt/boot
 
 mkdir -p /mnt/etc/nixos
 nixos-generate-config --root /mnt

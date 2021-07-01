@@ -28,10 +28,9 @@
 
             workbench = {
                 colorTheme = "Visual Studio 2019 Dark";
-                editorAssociations = [{
-                    viewType = "jupyter.notebook.ipynb";
-                    filenamePattern = "*.ipynb";
-                }];
+                editorAssociations = {
+                    "*.ipynb" = "jupyter.notebook.ipynb";
+                };
             };
         };
     };
