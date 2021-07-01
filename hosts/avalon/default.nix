@@ -7,7 +7,7 @@ in mkProfile {
     requires.profiles = [
         # root profiles
         "core/ephemeral"
-        "core/security/tpm"
+        "core/security/tpm2"
         #"core/security/vpn"
         "core/zfs"
         "graphical"

@@ -12,7 +12,7 @@ in mkProfile {
         # root profiles
         "core/ephemeral"
         "core/security/sshd"
-        "core/security/tpm"
+        "core/security/tpm2"
         #"core/security/vpn"
         "core/zfs"
         "graphical"
