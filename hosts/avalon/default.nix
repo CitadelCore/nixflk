@@ -11,7 +11,7 @@ in mkProfile {
         #"core/security/vpn"
         "core/zfs"
         "graphical"
-        "graphical/gnome"
+        "graphical/plasma5"
         "graphical/wayland"
         "hardware/system/x1-tablet"
         "locales/gb"
@@ -60,8 +60,4 @@ in mkProfile {
     }];
 
     networking.hostId = "64c49c88";
-
-    environment.systemPackages = with pkgs; [
-        gnome3.gnome-tweaks
-    ];
 }

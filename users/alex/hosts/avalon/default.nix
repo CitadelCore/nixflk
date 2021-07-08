@@ -1,7 +1,5 @@
 {
     imports = [
-        ../../graphical/desktops/gnome
-
-        ./dconf.nix
+        ../../graphical/desktops/plasma5
     ];
 }
