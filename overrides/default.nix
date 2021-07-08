@@ -15,12 +15,4 @@
         "spotify" "spotify-unwrapped"
         "discord" "slack" "zoom"
     ];
-
-    packages = [(pkgs: final: prev: with pkgs; {
-        # needed for our patch
-        #inherit nixFlakes nixUnstable; # WHAT ???
-
-        inherit dotnet-sdk_5 omnisharp-roslyn;
-        inherit vscode-extensions;
-    })];
 }

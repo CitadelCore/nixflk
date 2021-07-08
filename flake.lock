@@ -22,11 +22,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1625157446,
-        "narHash": "sha256-ML8CanDN408+VNFHSOmzo8O/HKMMS/lKvlKitN+NYn0=",
+        "lastModified": 1625757591,
+        "narHash": "sha256-Fu9/3aN2uliPCyf4p0ssFWhgDCT8qWoyhllLW9gk6jo=",
         "owner": "ArctarusLimited",
         "repo": "arnix",
-        "rev": "ecbde0942fa8ec0cde0721e0f8d6b62bd1ccf04f",
+        "rev": "9646a78fec5918d930a71b3349030d426b1239af",
         "type": "github"
       },
       "original": {
@@ -44,11 +44,11 @@
         "utils": "utils"
       },
       "locked": {
-        "lastModified": 1619939702,
-        "narHash": "sha256-ETNQSN5MI14KWx1WzJwB5VD9MADnCuJJhTMYgoRlAf0=",
+        "lastModified": 1625406778,
+        "narHash": "sha256-7HAfKmp8UjSAznJNhgOubL+nhJdxl2p5i1i601gWJac=",
         "owner": "ArctarusLimited",
         "repo": "colmena",
-        "rev": "af5d834e2138a7ebbc4be054b4fcac07abcfa0f0",
+        "rev": "a96ac4f454682b9b250e68ef463ef9a0a5da575e",
         "type": "github"
       },
       "original": {
@@ -314,15 +314,17 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1623452651,
-        "narHash": "sha256-MsI+qZasVDzHj48yH8SqA/w/wMarW7M0/jjcMRsDYZE=",
-        "path": "/nix/store/4z1wm0hhi31qvbw7cg536affq5rk0a3n-source",
-        "rev": "20fb5871648830ba1d96929042b99d1ba09baf5d",
-        "type": "path"
+        "lastModified": 1625757310,
+        "narHash": "sha256-zigxLA3Rek9NyVXwAPVn09nfwOWy7wUfQcVqg5dRhNk=",
+        "owner": "ArctarusLimited",
+        "repo": "nixpkgs",
+        "rev": "3ea60fa310f5ca121be0d1c6a3177ff7165790c8",
+        "type": "github"
       },
       "original": {
-        "id": "nixpkgs",
-        "type": "indirect"
+        "owner": "ArctarusLimited",
+        "repo": "nixpkgs",
+        "type": "github"
       }
     },
     "utils": {

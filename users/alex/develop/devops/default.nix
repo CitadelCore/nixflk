@@ -6,6 +6,7 @@
         in [
             # cloud providers
             awscli2 aws-sam-cli #npc.aws-cdk
+            google-cloud-sdk
 
             # hashicorp stack
             terraform_0_14 packer vagrant
@@ -17,7 +18,7 @@
             colmena
 
             # kubernetes
-            kubectl
+            calicoctl cfssl kubectl
 
             # others
             (lib.lowPrio juju)
