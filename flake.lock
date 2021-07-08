@@ -22,11 +22,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1625757591,
-        "narHash": "sha256-Fu9/3aN2uliPCyf4p0ssFWhgDCT8qWoyhllLW9gk6jo=",
+        "lastModified": 1625761745,
+        "narHash": "sha256-WojGDIkBzFm/V86j9JJVBlcfd9EKat2B3ijZPvmxFOQ=",
         "owner": "ArctarusLimited",
         "repo": "arnix",
-        "rev": "9646a78fec5918d930a71b3349030d426b1239af",
+        "rev": "5bb11ce46392580ca8d9f4e37f9ae1e725d4cd0e",
         "type": "github"
       },
       "original": {
@@ -314,11 +314,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1625757310,
-        "narHash": "sha256-zigxLA3Rek9NyVXwAPVn09nfwOWy7wUfQcVqg5dRhNk=",
+        "lastModified": 1625761559,
+        "narHash": "sha256-aNUJ+x3nT0gWUBVtLTmuqHRVQuxrUpa+EsDf//thAfg=",
         "owner": "ArctarusLimited",
         "repo": "nixpkgs",
-        "rev": "3ea60fa310f5ca121be0d1c6a3177ff7165790c8",
+        "rev": "ef159e59aae6b1e0727b42c9e74d419dc104164b",
         "type": "github"
       },
       "original": {

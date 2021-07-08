@@ -14,6 +14,7 @@ in {
             "SGX_SDK" = "${pkgs.intel-sgx-sdk}/usr/share/sgxsdk";
             "PKG_CONFIG_PATH" = concatStringsSep ":" [
                 "${pkgs.openssl.dev}/lib/pkgconfig"
+                "${pkgs.intel-sgx-sdk}/lib64/pkgconfig"
             ];
         };
     };
