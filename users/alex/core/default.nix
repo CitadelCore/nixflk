@@ -4,7 +4,7 @@
 in {
     imports = [
         ./dconf
-        ./gnupg
+        ./security
         ./shell
         ./ssh
     ];
@@ -41,11 +41,6 @@ in {
 
             # ensure python requests uses our custom CA
             "REQUESTS_CA_BUNDLE" = "/etc/ssl/certs/ca-certificates.crt";
-
-            # vault variables for arctarus
-            "VAULT_ADDR" = "https://vault1.stir1.arctarus.net";
-            "VAULT_ARC_ROLE" = "operator";
-            "VAULT_ARC_SSH_ROLE" = "operator";
         };
 
         stateVersion = "20.09";

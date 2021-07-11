@@ -4,6 +4,7 @@
         qvtf
     ]) ++ (with pkgs.libsForQt5; [
         gwenview
+        kamoso
         yakuake
     ]);
 
