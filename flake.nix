@@ -7,9 +7,9 @@
         nixpkgs.url = "nixpkgs/release-21.05";
         unstable.url = "github:ArctarusLimited/nixpkgs";
 
-        # arnix contains the shared base configuration
-        arnix = {
-            url = "github:ArctarusLimited/arnix/master";
+        # KuiserOS contains the shared base configuration
+        kuiser = {
+            url = "github:ArctarusLimited/KuiserOS/master";
             inputs = {
                 nixos.follows = "nixos";
                 nixpkgs.follows = "nixpkgs";
@@ -24,11 +24,11 @@
         };
     };
 
-    outputs = inputs@{ arnix, ... }: let
-        inherit (arnix) lib;
-    in lib.mkArnixRepo {
+    outputs = inputs@{ kuiser, ... }: let
+        inherit (kuiser) lib;
+    in lib.mkRepo {
         inherit inputs;
-        parent = arnix;
+        parent = kuiser;
         name = "toplevel";
         root = ./.;
     };

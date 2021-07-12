@@ -31,12 +31,12 @@ in {
         sessionVariables = let
             # global flake override paths
             flakeOverrides = concatStringsSep ";" (mapAttrsToList (k: v: "${k}=${v}") {
-                "github:ArctarusLimited/arnix/master" = "$HOME/src/corp/arctarus/arnix";
+                "github:ArctarusLimited/KuiserOS/master" = "$HOME/src/corp/arctarus/kuiser";
                 "git+ssh://git@github.com/ArctarusLimited/infra.git?dir=nix" = "$HOME/src/corp/arctarus/infra/nix";
             });
         in {
-            # setup arnix repo for development
-            "ARNIX_REPO_PATH" = "$HOME/src/corp/arctarus/arnix";
+            # setup KuiserOS repo for development
+            "KUISER_REPO_PATH" = "$HOME/src/corp/arctarus/kuiser";
             "NIX_FLAKE_URL_OVERRIDES" = flakeOverrides;
 
             # ensure python requests uses our custom CA

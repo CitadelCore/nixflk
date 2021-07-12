@@ -1,6 +1,5 @@
-{ lib, name, ... }: let
-    inherit (lib.arnix) mkHostSecretPath;
-in {
+{ lib, name, ... }:
+{
     # Temporary hacky tunnel
     networking.interfaces.wg0.mtu = 1420;
 

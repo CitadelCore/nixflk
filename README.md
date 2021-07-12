@@ -4,7 +4,7 @@ This repository contains the Nix flake configurations for my personal NixOS mach
 
 Once upon a time this was a modified version of `nixflk`, but after it deviated into devos I rewrote a lot of it myself.
 
-See the Arnix repo for further documentation. To build and switch, clone this repository and run `nrb switch`.
+See the KuiserOS repo for further documentation. To build and switch, clone this repository and run `nrb switch`.
 
 ### Sanity checks
 

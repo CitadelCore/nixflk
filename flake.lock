@@ -1,42 +1,5 @@
 {
   "nodes": {
-    "arnix": {
-      "inputs": {
-        "colmena": "colmena",
-        "flake-compat": "flake-compat_2",
-        "flake-utils": "flake-utils",
-        "home": "home",
-        "impermanence": "impermanence",
-        "nix": "nix",
-        "nixlib": "nixlib",
-        "nixos": [
-          "nixos"
-        ],
-        "nixos-generators": "nixos-generators",
-        "nixos-hardware": "nixos-hardware",
-        "nixpkgs": [
-          "nixpkgs"
-        ],
-        "nur": "nur",
-        "unstable": [
-          "unstable"
-        ]
-      },
-      "locked": {
-        "lastModified": 1626066657,
-        "narHash": "sha256-8JDt7h1Og7Gh+2GgTyxVRzmXLrLZ4Ow+00uNsiHAh98=",
-        "owner": "ArctarusLimited",
-        "repo": "arnix",
-        "rev": "d66a8f9e59e455e4a227719dfd2c92948f732c25",
-        "type": "github"
-      },
-      "original": {
-        "owner": "ArctarusLimited",
-        "ref": "master",
-        "repo": "arnix",
-        "type": "github"
-      }
-    },
     "colmena": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -110,7 +73,7 @@
     "home": {
       "inputs": {
         "nixpkgs": [
-          "arnix",
+          "kuiser",
           "nixpkgs"
         ]
       },
@@ -144,6 +107,43 @@
         "type": "github"
       }
     },
+    "kuiser": {
+      "inputs": {
+        "colmena": "colmena",
+        "flake-compat": "flake-compat_2",
+        "flake-utils": "flake-utils",
+        "home": "home",
+        "impermanence": "impermanence",
+        "nix": "nix",
+        "nixlib": "nixlib",
+        "nixos": [
+          "nixos"
+        ],
+        "nixos-generators": "nixos-generators",
+        "nixos-hardware": "nixos-hardware",
+        "nixpkgs": [
+          "nixpkgs"
+        ],
+        "nur": "nur",
+        "unstable": [
+          "unstable"
+        ]
+      },
+      "locked": {
+        "lastModified": 1626089892,
+        "narHash": "sha256-ucSsr9RUvV45tggkC2oYD7eyjE6tnc1MYgIzMEAJPhI=",
+        "owner": "ArctarusLimited",
+        "repo": "KuiserOS",
+        "rev": "7f19e87547c8413f024ee41197e7be2d15899624",
+        "type": "github"
+      },
+      "original": {
+        "owner": "ArctarusLimited",
+        "ref": "master",
+        "repo": "KuiserOS",
+        "type": "github"
+      }
+    },
     "lowdown-src": {
       "flake": false,
       "locked": {
@@ -164,7 +164,7 @@
     "naersk": {
       "inputs": {
         "nixpkgs": [
-          "arnix",
+          "kuiser",
           "colmena",
           "nixpkgs"
         ]
@@ -237,11 +237,11 @@
     "nixos-generators": {
       "inputs": {
         "nixlib": [
-          "arnix",
+          "kuiser",
           "nixlib"
         ],
         "nixpkgs": [
-          "arnix",
+          "kuiser",
           "nixpkgs"
         ]
       },
@@ -338,7 +338,7 @@
     },
     "root": {
       "inputs": {
-        "arnix": "arnix",
+        "kuiser": "kuiser",
         "nixos": "nixos",
         "nixpkgs": "nixpkgs_3",
         "sops-nix": "sops-nix",
@@ -367,11 +367,11 @@
     },
     "unstable": {
       "locked": {
-        "lastModified": 1626046891,
-        "narHash": "sha256-Zt8saH+hAehXskW0iFAzk+iMillYoFBxvLReYNqGT9E=",
+        "lastModified": 1626024460,
+        "narHash": "sha256-q/XTP5IBfg48vtqIbRgY2ZnB26g8fNkMKldHp19zFmo=",
         "owner": "ArctarusLimited",
         "repo": "nixpkgs",
-        "rev": "d8f8f31af9d77a48220e4e8a301d1e79774cb7d2",
+        "rev": "de04c7f5a0f622ac4154ee527a8522fc038e0cb3",
         "type": "github"
       },
       "original": {
