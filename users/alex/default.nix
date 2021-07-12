@@ -32,7 +32,15 @@ in
         isNormalUser = true;
 
         description = my.name;
-        extraGroups = [ "wheel" "networkmanager" "docker" "libvirtd" "video" "sysconf" ];
+        extraGroups = [
+            "adbusers"
+            "docker"
+            "libvirtd"
+            "networkmanager"
+            "sysconf"
+            "video"
+            "wheel"
+        ];
 
         shell = pkgs.fish;
         hashedPassword = lib.fileContents ./password.txt;
