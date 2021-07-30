@@ -18,11 +18,14 @@
             colmena
 
             # kubernetes
-            calicoctl cfssl kubectl
+            calicoctl cfssl kubectl krew kubernetes-helm
 
             # others
             (lib.lowPrio juju)
             #python38Packages.charm-tools
         ];
+
+        # add Krew to path for kubectl
+        sessionPath = [ "\${HOME}/.krew/bin" ];
     };
 }

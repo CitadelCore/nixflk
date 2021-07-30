@@ -17,8 +17,6 @@
                 # grep
                 grep = "rg";
                 gi = "grep -i";
-                lh = "ls -lah";
-                hgrep = "cat ~/.bash_history | grep $argv";
 
                 # internet ip
                 myip = "dig +short myip.opendns.com @208.67.222.222 2>&1";
@@ -30,7 +28,12 @@
                 nr = "np remove";
                 ns = "n search --no-update-lock-file";
                 nf = "n flake";
-                srch = "ns nixpkgs";
+                nepl = "n repl '<nixpkgs>'";
+                srch = "ns nixos";
+                orch = "ns override";
+                mn = ''
+                    manix "" | grep '^# ' | sed 's/^# \(.*\) (.*/\1/;s/ (.*//;s/^# //' | sk --preview="manix '{}'" | xargs manix
+                '';
 
                 # top
                 top = "gotop";

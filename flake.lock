@@ -1,5 +1,27 @@
 {
   "nodes": {
+    "bud": {
+      "inputs": {
+        "devshell": "devshell",
+        "nixpkgs": [
+          "kuiser",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1627447597,
+        "narHash": "sha256-e7q4jCq7MPHTa0HKxX5fJS1JwZ33BN9WohWUy6sOOgA=",
+        "owner": "divnix",
+        "repo": "bud",
+        "rev": "231fa20ed93944e5b484cb5d820c60c17f4dfc35",
+        "type": "github"
+      },
+      "original": {
+        "owner": "divnix",
+        "repo": "bud",
+        "type": "github"
+      }
+    },
     "colmena": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -19,6 +41,21 @@
         "owner": "ArctarusLimited",
         "ref": "feat/flake-support",
         "repo": "colmena",
+        "type": "github"
+      }
+    },
+    "devshell": {
+      "locked": {
+        "lastModified": 1625086391,
+        "narHash": "sha256-IpNPv1v8s4L3CoxhwcgZIitGpcrnNgnj09X7TA0QV3k=",
+        "owner": "numtide",
+        "repo": "devshell",
+        "rev": "4b5ac7cf7d9a1cc60b965bb51b59922f2210cbc7",
+        "type": "github"
+      },
+      "original": {
+        "owner": "numtide",
+        "repo": "devshell",
         "type": "github"
       }
     },
@@ -109,6 +146,7 @@
     },
     "kuiser": {
       "inputs": {
+        "bud": "bud",
         "colmena": "colmena",
         "flake-compat": "flake-compat_2",
         "flake-utils": "flake-utils",
@@ -130,11 +168,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1626189736,
-        "narHash": "sha256-i6XcZFzrc9Qkzj8t5xhf3axx8wRZB7kQNlujqr6XQqU=",
+        "lastModified": 1627571360,
+        "narHash": "sha256-+4tTEKPwoLA4WiDujiYT2kl8L4rMC5mT+W347uL83Xg=",
         "owner": "ArctarusLimited",
         "repo": "KuiserOS",
-        "rev": "fb08617bbeedeb8ec4d0775f9100e51bf69597c4",
+        "rev": "b3351fca0a3080149d366c96cb9ef8007bd6ffb4",
         "type": "github"
       },
       "original": {
