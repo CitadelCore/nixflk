@@ -18,7 +18,8 @@
             colmena
 
             # kubernetes
-            calicoctl cfssl kubectl krew kubernetes-helm
+            cfssl kubectl krew kubernetes-helm
+            calicoctl cilium-cli istioctl
 
             # others
             (lib.lowPrio juju)
