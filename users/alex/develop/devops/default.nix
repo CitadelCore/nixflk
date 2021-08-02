@@ -19,7 +19,7 @@
 
             # kubernetes
             cfssl kubectl krew kubernetes-helm
-            calicoctl cilium-cli istioctl
+            calicoctl cilium-cli istioctl hubble
 
             # others
             (lib.lowPrio juju)

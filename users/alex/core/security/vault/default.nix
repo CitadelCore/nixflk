@@ -6,7 +6,7 @@ in {
 
         sessionVariables = {
             # vault variables for arctarus
-            "VAULT_ADDR" = "https://vault.default.k8s.stir1.arctarus.net:8200";
+            "VAULT_ADDR" = "https://vault.services.k8s.stir1.arctarus.net:8200";
             "VAULT_CACERT" = "$HOME/src/corp/arctarus/infra/nix/profiles/vault/client/server.pem";
             "VAULT_ARC_ROLE" = "operator";
             "VAULT_ARC_SSH_ROLE" = "operator";
