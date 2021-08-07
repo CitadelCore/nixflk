@@ -32,6 +32,8 @@
                     "*.ipynb" = "jupyter.notebook.ipynb";
                 };
             };
+
+            yaml.schemaStore.enable = false;
         };
     };
 }

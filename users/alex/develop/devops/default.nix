@@ -14,12 +14,15 @@
             vault boundary
             nomad waypoint
 
+            # pulumi
+            pulumi-bin tf2pulumi
+
             # nix
             colmena
 
             # kubernetes
-            cfssl kubectl krew kubernetes-helm
-            calicoctl cilium-cli istioctl hubble
+            cfssl talosctl kubectl krew kubernetes-helm
+            calicoctl cilium-cli istioctl hubble tanka
 
             # others
             (lib.lowPrio juju)

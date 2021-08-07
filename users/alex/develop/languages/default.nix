@@ -5,6 +5,7 @@
         ./golang
         ./java
         ./javascript
+        ./jsonnet
         ./python
         ./rust
     ];

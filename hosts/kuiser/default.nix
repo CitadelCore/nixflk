@@ -73,6 +73,7 @@ in mkProfile {
         firewall.allowedTCPPorts = [ 24800 ];
 
         hosts = {
+            "10.8.2.30" = [ "kube.cic.stir1.arctarus.net" ];
             "2a10:4a80:7:8::10" = [ "vault1.stir1.arctarus.net" ];
         };
     };
