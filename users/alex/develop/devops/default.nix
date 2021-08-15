@@ -21,8 +21,8 @@
             colmena
 
             # kubernetes
-            cfssl talosctl kubectl krew kubernetes-helm
-            calicoctl cilium-cli istioctl hubble tanka
+            cfssl talosctl clusterctl kubectl krew kubernetes-helm operator-sdk
+            calicoctl cilium-cli istioctl hubble tanka pgo-client
 
             # others
             (lib.lowPrio juju)

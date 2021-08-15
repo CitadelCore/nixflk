@@ -22,6 +22,6 @@
         libmbim libqmi
 
         # security
-        openssl git-crypt gnupg mkpasswd
+        openssl git-crypt git-secrets gnupg mkpasswd
     ];
 }
