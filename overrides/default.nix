@@ -18,6 +18,6 @@
 
     packages = [(pkgs: final: prev: with pkgs; {
         # packages pulled from upstream
-        inherit tanka;
+        inherit tanka kubie kubectx;
     })];
 }
