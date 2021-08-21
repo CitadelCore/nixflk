@@ -8,7 +8,7 @@ in {
         ./shell
         ./ssh
     ];
-    
+
     programs = {
         home-manager.enable = true;
         command-not-found.enable = true;

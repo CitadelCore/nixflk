@@ -6,8 +6,6 @@ in {
             (lib.hiPrio clang) lldb gcc
             pkg-config protobuf
             intel-sgx-sdk
-            
-            jetbrains.clion
         ];
 
         sessionVariables = {

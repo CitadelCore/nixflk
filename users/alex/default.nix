@@ -1,30 +1,13 @@
 { config, lib, pkgs, name, ... }:
 
 let
-    # switch name depending on whether
-    # this is a work machine or not (to avoid confusion)
-    role = if name == "redshift" then "work" else "personal";
-    my = import ./my.nix { inherit role; };
+    my = import ./my.nix { inherit name; };
 in
 {
     _module.args = { inherit my; };
 
     home-manager = {
-        users."${my.username}" = {
-            imports = [
-                ../../modules/home
-
-                ./core
-                ./develop
-                ./graphical
-            ]
-
-            # add host specific user configuration
-            ++ (if name != null then [(./hosts + "/${name}")] else []);
-
-            # inherit the user meta configuration
-            _module.args = { inherit my; };
-        };
+        users."${my.username}" = import ./home.nix;
     };
 
     users.users."${my.username}" = {

@@ -1,5 +1,6 @@
-{ config, lib, pkgs, my, ... }:
-{
+{ config, lib, pkgs, my, ... }: let
+    inherit (lib) optionalAttrs;
+in {
     programs.gpg = {
         enable = true;
         settings = {
@@ -31,12 +32,13 @@
     };
 
     services.gpg-agent = {
-        enable = true;
+        enable = !my.wsl;
         enableSshSupport = true;
     };
 
     home.sessionVariables = {
-        "SSH_AUTH_SOCK" = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
         "SOPS_PGP_FP" = my.pgp.fingerprint;
-    };
+    } // (optionalAttrs (!my.wsl) {
+        "SSH_AUTH_SOCK" = "/run/user/$UID/gnupg/S.gpg-agent.ssh";
+    });
 }

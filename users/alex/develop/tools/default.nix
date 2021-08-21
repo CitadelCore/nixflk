@@ -1,9 +1,5 @@
 { pkgs, ... }:
 {
-    imports = [
-        ./vscode
-    ];
-
     home.packages = with pkgs; [
         # nix stuff
         nixfmt
