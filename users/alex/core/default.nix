@@ -17,6 +17,11 @@ in {
     xdg = {
         enable = true;
         mime.enable = true;
+
+        # enable Nix experimental features
+        configFile."nix/nix.conf".text = ''
+            experimental-features = flakes nix-command ca-references ca-derivations
+        '';
     };
 
     home = {

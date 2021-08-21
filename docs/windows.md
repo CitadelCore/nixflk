@@ -81,7 +81,7 @@ This flake can be used on Windows in a home-manager-only capacity for WSL.
     # Latest version of Nix Unstable from https://github.com/numtide/nix-unstable-installer/releases
     sh <(curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210604_8e6ee1b/install)
     ```
-3. Clone the repo:
+5. Clone the repo:
     ```bash
     git clone git@github.com:CitadelCore/nixflk.git && cd nixflk
     git-crypt unlock
