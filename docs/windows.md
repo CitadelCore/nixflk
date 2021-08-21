@@ -74,21 +74,22 @@ This flake can be used on Windows in a home-manager-only capacity for WSL.
         fi
         ```
     4. Restart your session and confirm you can now run GPG and SSH commands
-4. Install dependencies:
+4. Set up environment:
+    ```bash
+    sudo apt-get -y install fish
+    chsh -s /usr/bin/fish
+    ```
+5. Install dependencies:
     ```bash
     sudo apt-get -y install git-crypt
 
     # Latest version of Nix Unstable from https://github.com/numtide/nix-unstable-installer/releases
     sh <(curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210604_8e6ee1b/install)
-    ```
-5. Set up environment:
-    ```bash
-    sudo apt-get -y install fish
-    chsh -s /usr/bin/fish
 
-    echo -e '\n. "$HOME/.nix-profile/etc/profile.d/hm-session-vars.sh"' >> ~/.profile
+    # Add the following to ~/.bashrc
+    echo -n 'if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi' >> ~/.bashrc
     ```
-5. Clone the repo:
+6. Clone the repo:
     ```bash
     git clone git@github.com:CitadelCore/nixflk.git && cd nixflk
     git-crypt unlock

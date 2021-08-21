@@ -1,4 +1,4 @@
-{ lib, pkgs, ... }: let
+{ lib, pkgs, my, ... }: let
     # HACK: copied from the NixOS repo
     inixCli = pkgs.writeShellScriptBin "inix" ''
         IFS=';' read -ra ARGS <<< $(${pkgs.inix-helper}/bin/inix-helper)
@@ -6,4 +6,20 @@
     '';
 in {
     home.packages = [ inixCli ];
+
+    programs.fish = {
+        shellInit = ''
+            fenv source "/home/${my.username}/.nix-profile/etc/profile.d/nix.sh";
+        '';
+
+        plugins = [{
+            name = "plugin-foreign-env";
+            src = pkgs.fetchFromGitHub {
+                owner = "oh-my-fish";
+                repo = "plugin-foreign-env";
+                rev = "dddd9213272a0ab848d474d0cbde12ad034e65bc";
+                sha256 = "00xqlyl3lffc5l0viin1nyp819wf81fncqyz87jx8ljjdhilmgbs";
+            };
+        }];
+    };
 }
