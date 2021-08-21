@@ -77,6 +77,7 @@
 
         direnv = {
             enable = true;
+            enableBashIntegration = true;
             enableFishIntegration = true;
 
             # enable nix integration
