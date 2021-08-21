@@ -168,11 +168,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1629039667,
-        "narHash": "sha256-rDBgPQNWsA3x0S/RCN85YrR7IZMJ26V3Swo1xb3ZtL4=",
+        "lastModified": 1629577748,
+        "narHash": "sha256-D65U/f70/6eBE+mMj7SyOXKyPTpLP3QVKZZdWCM9AGM=",
         "owner": "ArctarusLimited",
         "repo": "KuiserOS",
-        "rev": "f5b4752eab7ea0ec4bc077eeb52f256ffb8f92c7",
+        "rev": "9be565027684791ebf5a65a90a5b93851d5c07a3",
         "type": "github"
       },
       "original": {

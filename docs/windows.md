@@ -84,10 +84,14 @@ This flake can be used on Windows in a home-manager-only capacity for WSL.
     sudo apt-get -y install git-crypt
 
     # Latest version of Nix Unstable from https://github.com/numtide/nix-unstable-installer/releases
-    sh <(curl -L https://github.com/numtide/nix-flakes-installer/releases/download/nix-2.4pre20210604_8e6ee1b/install)
+    NIX_VERSION="nix-2.4pre20210604_8e6ee1b"
+    sh <(curl -L https://github.com/numtide/nix-flakes-installer/releases/download/$NIX_VERSION/install)
 
     # Add the following to ~/.bashrc
     echo -n 'if [ -e /home/alex/.nix-profile/etc/profile.d/nix.sh ]; then . /home/alex/.nix-profile/etc/profile.d/nix.sh; fi' >> ~/.bashrc
+
+    # Increase priority of preinstalled Nix
+    nix-env --set-flag priority 100 $NIX_VERSION
     ```
 6. Clone the repo:
     ```bash

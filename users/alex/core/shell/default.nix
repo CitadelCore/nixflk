@@ -1,5 +1,6 @@
-{ pkgs, ... }:
-{
+{ lib, pkgs, my, ... }: let
+    inherit (lib) optionalString;
+in {
     programs = {
         fish = {
             enable = true;
@@ -58,8 +59,9 @@
                 set -x TERM xterm
 
                 set -x XDG_DATA_DIRS "$HOME/.nix-profile/share:$XDG_DATA_DIRS"
+            '' + (optionalString (!my.wsl) ''
                 set -x SSH_AUTH_SOCK "/run/user/$UID/gnupg/S.gpg-agent.ssh"
-            '';
+            '');
 
             plugins = with pkgs; [
                 {
