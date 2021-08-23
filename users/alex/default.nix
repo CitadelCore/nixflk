@@ -1,7 +1,7 @@
-{ config, lib, pkgs, name, ... }:
+{ config, lib, pkgs, host, ... }:
 
 let
-    my = import ./my.nix { inherit name; };
+    my = import ./my.nix { inherit host; };
 in
 {
     _module.args = { inherit my; };

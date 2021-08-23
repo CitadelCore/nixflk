@@ -1,10 +1,10 @@
-{ name }: let
+{ host }: let
     # switch name depending on whether
     # this is a work machine or not (to avoid confusion)
-    role = if name == "redshift" then "work" else "personal";
+    role = if host == "redshift" then "work" else "personal";
     
     # is this machine running under windows subsystem for linux?
-    wsl = if name == "avalon" then true else false;
+    wsl = if host == "avalon" then true else false;
 
     # disable graphical for wsl
     graphical = if wsl then false else true;
