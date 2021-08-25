@@ -22,7 +22,7 @@
 
             # kubernetes
             cfssl talosctl clusterctl kubie kubectx kubectl krew kubernetes-helm operator-sdk
-            calicoctl cilium-cli istioctl hubble tanka pgo-client
+            vcluster calicoctl cilium-cli istioctl hubble tanka pgo-client
 
             # others
             (lib.lowPrio juju)
