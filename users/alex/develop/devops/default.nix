@@ -9,7 +9,7 @@
             google-cloud-sdk
 
             # hashicorp stack
-            terraform_0_14 packer vagrant
+            terraform_0_14 terragrunt packer vagrant
             consul consul-template
             vault boundary
             nomad waypoint

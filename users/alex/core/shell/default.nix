@@ -51,6 +51,7 @@ in {
 
                 # ops
                 tf = "terraform";
+                tg = "terragrunt";
             };
 
             shellInit = ''
